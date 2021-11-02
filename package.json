@@ -1,0 +1,27 @@
+{
+  "name": "@gabrielrufino/cube",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielrufino/cube.git"
+  },
+  "keywords": [
+    "Data",
+    "Structures",
+    "Algorithms"
+  ],
+  "author": "Gabriel Rufino <contato@gabrielrufino.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/gabrielrufino/cube/issues"
+  },
+  "homepage": "https://github.com/gabrielrufino/cube#readme",
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}

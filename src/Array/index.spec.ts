@@ -76,4 +76,20 @@ describe('Array', () => {
 		expect(array.data).toEqual([]);
 		expect(element).toBe(undefined);
 	});
+
+	it('Should remove and return the element of an arbitrary position from array', () => {
+		const array = new Array(1, 2, 3, 4);
+		const element = array.removeFromPosition(2);
+
+		expect(array.data).toEqual([1, 2, 4]);
+		expect(element).toBe(3);
+	});
+
+	it('Should return return when trying to remove the element of an arbitrary position from an empty array', () => {
+		const array = new Array();
+		const element = array.removeFromPosition(faker.datatype.number());
+
+		expect(array.data).toEqual([]);
+		expect(element).toBe(undefined);
+	});
 });

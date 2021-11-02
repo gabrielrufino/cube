@@ -1,6 +1,7 @@
 import DataStructure from '../DataStructure';
+import IArray from './IArray';
 
-export default class Array<T = number> extends DataStructure<T> {
+export default class Array<T = number> extends DataStructure<T> implements IArray<T> {
 	constructor(...inputs: T[]) {
 		super(inputs);
 	}
@@ -40,6 +41,11 @@ export default class Array<T = number> extends DataStructure<T> {
 		}
 
 		this._data = array.data;
+		return element;
+	}
+
+	public removeFromPosition(position: number): T | undefined {
+		const [element] = this._data.splice(position, 1);
 		return element;
 	}
 }

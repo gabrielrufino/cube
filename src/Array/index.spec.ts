@@ -52,4 +52,28 @@ describe('Array', () => {
 		expect(array.data).toEqual([1, 2, 3]);
 		expect(element).toBe(4);
 	});
+
+	it('Should ruturn undefined when trying to remove the last element of an empty array', () => {
+		const array = new Array();
+		const element = array.removeFromLastPosition();
+
+		expect(array.data).toEqual([]);
+		expect(element).toBe(undefined);
+	});
+
+	it('Should remove and return the first element of the array', () => {
+		const array = new Array(1, 2, 3, 4);
+		const element = array.removeFromFirstPosition();
+
+		expect(array.data).toEqual([2, 3, 4]);
+		expect(element).toBe(1);
+	});
+
+	it('Should ruturn undefined when trying to remove the first element of an empty array', () => {
+		const array = new Array();
+		const element = array.removeFromFirstPosition();
+
+		expect(array.data).toEqual([]);
+		expect(element).toBe(undefined);
+	});
 });

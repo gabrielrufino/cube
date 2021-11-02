@@ -5,12 +5,12 @@ export default class Array<T = number> extends DataStructure<T> {
 		super(inputs);
 	}
 
-	public insertInFirstPosition(element: T): T {
+	public insertInLastPosition(element: T): T {
 		this._data[this.size] = element;
 		return element;
 	}
 
-	public insertInLastPosition(element: T): T {
+	public insertInFirstPosition(element: T): T {
 		for (let i = this.size; i > 0; i--) {
 			this._data[i] = this._data[i - 1];
 		}

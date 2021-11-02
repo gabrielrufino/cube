@@ -1,4 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
+import faker from 'faker';
 
 import Array from './';
 
@@ -15,5 +16,32 @@ describe('Array', () => {
 
 		expect(array.data).toEqual([1, 2, 3, 4, 5]);
 		expect(array.size).toBe(5);
+	});
+
+	it('Should return the correct size of the array', () => {
+		const size = faker.datatype.number(200);
+		const params = [];
+
+		for (let i = 0; i < size; i++) {
+			params.push(faker.datatype.number());
+		}
+
+		const array = new Array(...params);
+
+		expect(array.size).toBe(size);
+	});
+
+	it('Should insert a new element in the last position', () => {
+		const array = new Array(1, 2, 3);
+		array.insertInLastPosition(4);
+
+		expect(array.data).toEqual([1, 2, 3, 4]);
+	});
+
+	it('Should insert a new element in the first position', () => {
+		const array = new Array(2, 3, 4);
+		array.insertInFirstPosition(1);
+
+		expect(array.data).toEqual([1, 2, 3, 4]);
 	});
 });

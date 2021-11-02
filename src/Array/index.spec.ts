@@ -3,12 +3,17 @@ import {describe, expect, it} from '@jest/globals';
 import Array from './';
 
 describe('Array', () => {
-	it('blabla', () => {
-		// eslint-disable-next-line no-array-constructor
-		const a = new Array(1);
+	it('Should create an empty array with no problems', () => {
+		const array = new Array();
 
-		console.log(a.data);
+		expect(array.data).toEqual([]);
+		expect(array.size).toBe(0);
+	});
 
-		expect(1).toBe(1);
+	it('Should create a filled array with no problems', () => {
+		const array = new Array(1, 2, 3, 4, 5);
+
+		expect(array.data).toEqual([1, 2, 3, 4, 5]);
+		expect(array.size).toBe(5);
 	});
 });

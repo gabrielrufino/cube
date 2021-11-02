@@ -99,4 +99,25 @@ describe('Array', () => {
 		expect(array.data).toEqual([]);
 		expect(element).toBe(undefined);
 	});
+
+	it('Should create an bidimensional array with no problems', () => {
+		const array = new Array<Array>(
+			new Array(1, 2, 3),
+			new Array(4, 5, 6),
+			new Array(7, 8, 9),
+		);
+
+		expect(array.data).toEqual([
+			new Array(1, 2, 3),
+			new Array(4, 5, 6),
+			new Array(7, 8, 9),
+		]);
+		expect(array.data[0].data).toEqual([1, 2, 3]);
+		expect(array.data[1].data).toEqual([4, 5, 6]);
+		expect(array.data[2].data).toEqual([7, 8, 9]);
+		expect(array.size).toBe(3);
+		expect(array.data[0].size).toEqual(3);
+		expect(array.data[1].size).toEqual(3);
+		expect(array.data[2].size).toEqual(3);
+	});
 });

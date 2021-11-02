@@ -8,4 +8,8 @@ export default abstract class DataStructure<T> {
 	public get data(): T[] {
 		return [...this._data];
 	}
+
+	public get size(): number {
+		return this._data.length;
+	}
 }

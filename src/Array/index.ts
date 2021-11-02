@@ -20,6 +20,11 @@ export default class Array<T = number> extends DataStructure<T> implements IArra
 		return element;
 	}
 
+	public insertInPosition(position: number, element: T): T {
+		this._data.splice(position, 0, element);
+		return element;
+	}
+
 	public removeFromLastPosition(): T | undefined {
 		const element = this._data[this.size - 1];
 		const array = new Array<T>();

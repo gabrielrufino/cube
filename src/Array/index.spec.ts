@@ -45,6 +45,13 @@ describe('Array', () => {
 		expect(array.data).toEqual([1, 2, 3, 4]);
 	});
 
+	it('Shoudl insert a new element in a arbitrary position of an array', () => {
+		const array = new Array(1, 2, 4);
+		array.insertInPosition(2, 3);
+
+		expect(array.data).toEqual([1, 2, 3, 4]);
+	});
+
 	it('Should remove and return the last element of the array', () => {
 		const array = new Array(1, 2, 3, 4);
 		const element = array.removeFromLastPosition();

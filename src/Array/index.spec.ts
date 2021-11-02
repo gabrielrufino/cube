@@ -44,4 +44,12 @@ describe('Array', () => {
 
 		expect(array.data).toEqual([1, 2, 3, 4]);
 	});
+
+	it('Should remove and return the last element of the array', () => {
+		const array = new Array(1, 2, 3, 4);
+		const element = array.removeFromLastPosition();
+
+		expect(array.data).toEqual([1, 2, 3]);
+		expect(element).toBe(4);
+	});
 });

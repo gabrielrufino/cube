@@ -18,4 +18,9 @@ export default class Array<T = number> extends DataStructure<T> {
 		this._data[0] = element;
 		return element;
 	}
+
+	public removeFromLastPosition(): T | undefined {
+		const element = this._data.pop();
+		return element;
+	}
 }

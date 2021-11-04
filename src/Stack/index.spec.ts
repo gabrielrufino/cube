@@ -61,6 +61,15 @@ describe('Stack', () => {
 		expect(element).toBe(undefined);
 	});
 
+	describe('.clear()', () => {
+		it('Should clear a stack', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			stack.clear();
+
+			expect(stack.data).toEqual([]);
+		});
+	});
+
 	describe('.isEmpty', () => {
 		it('Should return true when the stack has no elements', () => {
 			const stack = new Stack();

@@ -21,6 +21,10 @@ export default class Stack<T = number> extends DataStructure<T> implements IStac
 		return this.data[topPosition];
 	}
 
+	public clear(): void {
+		this._data = [];
+	}
+
 	public get isEmpty(): boolean {
 		return this.data.length === 0;
 	}

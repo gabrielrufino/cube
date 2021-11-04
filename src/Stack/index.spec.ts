@@ -45,4 +45,19 @@ describe('Stack', () => {
 		expect(stack.data).toEqual([1, 2, 3]);
 		expect(element).toBe(4);
 	});
+
+	it('Should peek the top element of the stack', () => {
+		const stack = new Stack(1, 2, 3, 4);
+		const element = stack.peek();
+
+		expect(element).toBe(4);
+		expect(stack.data).toEqual([1, 2, 3, 4]);
+	});
+
+	it('Should peek undefined when the stack has no elements', () => {
+		const stack = new Stack();
+		const element = stack.peek();
+
+		expect(element).toBe(undefined);
+	});
 });

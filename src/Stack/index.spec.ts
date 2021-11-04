@@ -60,4 +60,18 @@ describe('Stack', () => {
 
 		expect(element).toBe(undefined);
 	});
+
+	describe('.isEmpty', () => {
+		it('Should return true when the stack has no elements', () => {
+			const stack = new Stack();
+
+			expect(stack.isEmpty).toBe(true);
+		});
+
+		it('Should return false when the stack at least one element', () => {
+			const stack = new Stack(1);
+
+			expect(stack.isEmpty).toBe(false);
+		});
+	});
 });

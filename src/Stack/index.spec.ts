@@ -38,7 +38,7 @@ describe('Stack', () => {
 		expect(stack.data).toEqual([1, 2, 3, 4]);
 	});
 
-	it('Should pop a the top element from the stack', () => {
+	it('Should pop the top element from the stack', () => {
 		const stack = new Stack(1, 2, 3, 4);
 		const element = stack.pop();
 

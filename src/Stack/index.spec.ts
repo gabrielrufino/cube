@@ -38,11 +38,49 @@ describe('Stack', () => {
 		expect(stack.data).toEqual([1, 2, 3, 4]);
 	});
 
-	it('Should pop a the top element from the stack', () => {
+	it('Should pop the top element from the stack', () => {
 		const stack = new Stack(1, 2, 3, 4);
 		const element = stack.pop();
 
 		expect(stack.data).toEqual([1, 2, 3]);
 		expect(element).toBe(4);
+	});
+
+	it('Should peek the top element of the stack', () => {
+		const stack = new Stack(1, 2, 3, 4);
+		const element = stack.peek();
+
+		expect(element).toBe(4);
+		expect(stack.data).toEqual([1, 2, 3, 4]);
+	});
+
+	it('Should peek undefined when the stack has no elements', () => {
+		const stack = new Stack();
+		const element = stack.peek();
+
+		expect(element).toBe(undefined);
+	});
+
+	describe('.clear()', () => {
+		it('Should clear a stack', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			stack.clear();
+
+			expect(stack.data).toEqual([]);
+		});
+	});
+
+	describe('.isEmpty', () => {
+		it('Should return true when the stack has no elements', () => {
+			const stack = new Stack();
+
+			expect(stack.isEmpty).toBe(true);
+		});
+
+		it('Should return false when the stack at least one element', () => {
+			const stack = new Stack(1);
+
+			expect(stack.isEmpty).toBe(false);
+		});
 	});
 });

@@ -15,4 +15,17 @@ export default class Stack<T = number> extends DataStructure<T> implements IStac
 		const element = this._data.pop();
 		return element;
 	}
+
+	public peek(): T | undefined {
+		const topPosition = this.data.length - 1;
+		return this.data[topPosition];
+	}
+
+	public clear(): void {
+		this._data = [];
+	}
+
+	public get isEmpty(): boolean {
+		return this.data.length === 0;
+	}
 }

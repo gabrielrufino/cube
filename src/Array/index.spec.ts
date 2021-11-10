@@ -31,93 +31,105 @@ describe('Array', () => {
 		expect(array.size).toBe(size);
 	});
 
-	it('Should insert a new element in the last position', () => {
-		const array = new Array(1, 2, 3);
-		array.insertInLastPosition(4);
+	describe('.insertInLastPosition()', () => {
+		it('Should insert a new element in the last position', () => {
+			const array = new Array(1, 2, 3);
+			array.insertInLastPosition(4);
 
-		expect(array.data).toEqual([1, 2, 3, 4]);
+			expect(array.data).toEqual([1, 2, 3, 4]);
+		});
 	});
 
-	it('Should insert a new element in the first position', () => {
-		const array = new Array(2, 3, 4);
-		array.insertInFirstPosition(1);
+	describe('insertInFirstPosition()', () => {
+		it('Should insert a new element in the first position', () => {
+			const array = new Array(2, 3, 4);
+			array.insertInFirstPosition(1);
 
-		expect(array.data).toEqual([1, 2, 3, 4]);
+			expect(array.data).toEqual([1, 2, 3, 4]);
+		});
+
+		it('Should insert a new element in a arbitrary position of an array', () => {
+			const array = new Array(1, 2, 4);
+			array.insertInPosition(2, 3);
+
+			expect(array.data).toEqual([1, 2, 3, 4]);
+		});
 	});
 
-	it('Should insert a new element in a arbitrary position of an array', () => {
-		const array = new Array(1, 2, 4);
-		array.insertInPosition(2, 3);
+	describe('.removeFromLastPosition()', () => {
+		it('Should remove and return the last element of the array', () => {
+			const array = new Array(1, 2, 3, 4);
+			const element = array.removeFromLastPosition();
 
-		expect(array.data).toEqual([1, 2, 3, 4]);
+			expect(array.data).toEqual([1, 2, 3]);
+			expect(element).toBe(4);
+		});
+
+		it('Should ruturn undefined when trying to remove the last element of an empty array', () => {
+			const array = new Array();
+			const element = array.removeFromLastPosition();
+
+			expect(array.data).toEqual([]);
+			expect(element).toBe(undefined);
+		});
 	});
 
-	it('Should remove and return the last element of the array', () => {
-		const array = new Array(1, 2, 3, 4);
-		const element = array.removeFromLastPosition();
+	describe('.removeFromFirstPosition()', () => {
+		it('Should remove and return the first element of the array', () => {
+			const array = new Array(1, 2, 3, 4);
+			const element = array.removeFromFirstPosition();
 
-		expect(array.data).toEqual([1, 2, 3]);
-		expect(element).toBe(4);
+			expect(array.data).toEqual([2, 3, 4]);
+			expect(element).toBe(1);
+		});
+
+		it('Should ruturn undefined when trying to remove the first element of an empty array', () => {
+			const array = new Array();
+			const element = array.removeFromFirstPosition();
+
+			expect(array.data).toEqual([]);
+			expect(element).toBe(undefined);
+		});
 	});
 
-	it('Should ruturn undefined when trying to remove the last element of an empty array', () => {
-		const array = new Array();
-		const element = array.removeFromLastPosition();
+	describe('.removeFromPosition()', () => {
+		it('Should remove and return the element of an arbitrary position from array', () => {
+			const array = new Array(1, 2, 3, 4);
+			const element = array.removeFromPosition(2);
 
-		expect(array.data).toEqual([]);
-		expect(element).toBe(undefined);
+			expect(array.data).toEqual([1, 2, 4]);
+			expect(element).toBe(3);
+		});
+
+		it('Should return return when trying to remove the element of an arbitrary position from an empty array', () => {
+			const array = new Array();
+			const element = array.removeFromPosition(faker.datatype.number());
+
+			expect(array.data).toEqual([]);
+			expect(element).toBe(undefined);
+		});
 	});
 
-	it('Should remove and return the first element of the array', () => {
-		const array = new Array(1, 2, 3, 4);
-		const element = array.removeFromFirstPosition();
+	describe('Bidimensional array', () => {
+		it('Should create an bidimensional array with no problems', () => {
+			const array = new Array<Array>(
+				new Array(1, 2, 3),
+				new Array(4, 5, 6),
+				new Array(7, 8, 9),
+			);
 
-		expect(array.data).toEqual([2, 3, 4]);
-		expect(element).toBe(1);
-	});
-
-	it('Should ruturn undefined when trying to remove the first element of an empty array', () => {
-		const array = new Array();
-		const element = array.removeFromFirstPosition();
-
-		expect(array.data).toEqual([]);
-		expect(element).toBe(undefined);
-	});
-
-	it('Should remove and return the element of an arbitrary position from array', () => {
-		const array = new Array(1, 2, 3, 4);
-		const element = array.removeFromPosition(2);
-
-		expect(array.data).toEqual([1, 2, 4]);
-		expect(element).toBe(3);
-	});
-
-	it('Should return return when trying to remove the element of an arbitrary position from an empty array', () => {
-		const array = new Array();
-		const element = array.removeFromPosition(faker.datatype.number());
-
-		expect(array.data).toEqual([]);
-		expect(element).toBe(undefined);
-	});
-
-	it('Should create an bidimensional array with no problems', () => {
-		const array = new Array<Array>(
-			new Array(1, 2, 3),
-			new Array(4, 5, 6),
-			new Array(7, 8, 9),
-		);
-
-		expect(array.data).toEqual([
-			new Array(1, 2, 3),
-			new Array(4, 5, 6),
-			new Array(7, 8, 9),
-		]);
-		expect(array.data[0].data).toEqual([1, 2, 3]);
-		expect(array.data[1].data).toEqual([4, 5, 6]);
-		expect(array.data[2].data).toEqual([7, 8, 9]);
-		expect(array.size).toBe(3);
-		expect(array.data[0].size).toEqual(3);
-		expect(array.data[1].size).toEqual(3);
-		expect(array.data[2].size).toEqual(3);
+			expect(array.data).toEqual([
+				new Array(1, 2, 3),
+				new Array(4, 5, 6),
+				new Array(7, 8, 9),
+			]);
+			expect(array.data[0].data).toEqual([1, 2, 3]);
+			expect(array.data[1].data).toEqual([4, 5, 6]);
+			expect(array.data[2].data).toEqual([7, 8, 9]);
+			expect(array.size).toBe(3);
+			expect(array.data[0].size).toEqual(3);
+			expect(array.data[1].size).toEqual(3);
+			expect(array.data[2].size).toEqual(3);
+		});
 	});
 });

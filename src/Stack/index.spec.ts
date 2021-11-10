@@ -18,47 +18,53 @@ describe('Stack', () => {
 		expect(stack.size).toBe(5);
 	});
 
-	it('Should return the correct size of the stack', () => {
-		const size = faker.datatype.number(200);
-		const params = [];
+	describe('.push()', () => {
+		it('Should return the correct size of the stack', () => {
+			const size = faker.datatype.number(200);
+			const params = [];
 
-		for (let i = 0; i < size; i++) {
-			params.push(faker.datatype.number());
-		}
+			for (let i = 0; i < size; i++) {
+				params.push(faker.datatype.number());
+			}
 
-		const stack = new Stack(...params);
+			const stack = new Stack(...params);
 
-		expect(stack.size).toBe(size);
+			expect(stack.size).toBe(size);
+		});
+
+		it('Should push a new element in the stack top', () => {
+			const stack = new Stack(1, 2, 3);
+			stack.push(4);
+
+			expect(stack.data).toEqual([1, 2, 3, 4]);
+		});
 	});
 
-	it('Should push a new element in the stack top', () => {
-		const stack = new Stack(1, 2, 3);
-		stack.push(4);
+	describe('.pop()', () => {
+		it('Should pop the top element from the stack', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			const element = stack.pop();
 
-		expect(stack.data).toEqual([1, 2, 3, 4]);
+			expect(stack.data).toEqual([1, 2, 3]);
+			expect(element).toBe(4);
+		});
 	});
 
-	it('Should pop the top element from the stack', () => {
-		const stack = new Stack(1, 2, 3, 4);
-		const element = stack.pop();
+	describe('.peek()', () => {
+		it('Should peek the top element of the stack', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			const element = stack.peek();
 
-		expect(stack.data).toEqual([1, 2, 3]);
-		expect(element).toBe(4);
-	});
+			expect(element).toBe(4);
+			expect(stack.data).toEqual([1, 2, 3, 4]);
+		});
 
-	it('Should peek the top element of the stack', () => {
-		const stack = new Stack(1, 2, 3, 4);
-		const element = stack.peek();
+		it('Should peek undefined when the stack has no elements', () => {
+			const stack = new Stack();
+			const element = stack.peek();
 
-		expect(element).toBe(4);
-		expect(stack.data).toEqual([1, 2, 3, 4]);
-	});
-
-	it('Should peek undefined when the stack has no elements', () => {
-		const stack = new Stack();
-		const element = stack.peek();
-
-		expect(element).toBe(undefined);
+			expect(element).toBe(undefined);
+		});
 	});
 
 	describe('.clear()', () => {

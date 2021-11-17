@@ -5,12 +5,31 @@ import LinkedList from './';
 describe('LinkedList', () => {
 	it('Should create an empty linked list without problems', () => {
 		const linkedList = new LinkedList();
-		expect(linkedList).toBeTruthy();
+
+		expect(linkedList.data).toEqual([]);
 	});
 
 	it('Should create a filled linked list without problems', () => {
 		const linkedList = new LinkedList(1, 2, 3, 4);
-		expect(linkedList).toBeTruthy();
+
+		expect(linkedList.data).toEqual([
+			{
+				value: 1,
+				next: 2,
+			},
+			{
+				value: 2,
+				next: 3,
+			},
+			{
+				value: 3,
+				next: 4,
+			},
+			{
+				value: 4,
+				next: null,
+			},
+		]);
 	});
 
 	describe('.push()', () => {

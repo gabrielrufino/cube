@@ -4,8 +4,9 @@ interface ILinkedListDataItem<T> {
 }
 
 interface ILinkedList<T> {
+	get data(): ILinkedListDataItem<T>[];
+	get size(): number;
 	push(_element: T): T;
-	get data(): ILinkedListDataItem<T>[]
 }
 
 export default ILinkedList;

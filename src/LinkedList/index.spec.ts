@@ -63,5 +63,12 @@ describe('LinkedList', () => {
 			]);
 			expect(linkedList.size).toBe(4);
 		});
+
+		it('Should return the pushed element', () => {
+			const linkedList = new LinkedList();
+			const returned = linkedList.push(1);
+
+			expect(returned).toBe(1);
+		});
 	});
 });

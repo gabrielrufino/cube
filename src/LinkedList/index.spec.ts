@@ -7,6 +7,7 @@ describe('LinkedList', () => {
 		const linkedList = new LinkedList();
 
 		expect(linkedList.data).toEqual([]);
+		expect(linkedList.size).toBe(0);
 	});
 
 	it('Should create a filled linked list without problems', () => {
@@ -30,6 +31,7 @@ describe('LinkedList', () => {
 				next: null,
 			},
 		]);
+		expect(linkedList.size).toBe(4);
 	});
 
 	describe('.push()', () => {
@@ -59,6 +61,7 @@ describe('LinkedList', () => {
 					next: null,
 				},
 			]);
+			expect(linkedList.size).toBe(4);
 		});
 	});
 });

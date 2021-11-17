@@ -3,6 +3,7 @@ import Node from './Node';
 
 export default class LinkedList<T = number> implements ILinkedList<T> {
 	private _head: Node<T> | null = null;
+	private _size: number = 0;
 
 	constructor(...inputs: T[]) {
 		if (inputs.length) {
@@ -13,6 +14,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 			}
 
 			this._head = nodes[0];
+			this._size = nodes.length;
 		}
 	}
 
@@ -33,6 +35,10 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return data;
 	}
 
+	public get size() {
+		return this._size;
+	}
+
 	public push(element: T): T {
 		if (this._head) {
 			let current: Node<T> = this._head;
@@ -45,6 +51,8 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		} else {
 			this._head = new Node<T>(element);
 		}
+
+		this._size += 1;
 
 		return element;
 	}

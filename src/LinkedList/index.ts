@@ -56,4 +56,32 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 
 		return element;
 	}
+
+	public remove(_element: T): T | undefined {
+		return undefined;
+	}
+
+	public removeFromPosition(position: number): T | undefined {
+		if (position < 0 || position > (this.size - 1)) {
+			return undefined;
+		}
+
+		if (position === 0) {
+			this._head = this._head?.next || null;
+		} else {
+			let previous: Node<T> | null | undefined;
+			let current: Node<T> | null = this._head;
+
+			for (let i = 0; i < position; i++) {
+				previous = current;
+				current = current?.next || null;
+			}
+
+			if (previous) {
+				previous.next = current?.next || null;
+			}
+		}
+
+		this._size -= 1;
+	}
 }

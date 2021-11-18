@@ -156,4 +156,16 @@ describe('LinkedList', () => {
 			});
 		});
 	});
+
+	describe('getFromPosition()', () => {
+		it('Should get then element at a valid position', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.getFromPosition(2);
+
+			expect(returned).toEqual({
+				value: 3,
+				next: 4,
+			});
+		});
+	});
 });

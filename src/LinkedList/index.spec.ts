@@ -157,7 +157,7 @@ describe('LinkedList', () => {
 		});
 	});
 
-	describe('getFromPosition()', () => {
+	describe('.getFromPosition()', () => {
 		it('Should get then element at a valid position', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.getFromPosition(2);
@@ -166,6 +166,110 @@ describe('LinkedList', () => {
 				value: 3,
 				next: 4,
 			});
+		});
+	});
+
+	describe('insertInPosition()', () => {
+		it('Should return undefined when receive a negative position', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.insertInPosition(5, -1);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should return undefined when receive a position larger than the size', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.insertInPosition(5, 10);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should insert an element in the head when receive position 0', () => {
+			const linkedList = new LinkedList(1);
+			linkedList.insertInPosition(0, 0);
+
+			expect(linkedList.data).toEqual([
+				{
+					value: 0,
+					next: 1,
+				},
+				{
+					value: 1,
+					next: null,
+				},
+			]);
+		});
+
+		it('Should insert an element in the middle of the linked list', () => {
+			const linkedList = new LinkedList(1, 3);
+			linkedList.insertInPosition(2, 1);
+
+			expect(linkedList.data).toEqual([
+				{
+					value: 1,
+					next: 2,
+				},
+				{
+					value: 2,
+					next: 3,
+				},
+				{
+					value: 3,
+					next: null,
+				},
+			]);
+		});
+
+		it('Should insert an element in the penultimate position', () => {
+			const linkedList = new LinkedList(1, 2, 4);
+			linkedList.insertInPosition(3, linkedList.size - 1);
+
+			expect(linkedList.data).toEqual([
+				{
+					value: 1,
+					next: 2,
+				},
+				{
+					value: 2,
+					next: 3,
+				},
+				{
+					value: 3,
+					next: 4,
+				},
+				{
+					value: 4,
+					next: null,
+				},
+			]);
+		});
+
+		it('Should insert an element in the end of the linked list, just like a push', () => {
+			const linkedList = new LinkedList(1, 2);
+			linkedList.insertInPosition(3, linkedList.size);
+
+			expect(linkedList.data).toEqual([
+				{
+					value: 1,
+					next: 2,
+				},
+				{
+					value: 2,
+					next: 3,
+				},
+				{
+					value: 3,
+					next: null,
+				},
+			]);
+		});
+
+		it('Should increase the size by one', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const {size} = linkedList;
+			linkedList.insertInPosition(5, linkedList.size);
+
+			expect(linkedList.size).toBe(size + 1);
 		});
 	});
 });

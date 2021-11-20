@@ -61,6 +61,32 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return undefined;
 	}
 
+	public insertInPosition(element: T, position: number): T | undefined {
+		if (position < 0 || position > this.size) {
+			return undefined;
+		}
+
+		const node = new Node<T>(element);
+
+		if (position === 0) {
+			node.next = this._head;
+			this._head = node;
+		} else {
+			const before = this.getNodeFromPosition(position - 1);
+			const after = (before && before.next) || null;
+
+			if (before) {
+				before.next = node;
+			}
+
+			node.next = after;
+		}
+
+		this._size += 1;
+
+		return element;
+	}
+
 	getFromPosition(position: number) {
 		if (position < 0 || position > this.size - 1) {
 			return undefined;
@@ -104,5 +130,19 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		}
 
 		this._size -= 1;
+	}
+
+	private getNodeFromPosition(position: number): Node<T> | undefined {
+		if (position < 0 || position > this.size - 1) {
+			return undefined;
+		}
+
+		let node = this._head;
+
+		for (let i = 0; i < position; i++) {
+			node = node?.next || null;
+		}
+
+		return node || undefined;
 	}
 }

@@ -272,4 +272,20 @@ describe('LinkedList', () => {
 			expect(linkedList.size).toBe(size + 1);
 		});
 	});
+
+	describe('.positionOf()', () => {
+		it('Should return undefined when receive an element not found in linked list', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const position = linkedList.positionOf(5);
+
+			expect(position).toBeUndefined();
+		});
+
+		it('Should return the correct position of an element', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const position = linkedList.positionOf(3);
+
+			expect(position).toBe(2);
+		});
+	});
 });

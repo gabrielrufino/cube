@@ -40,6 +40,20 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return this._size;
 	}
 
+	public positionOf(element: T): number | undefined {
+		let current = this._head;
+		let position = 0;
+
+		while (current && current.value !== element) {
+			current = current?.next;
+			position += 1;
+		}
+
+		if (current) {
+			return position;
+		}
+	}
+
 	public push(element: T): T {
 		if (this._head) {
 			let current: Node<T> = this._head;

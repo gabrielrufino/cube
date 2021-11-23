@@ -288,4 +288,40 @@ describe('LinkedList', () => {
 			expect(position).toBe(2);
 		});
 	});
+
+	describe('.remove()', () => {
+		it('Should remove an element from linked list', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			linkedList.remove(3);
+
+			expect(linkedList.data).toEqual([
+				{
+					value: 1,
+					next: 2,
+				},
+				{
+					value: 2,
+					next: 4,
+				},
+				{
+					value: 4,
+					next: null,
+				},
+			]);
+		});
+
+		it('Should return the removed element', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.remove(3);
+
+			expect(returned).toBe(3);
+		});
+
+		it('Should return undefined when the element doesn\'t belongs to the linked list', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.remove(5);
+
+			expect(returned).toBeUndefined();
+		});
+	});
 });

@@ -40,6 +40,10 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return this._size;
 	}
 
+	public get isEmpty() {
+		return this.size === 0;
+	}
+
 	public positionOf(element: T): number | undefined {
 		let current = this._head;
 		let position = 0;

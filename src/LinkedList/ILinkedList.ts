@@ -6,6 +6,7 @@ interface ILinkedListItem<T> {
 interface ILinkedList<T> {
 	get data(): ILinkedListItem<T>[];
 	get size(): number;
+	get isEmpty(): boolean;
 	push(_element: T): T;
 	getFromPosition(_position: number): ILinkedListItem<T> | undefined;
 	positionOf(_element: T): number | undefined;

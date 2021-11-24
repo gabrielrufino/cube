@@ -34,6 +34,20 @@ describe('LinkedList', () => {
 		expect(linkedList.size).toBe(4);
 	});
 
+	describe('.isEmpty', () => {
+		it('Should return true when there is no element in the linked list', () => {
+			const linkedList = new LinkedList();
+
+			expect(linkedList.isEmpty).toBe(true);
+		});
+
+		it('Should return false when the is at least one element in the linked list', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+
+			expect(linkedList.isEmpty).toBe(false);
+		});
+	});
+
 	describe('.push()', () => {
 		it('Should push a new element', () => {
 			const linkedList = new LinkedList();

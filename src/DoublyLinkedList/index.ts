@@ -21,7 +21,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		}
 	}
 
-	get data(): IDoublyLinkedListItem<T>[] {
+	public get data(): IDoublyLinkedListItem<T>[] {
 		let current = this._head;
 		const data = [];
 
@@ -37,7 +37,22 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		return data;
 	}
 
-	get size(): number {
+	public get size(): number {
 		return this._size;
+	}
+
+	public push(element: T): T {
+		const node = new Node(element);
+
+		if (this._tail) {
+			this._tail.next = node;
+			node.previous = this._tail;
+		} else {
+			this._head = node;
+			this._tail = node;
+		}
+
+		this._size += 1;
+		return element;
 	}
 }

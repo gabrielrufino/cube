@@ -7,6 +7,7 @@ export interface IDoublyLinkedListItem<T> {
 interface IDoublyLinkedList<T> {
   get data(): IDoublyLinkedListItem<T>[];
   get size(): number;
+  push(_element: T): T;
 }
 
 export default IDoublyLinkedList;

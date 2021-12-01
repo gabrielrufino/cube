@@ -41,6 +41,9 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		return this._size;
 	}
 
+	/**
+	 * Complexity: O(1)
+	 */
 	public push(element: T): T {
 		const node = new Node(element);
 
@@ -54,5 +57,40 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
 		this._size += 1;
 		return element;
+	}
+
+	/**
+	 * Complexity: O(n/2)
+	 */
+	public getFromPosition(position: number): IDoublyLinkedListItem<T> | undefined {
+		if (position < 0 || position >= this._size) {
+			return undefined;
+		}
+
+		const distanceToTheHead = position;
+		const distanceToTheTail = this.size - position - 1;
+		let current: Node<T> | null;
+
+		if (distanceToTheTail > distanceToTheHead) {
+			current = this._head;
+
+			for (let i = 0; i < position; i++) {
+				current = current?.next || null;
+			}
+		} else {
+			current = this._tail;
+
+			for (let i = this.size - 1; i > position; i--) {
+				current = current?.previous || null;
+			}
+		}
+
+		if (current?.value) {
+			return {
+				previous: current?.previous?.value || null,
+				value: current?.value,
+				next: current?.next?.value || null,
+			};
+		}
 	}
 }

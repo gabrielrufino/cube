@@ -94,4 +94,49 @@ describe('DoublyLinkedList', () => {
 			expect(returned).toBe(5);
 		});
 	});
+
+	describe('getFromPosition()', () => {
+		it('Should return undefined when receive a position lower than zero', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.getFromPosition(-1);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should return undefined when receive a position equals the size', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.getFromPosition(4);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should return undefined when receive a position greater than the size', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.getFromPosition(5);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should return the correct item when closest to the head', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.getFromPosition(1);
+
+			expect(returned).toEqual({
+				previous: 1,
+				value: 2,
+				next: 3,
+			});
+		});
+
+		it('Should return the correct item when closest to the tail', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.getFromPosition(2);
+
+			expect(returned).toEqual({
+				previous: 2,
+				value: 3,
+				next: 4,
+			});
+		});
+	});
 });

@@ -139,4 +139,20 @@ describe('DoublyLinkedList', () => {
 			});
 		});
 	});
+
+	describe('positionOf()', () => {
+		it('Should return the position of an element', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.positionOf(3);
+
+			expect(returned).toBe(2);
+		});
+
+		it('Should return undefined when the element is not in the doubly linked list', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.positionOf(5);
+
+			expect(returned).toBeUndefined();
+		});
+	});
 });

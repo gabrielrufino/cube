@@ -9,6 +9,7 @@ interface IDoublyLinkedList<T> {
   get size(): number;
   push(_element: T): T;
   getFromPosition(_position: number): IDoublyLinkedListItem<T> | undefined;
+  positionOf(_element: T): number | undefined;
 }
 
 export default IDoublyLinkedList;

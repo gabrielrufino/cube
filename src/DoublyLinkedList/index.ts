@@ -93,4 +93,16 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 			};
 		}
 	}
+
+	public positionOf(element: T): number | undefined {
+		let current = this._head;
+		let position = 0;
+
+		while (current && current.value !== element) {
+			current = current.next;
+			position += 1;
+		}
+
+		return position === this.size ? undefined : position;
+	}
 }

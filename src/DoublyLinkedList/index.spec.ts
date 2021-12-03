@@ -405,4 +405,58 @@ describe('DoublyLinkedList', () => {
 			expect(returned).toBeUndefined();
 		});
 	});
+
+	describe('.removeFromPosition()', () => {
+		it('Should return undefined when receive a negative position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.removeFromPosition(-1);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should return undefined when receive a position equals the size', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.removeFromPosition(doublyLinkedList.size);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should return undefined when receive a position greater than the size', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.removeFromPosition(doublyLinkedList.size + 1);
+
+			expect(returned).toBeUndefined();
+		});
+
+		it('Should remove an element from position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			doublyLinkedList.removeFromPosition(2);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 4,
+				},
+				{
+					previous: 2,
+					value: 4,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(3);
+		});
+
+		it('Should return the removed element', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.removeFromPosition(3);
+
+			expect(returned).toBe(4);
+		});
+	});
 });

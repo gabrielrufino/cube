@@ -176,6 +176,9 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		return element;
 	}
 
+	/**
+	 * Complexity: O(n)
+	 */
 	public remove(element: T): T | undefined {
 		let current = this._head;
 
@@ -203,6 +206,20 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 			this._size -= 1;
 
 			return current.value;
+		}
+
+		return undefined;
+	}
+
+	/**
+	 * Complexity: O(n)
+	 */
+	public removeFromPosition(position: number): T | undefined {
+		const item = this.getFromPosition(position);
+
+		if (item) {
+			this.remove(item.value);
+			return item.value;
 		}
 
 		return undefined;

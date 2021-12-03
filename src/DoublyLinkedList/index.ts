@@ -176,6 +176,55 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		return element;
 	}
 
+	/**
+	 * Complexity: O(n)
+	 */
+	public remove(element: T): T | undefined {
+		let current = this._head;
+
+		while (current && current.value !== element) {
+			current = current.next;
+		}
+
+		if (current) {
+			if (current.previous) {
+				current.previous.next = current.next;
+			}
+
+			if (current.next) {
+				current.next.previous = current.previous;
+			}
+
+			if (current === this._head) {
+				this._head = current.next;
+			}
+
+			if (current === this._tail) {
+				this._tail = current.previous;
+			}
+
+			this._size -= 1;
+
+			return current.value;
+		}
+
+		return undefined;
+	}
+
+	/**
+	 * Complexity: O(n)
+	 */
+	public removeFromPosition(position: number): T | undefined {
+		const item = this.getFromPosition(position);
+
+		if (item) {
+			this.remove(item.value);
+			return item.value;
+		}
+
+		return undefined;
+	}
+
 	private _findFasterWayToPosition(position: number): 'ASC' | 'DESC' {
 		const distanceToTheHead = position;
 		const distanceToTheTail = this.size - position - 1;

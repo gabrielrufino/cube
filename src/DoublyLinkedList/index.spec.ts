@@ -155,4 +155,166 @@ describe('DoublyLinkedList', () => {
 			expect(returned).toBeUndefined();
 		});
 	});
+
+	describe('insertInPosition()', () => {
+		it('Should return undefined when receive a negative position', () => {
+			const doublyLinkedList = new DoublyLinkedList();
+			const returned = doublyLinkedList.insertInPosition(1, -1);
+
+			expect(returned).toBeUndefined();
+			expect(doublyLinkedList.data).toEqual([]);
+			expect(doublyLinkedList.size).toBe(0);
+		});
+
+		it('Should return undefined when receive a position greater than the size', () => {
+			const doublyLinkedList = new DoublyLinkedList();
+			const returned = doublyLinkedList.insertInPosition(1, doublyLinkedList.size + 1);
+
+			expect(returned).toBeUndefined();
+			expect(doublyLinkedList.data).toEqual([]);
+			expect(doublyLinkedList.size).toBe(0);
+		});
+
+		it('Should insert a new element in the first position', () => {
+			const doublyLinkedList = new DoublyLinkedList(2);
+			doublyLinkedList.insertInPosition(1, 0);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(2);
+		});
+
+		it('Should insert a new element in the penultimate position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 3);
+			doublyLinkedList.insertInPosition(2, 1);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 3,
+				},
+				{
+					previous: 2,
+					value: 3,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(3);
+		});
+
+		it('Should insert a new element in the last position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2);
+			doublyLinkedList.insertInPosition(3, 2);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 3,
+				},
+				{
+					previous: 2,
+					value: 3,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(3);
+		});
+
+		it('Should insert a new element in a position closest to the head', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 3, 4, 5);
+			doublyLinkedList.insertInPosition(2, 1);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 3,
+				},
+				{
+					previous: 2,
+					value: 3,
+					next: 4,
+				},
+				{
+					previous: 3,
+					value: 4,
+					next: 5,
+				},
+				{
+					previous: 4,
+					value: 5,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(5);
+		});
+
+		it('Should insert a new element in a position closest to the head', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 4, 5);
+			doublyLinkedList.insertInPosition(3, 2);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 3,
+				},
+				{
+					previous: 2,
+					value: 3,
+					next: 4,
+				},
+				{
+					previous: 3,
+					value: 4,
+					next: 5,
+				},
+				{
+					previous: 4,
+					value: 5,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(5);
+		});
+
+		it('Should return the inserted element', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 5);
+			const returned = doublyLinkedList.insertInPosition(4, 3);
+
+			expect(returned).toBe(4);
+		});
+	});
 });

@@ -317,4 +317,92 @@ describe('DoublyLinkedList', () => {
 			expect(returned).toBe(4);
 		});
 	});
+
+	describe('.remove()', () => {
+		it('Should remove an element in the first position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			doublyLinkedList.remove(1);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 2,
+					next: 3,
+				},
+				{
+					previous: 2,
+					value: 3,
+					next: 4,
+				},
+				{
+					previous: 3,
+					value: 4,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(3);
+		});
+
+		it('Should remove an element in the last position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			doublyLinkedList.remove(4);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 3,
+				},
+				{
+					previous: 2,
+					value: 3,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(3);
+		});
+
+		it('Should remove an element in a middle position', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			doublyLinkedList.remove(3);
+
+			expect(doublyLinkedList.data).toEqual([
+				{
+					previous: null,
+					value: 1,
+					next: 2,
+				},
+				{
+					previous: 1,
+					value: 2,
+					next: 4,
+				},
+				{
+					previous: 2,
+					value: 4,
+					next: null,
+				},
+			]);
+			expect(doublyLinkedList.size).toBe(3);
+		});
+
+		it('Should return the removed element', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.remove(2);
+
+			expect(returned).toBe(2);
+		});
+
+		it('Should return undefined when the element is not in the doubly linked list', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.remove(5);
+
+			expect(returned).toBeUndefined();
+		});
+	});
 });

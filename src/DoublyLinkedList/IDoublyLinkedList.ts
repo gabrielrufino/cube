@@ -11,6 +11,8 @@ interface IDoublyLinkedList<T> {
   getFromPosition(_position: number): IDoublyLinkedListItem<T> | undefined;
   positionOf(_element: T): number | undefined;
   insertInPosition(_element: T, _position: number): T | undefined;
+  remove(_element: T): T | undefined;
+  removeFromPosition(_position: number): T | undefined;
 }
 
 export default IDoublyLinkedList;

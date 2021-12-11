@@ -6,6 +6,10 @@ export default class Queue<T = number> extends DataStructure<T> implements IQueu
 		super(inputs);
 	}
 
+	get isEmpty(): boolean {
+		return this.size === 0;
+	}
+
 	public enqueue(element: T): T {
 		this._data = [...this.data, element];
 		return element;
@@ -26,7 +30,15 @@ export default class Queue<T = number> extends DataStructure<T> implements IQueu
 		this._data = [];
 	}
 
-	get isEmpty(): boolean {
-		return this.size === 0;
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `[Front] ${this.data.join(', ')}`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
 	}
 }

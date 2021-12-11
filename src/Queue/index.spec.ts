@@ -73,4 +73,20 @@ describe('Queue', () => {
 			expect(queue.data).toEqual([]);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return comma-separated elements in string conversion', () => {
+			const queue = new Queue(1, 2, 3, 4);
+			const string = String(queue);
+
+			expect(string).toBe('[Front] 1, 2, 3, 4');
+		});
+
+		it('Should return the queue size in number conversion', () => {
+			const queue = new Queue(1, 2, 3, 4);
+			const number = Number(queue);
+
+			expect(number).toBe(4);
+		});
+	});
 });

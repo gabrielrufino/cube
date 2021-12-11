@@ -89,4 +89,20 @@ describe('Stack', () => {
 			expect(stack.isEmpty).toBe(false);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return comma-separated elements in string conversion', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			const string = String(stack);
+
+			expect(string).toBe('1, 2, 3, 4 [Top]');
+		});
+
+		it('Should return the stack size in number conversion', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			const number = Number(stack);
+
+			expect(number).toBe(4);
+		});
+	});
 });

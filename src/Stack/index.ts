@@ -28,4 +28,16 @@ export default class Stack<T = number> extends DataStructure<T> implements IStac
 	public get isEmpty(): boolean {
 		return this.data.length === 0;
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `${this.data.join(', ')} [Top]`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

@@ -143,9 +143,9 @@ describe('Array', () => {
 
 		it('Should return the array size in number conversion', () => {
 			const array = new Array(1, 2, 3, 4);
-			const string = Number(array);
+			const number = Number(array);
 
-			expect(string).toBe(4);
+			expect(number).toBe(4);
 		});
 	});
 });

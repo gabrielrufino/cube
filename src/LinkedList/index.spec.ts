@@ -338,4 +338,20 @@ describe('LinkedList', () => {
 			expect(returned).toBeUndefined();
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return arrow-separated elements in string conversion', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const string = String(linkedList);
+
+			expect(string).toBe('[Head] 1 => 2 => 3 => 4');
+		});
+
+		it('Should return the linked list size in number conversion', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const number = Number(linkedList);
+
+			expect(number).toBe(4);
+		});
+	});
 });

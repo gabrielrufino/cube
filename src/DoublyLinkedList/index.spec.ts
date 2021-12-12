@@ -459,4 +459,20 @@ describe('DoublyLinkedList', () => {
 			expect(returned).toBe(4);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return double-arrow-separated elements in string conversion', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const string = String(doublyLinkedList);
+
+			expect(string).toBe('[Head] 1 <=> 2 <=> 3 <=> 4 [Tail]');
+		});
+
+		it('Should return the doubly linked list size in number conversion', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const number = Number(doublyLinkedList);
+
+			expect(number).toBe(4);
+		});
+	});
 });

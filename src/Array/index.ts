@@ -53,4 +53,16 @@ export default class Array<T = number> extends DataStructure<T> implements IArra
 		const [element] = this._data.splice(position, 1);
 		return element;
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return this.data.join(', ');
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

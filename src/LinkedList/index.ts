@@ -110,7 +110,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return element;
 	}
 
-	getFromPosition(position: number) {
+	public getFromPosition(position: number) {
 		if (position < this._FIRST_POSITION || position > this.size - 1) {
 			return undefined;
 		}
@@ -169,5 +169,17 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		}
 
 		return node || undefined;
+	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `[Head] ${this.data.map(({value}) => value).join(' => ')}`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
 	}
 }

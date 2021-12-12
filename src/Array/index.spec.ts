@@ -132,4 +132,20 @@ describe('Array', () => {
 			expect(array.data[2].size).toEqual(3);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return the elements separated by comma in string conversion', () => {
+			const array = new Array(1, 2, 3, 4);
+			const string = String(array);
+
+			expect(string).toBe('1, 2, 3, 4');
+		});
+
+		it('Should return the array size in number conversion', () => {
+			const array = new Array(1, 2, 3, 4);
+			const number = Number(array);
+
+			expect(number).toBe(4);
+		});
+	});
 });

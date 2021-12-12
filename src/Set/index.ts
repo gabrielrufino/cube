@@ -16,4 +16,16 @@ export default class Set<T = number> implements ISet<T> {
 	public get size(): number {
 		return this._data.size;
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `{ ${this.data.join(', ')} }`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

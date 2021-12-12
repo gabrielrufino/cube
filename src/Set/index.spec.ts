@@ -34,4 +34,20 @@ describe('Set', () => {
 			expect(number).toBe(4);
 		});
 	});
+
+	describe('.has()', () => {
+		it('Should return true when the set has the specified element', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set.has(3);
+
+			expect(returned).toBe(true);
+		});
+
+		it('Should return false when the set has not the specified element', () => {
+			const set = new cube.Set(1, 2, 4);
+			const returned = set.has(3);
+
+			expect(returned).toBe(false);
+		})
+	});
 });

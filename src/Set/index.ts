@@ -17,6 +17,10 @@ export default class Set<T = number> implements ISet<T> {
 		return this._data.size;
 	}
 
+	public has(element: T): boolean {
+		return this._data.has(element);
+	}
+
 	private [Symbol.toPrimitive](type: string): string | number | null {
 		if (type === 'string') {
 			return `{ ${this.data.join(', ')} }`;

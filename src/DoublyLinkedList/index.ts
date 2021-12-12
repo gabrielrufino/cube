@@ -235,4 +235,16 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
 		return 'DESC';
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `[Head] ${this.data.map(({value}) => value).join(' <=> ')} [Tail]`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

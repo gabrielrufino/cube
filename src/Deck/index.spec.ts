@@ -112,4 +112,20 @@ describe('Deck', () => {
 			expect(deck.data).toEqual([1, 2, 3, 4]);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return comma-separated elements in string conversion', () => {
+			const deck = new Deck(1, 2, 3, 4);
+			const string = String(deck);
+
+			expect(string).toBe('[Front] 1, 2, 3, 4 [Back]');
+		});
+
+		it('Should return the deck size in number conversion', () => {
+			const deck = new Deck(1, 2, 3, 4);
+			const number = Number(deck);
+
+			expect(number).toBe(4);
+		});
+	});
 });

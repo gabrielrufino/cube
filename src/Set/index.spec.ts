@@ -56,6 +56,7 @@ describe('Set', () => {
 			const set = new cube.Set(1, 2, 3);
 			set.add(4);
 
+			expect(set.size).toBe(4);
 			expect(set.data).toEqual(expect.arrayContaining([1, 2, 3, 4]));
 		});
 
@@ -73,4 +74,38 @@ describe('Set', () => {
 			expect(returned).toBeNull();
 		});
 	});
+
+	describe('.delete()', () => {
+		it('Should remove an element in the set', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			set.delete(3);
+
+			expect(set.size).toBe(3);
+			expect(set.data.sort()).toEqual([1, 2, 4].sort());
+		});
+
+		it('Should not change the set if the element is not in the set', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			set.delete(5);
+
+			expect(set.size).toBe(4);
+			expect(set.data.sort()).toEqual([1, 2, 3, 4].sort());
+		});
+
+		it('Should return the element if the element was in the set', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set.delete(1);
+
+			expect(returned).toBe(1);
+		});
+
+		it('Should return null if the element was not in the set', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set.delete(5);
+
+			expect(returned).toBeNull();
+		});
+	});
+
+	describe('.clear()', () => {});
 });

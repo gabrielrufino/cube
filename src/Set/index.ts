@@ -30,6 +30,15 @@ export default class Set<T = number> implements ISet<T> {
 		return null;
 	}
 
+	public delete(element: T): T | null {
+		if (this.has(element)) {
+			this._data.delete(element);
+			return element;
+		}
+
+		return null;
+	}
+
 	private [Symbol.toPrimitive](type: string): string | number | null {
 		if (type === 'string') {
 			return `{ ${this.data.join(', ')} }`;

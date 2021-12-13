@@ -107,5 +107,20 @@ describe('Set', () => {
 		});
 	});
 
-	describe('.clear()', () => {});
+	describe('.clear()', () => {
+		it('Should empty the set', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			set.clear();
+
+			expect(set.size).toBe(0);
+			expect(set.data).toEqual([]);
+		});
+
+		it('Should return the elements', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set.clear();
+
+			expect(returned.sort()).toEqual([1, 2, 3, 4].sort());
+		});
+	});
 });

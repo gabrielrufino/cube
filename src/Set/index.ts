@@ -39,6 +39,12 @@ export default class Set<T = number> implements ISet<T> {
 		return null;
 	}
 
+	public clear(): T[] {
+		const elements = [...this.data];
+		this._data.clear();
+		return elements;
+	}
+
 	private [Symbol.toPrimitive](type: string): string | number | null {
 		if (type === 'string') {
 			return `{ ${this.data.join(', ')} }`;

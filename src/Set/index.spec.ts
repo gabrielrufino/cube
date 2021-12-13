@@ -48,6 +48,6 @@ describe('Set', () => {
 			const returned = set.has(3);
 
 			expect(returned).toBe(false);
-		})
+		});
 	});
 });

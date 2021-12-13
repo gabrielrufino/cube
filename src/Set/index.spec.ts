@@ -50,4 +50,27 @@ describe('Set', () => {
 			expect(returned).toBe(false);
 		});
 	});
+
+	describe('.add()', () => {
+		it('Should add a new element in the set', () => {
+			const set = new cube.Set(1, 2, 3);
+			set.add(4);
+
+			expect(set.data).toEqual(expect.arrayContaining([1, 2, 3, 4]));
+		});
+
+		it('Should return the inserted element when the element is not in the set', () => {
+			const set = new cube.Set(1, 2, 3);
+			const returned = set.add(4);
+
+			expect(returned).toEqual(4);
+		});
+
+		it('Should return null when the element is in the set', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set.add(4);
+
+			expect(returned).toBeNull();
+		});
+	});
 });

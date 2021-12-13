@@ -5,7 +5,7 @@ export default class Set<T = number> implements ISet<T> {
 
 	constructor(...inputs: T[]) {
 		for (const input of inputs) {
-			this._data.set(input, input);
+			this.add(input);
 		}
 	}
 
@@ -19,6 +19,15 @@ export default class Set<T = number> implements ISet<T> {
 
 	public has(element: T): boolean {
 		return this._data.has(element);
+	}
+
+	public add(element: T): T | null {
+		if (!this.has(element)) {
+			this._data.set(element, element);
+			return element;
+		}
+
+		return null;
 	}
 
 	private [Symbol.toPrimitive](type: string): string | number | null {

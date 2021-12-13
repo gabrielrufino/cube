@@ -16,7 +16,7 @@ describe('Set', () => {
 		const set = new cube.Set(1, 2, 3, 4);
 
 		expect(set.size).toBe(4);
-		expect(set.data).toEqual(expect.arrayContaining([1, 2, 3, 4]));
+		expect(set.data.sort()).toEqual([1, 2, 3, 4].sort());
 	});
 
 	describe('Conversion to primitive', () => {
@@ -57,7 +57,7 @@ describe('Set', () => {
 			set.add(4);
 
 			expect(set.size).toBe(4);
-			expect(set.data).toEqual(expect.arrayContaining([1, 2, 3, 4]));
+			expect(set.data.sort()).toEqual([1, 2, 3, 4].sort());
 		});
 
 		it('Should return the inserted element when the element is not in the set', () => {

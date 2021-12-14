@@ -64,10 +64,21 @@ export default class Set<T = number> implements ISet<T> {
 	}
 
 	static intersection<T>(set1: Set<T>, set2: Set<T>): Set<T> {
+		let biggestSet: Set<T>;
+		let smallestSet: Set<T>;
+
+		if (set1.size >= set2.size) {
+			biggestSet = set1;
+			smallestSet = set2;
+		} else {
+			biggestSet = set2;
+			smallestSet = set1;
+		}
+
 		const intersection = new Set<T>();
 
-		for (const element of set1.data) {
-			if (set2.has(element)) {
+		for (const element of smallestSet.data) {
+			if (biggestSet.has(element)) {
 				intersection.add(element);
 			}
 		}

@@ -49,6 +49,10 @@ export default class Set<T = number> implements ISet<T> {
 		return Set.union(this, set);
 	}
 
+	public intersection(set: Set<T>): Set<T> {
+		return Set.intersection(this, set);
+	}
+
 	static union<T>(set1: Set<T>, set2: Set<T>): Set<T> {
 		const union = new Set<T>();
 
@@ -57,6 +61,18 @@ export default class Set<T = number> implements ISet<T> {
 		}
 
 		return union;
+	}
+
+	static intersection<T>(set1: Set<T>, set2: Set<T>): Set<T> {
+		const intersection = new Set<T>();
+
+		for (const element of set1.data) {
+			if (set2.has(element)) {
+				intersection.add(element);
+			}
+		}
+
+		return intersection;
 	}
 
 	private [Symbol.toPrimitive](type: string): string | number | null {

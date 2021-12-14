@@ -45,6 +45,20 @@ export default class Set<T = number> implements ISet<T> {
 		return elements;
 	}
 
+	public union(set: Set<T>): Set<T> {
+		return Set.union(this, set);
+	}
+
+	static union<T>(set1: Set<T>, set2: Set<T>): Set<T> {
+		const union = new Set<T>();
+
+		for (const element of [...set1.data, ...set2.data]) {
+			union.add(element);
+		}
+
+		return union;
+	}
+
 	private [Symbol.toPrimitive](type: string): string | number | null {
 		if (type === 'string') {
 			return `{ ${this.data.join(', ')} }`;

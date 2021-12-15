@@ -157,7 +157,7 @@ describe('Set', () => {
 		});
 	});
 
-	describe('isSubsetOf()', () => {
+	describe('.isSubsetOf()', () => {
 		it('Should return true when the current set is subset of the received set', () => {
 			const set1 = new cube.Set(1, 4);
 			const set2 = new cube.Set(1, 2, 3, 4);
@@ -172,6 +172,24 @@ describe('Set', () => {
 			const isSubset = set1.isSubsetOf(set2);
 
 			expect(isSubset).toBe(false);
+		});
+	});
+
+	describe('.contains()', () => {
+		it('Should return true when the current set contains the received set', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(1, 4);
+			const contains = set1.contains(set2);
+
+			expect(contains).toBe(true);
+		});
+
+		it('Should return false when the current set does not contains the received set', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(4, 5);
+			const contains = set1.contains(set2);
+
+			expect(contains).toBe(false);
 		});
 	});
 

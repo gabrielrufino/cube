@@ -61,6 +61,10 @@ export default class Set<T = number> implements ISet<T> {
 		return Set.isSubset(this, set);
 	}
 
+	public contains(set: Set<T>): boolean {
+		return Set.isSubset(set, this);
+	}
+
 	static union<T>(set1: Set<T>, set2: Set<T>): Set<T> {
 		const union = new Set<T>();
 

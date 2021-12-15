@@ -111,6 +111,10 @@ export default class Set<T = number> implements ISet<T> {
 	}
 
 	static isSubset<T>(set1: Set<T>, set2: Set<T>): boolean {
+		if (set1.size > set2.size) {
+			return false;
+		}
+
 		return set1
 			.data
 			.every(element => set2.has(element));

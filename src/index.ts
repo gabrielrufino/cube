@@ -5,4 +5,5 @@ export {default as DoublyLinkedList} from './DoublyLinkedList';
 export {default as LinkedList} from './LinkedList';
 export {default as List} from './List';
 export {default as Queue} from './Queue';
+export {default as Set} from './Set';
 export {default as Stack} from './Stack';

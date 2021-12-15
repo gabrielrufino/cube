@@ -157,6 +157,24 @@ describe('Set', () => {
 		});
 	});
 
+	describe('isSubsetOf()', () => {
+		it('Should return true when the current set is subset of the received set', () => {
+			const set1 = new cube.Set(1, 4);
+			const set2 = new cube.Set(1, 2, 3, 4);
+			const isSubset = set1.isSubsetOf(set2);
+
+			expect(isSubset).toBe(true);
+		});
+
+		it('Should return false whe the current set is not subset of the received set', () => {
+			const set1 = new cube.Set(4, 5);
+			const set2 = new cube.Set(1, 2, 3, 4);
+			const isSubset = set1.isSubsetOf(set2);
+
+			expect(isSubset).toBe(false);
+		});
+	});
+
 	describe('Set.union()', () => {
 		it('Should return an union set between two others', () => {
 			const set1 = new cube.Set(1, 2, 3, 4);
@@ -187,6 +205,24 @@ describe('Set', () => {
 
 			expect(difference.size).toBe(2);
 			expect(difference.data.sort()).toEqual([1, 2].sort());
+		});
+	});
+
+	describe('Set.isSubset()', () => {
+		it('Should return true when the first argument is a subset of the second argument', () => {
+			const set1 = new cube.Set(1, 4);
+			const set2 = new cube.Set(1, 2, 3, 4);
+			const isSubset = cube.Set.isSubset(set1, set2);
+
+			expect(isSubset).toBe(true);
+		});
+
+		it('Should return false when the first argument is not a subset of the second argument', () => {
+			const set1 = new cube.Set(4, 5);
+			const set2 = new cube.Set(1, 2, 3, 4);
+			const isSubset = cube.Set.isSubset(set1, set2);
+
+			expect(isSubset).toBe(false);
 		});
 	});
 });

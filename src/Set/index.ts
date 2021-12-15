@@ -57,6 +57,10 @@ export default class Set<T = number> implements ISet<T> {
 		return Set.difference(this, set);
 	}
 
+	public isSubsetOf(set: Set<T>): boolean {
+		return Set.isSubset(this, set);
+	}
+
 	static union<T>(set1: Set<T>, set2: Set<T>): Set<T> {
 		const union = new Set<T>();
 
@@ -100,6 +104,12 @@ export default class Set<T = number> implements ISet<T> {
 		}
 
 		return difference;
+	}
+
+	static isSubset<T>(set1: Set<T>, set2: Set<T>): boolean {
+		return set1
+			.data
+			.every(element => set2.has(element));
 	}
 
 	private [Symbol.toPrimitive](type: string): string | number | null {

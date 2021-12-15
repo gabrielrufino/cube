@@ -10,6 +10,7 @@ interface ISet<T> {
 	union(_set: Set<T>): Set<T>;
 	intersection(_set: Set<T>): Set<T>;
 	difference(_set: Set<T>): Set<T>;
+	isSubsetOf(_set: Set<T>): boolean;
 }
 
 export default ISet;

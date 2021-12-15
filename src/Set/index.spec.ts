@@ -146,8 +146,19 @@ describe('Set', () => {
 		});
 	});
 
+	describe('.difference()', () => {
+		it('Should return the result of the difference between the current set and the received set', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(3, 4, 5, 6);
+			const difference = set1.difference(set2);
+
+			expect(difference.size).toBe(2);
+			expect(difference.data.sort()).toEqual([1, 2].sort());
+		});
+	});
+
 	describe('Set.union()', () => {
-		it('Should return a union set between two others', () => {
+		it('Should return an union set between two others', () => {
 			const set1 = new cube.Set(1, 2, 3, 4);
 			const set2 = new cube.Set(3, 4, 5, 6);
 			const union = cube.Set.union(set1, set2);
@@ -158,13 +169,24 @@ describe('Set', () => {
 	});
 
 	describe('Set.intersection()', () => {
-		it('Should returnn a intersection set between two others', () => {
+		it('Should return an intersection set between two others', () => {
 			const set1 = new cube.Set(1, 2, 3, 4);
 			const set2 = new cube.Set(3, 4, 5, 6);
 			const intersection = cube.Set.intersection(set1, set2);
 
 			expect(intersection.size).toBe(2);
 			expect(intersection.data.sort()).toEqual([3, 4].sort());
+		});
+	});
+
+	describe('Set.difference()', () => {
+		it('Should return an difference set between two others', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(3, 4, 5, 6);
+			const difference = cube.Set.difference(set1, set2);
+
+			expect(difference.size).toBe(2);
+			expect(difference.data.sort()).toEqual([1, 2].sort());
 		});
 	});
 });

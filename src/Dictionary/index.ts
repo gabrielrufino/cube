@@ -20,4 +20,15 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 		Reflect.set(this._data, key, value);
 		return [key, value];
 	}
+
+	public remove(key: string): [string, T] | null {
+		if (Reflect.has(this.data, key)) {
+			const value = Reflect.get(this.data, key);
+			Reflect.deleteProperty(this._data, key);
+
+			return [key, value];
+		}
+
+		return null;
+	}
 }

@@ -60,4 +60,65 @@ describe('Dictionary', () => {
 			expect(returned).toEqual(['first', 1]);
 		});
 	});
+
+	describe('.remove()', () => {
+		it('Should remove an existent key value pair', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			dictionary.remove('third');
+
+			expect(dictionary.data).toEqual({
+				first: 1,
+				second: 2,
+				fourth: 4,
+			});
+			expect(dictionary.size).toBe(3);
+		});
+
+		it('Should change nothing when receive a non existent key', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			dictionary.remove('fifth');
+
+			expect(dictionary.data).toEqual({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			expect(dictionary.size).toBe(4);
+		});
+
+		it('Should return the removed key value pair', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary.remove('second');
+
+			expect(returned).toEqual(['second', 2]);
+		});
+
+		it('Should return null when the dictionary has not the received key', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary.remove('fifth');
+
+			expect(returned).toBeNull();
+		});
+	});
 });

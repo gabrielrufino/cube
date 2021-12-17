@@ -22,7 +22,7 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 	}
 
 	public remove(key: string): [string, T] | null {
-		if (Reflect.has(this.data, key)) {
+		if (this.hasKey(key)) {
 			const value = Reflect.get(this.data, key);
 			Reflect.deleteProperty(this._data, key);
 

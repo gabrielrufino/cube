@@ -121,4 +121,30 @@ describe('Dictionary', () => {
 			expect(returned).toBeNull();
 		});
 	});
+
+	describe('.hasKey()', () => {
+		it('Should return truw when the dictionary has the received key', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary.hasKey('first');
+
+			expect(returned).toBe(true);
+		});
+
+		it('Should return false when the dictionary has not the received key', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary.hasKey('fifth');
+
+			expect(returned).toBe(false);
+		});
+	});
 });

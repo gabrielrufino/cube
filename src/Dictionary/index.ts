@@ -31,4 +31,8 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 
 		return null;
 	}
+
+	public hasKey(key: string): boolean {
+		return Reflect.has(this.data, key);
+	}
 }

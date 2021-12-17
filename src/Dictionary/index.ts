@@ -13,7 +13,7 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 	}
 
 	get size(): number {
-		return Object.keys(this.data).length;
+		return Reflect.ownKeys(this.data).length;
 	}
 
 	public set(key: string, value: T): [string, T] {

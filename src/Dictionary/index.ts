@@ -35,4 +35,12 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 	public hasKey(key: string): boolean {
 		return Reflect.has(this.data, key);
 	}
+
+	public get(key: string): T | null {
+		if (this.hasKey(key)) {
+			return Reflect.get(this.data, key);
+		}
+
+		return null;
+	}
 }

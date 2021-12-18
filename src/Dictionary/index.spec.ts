@@ -147,4 +147,30 @@ describe('Dictionary', () => {
 			expect(returned).toBe(false);
 		});
 	});
+
+	describe('.get()', () => {
+		it('Should return the value of the received key', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary.get('third');
+
+			expect(returned).toBe(3);
+		});
+
+		it('Should return null when the dictionary has not the received key', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary.get('fifth');
+
+			expect(returned).toBeNull();
+		});
+	});
 });

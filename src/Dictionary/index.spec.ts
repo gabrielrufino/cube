@@ -173,4 +173,36 @@ describe('Dictionary', () => {
 			expect(returned).toBeNull();
 		});
 	});
+
+	describe('.clear()', () => {
+		it('Should clear the dictionary', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 3,
+			});
+			dictionary.clear();
+
+			expect(dictionary.data).toEqual({});
+			expect(dictionary.size).toBe(0);
+		});
+
+		it('Should return the dictionary key values pairs befores the clear', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 3,
+			});
+			const returned = dictionary.clear();
+
+			expect(returned).toEqual({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 3,
+			});
+		});
+	});
 });

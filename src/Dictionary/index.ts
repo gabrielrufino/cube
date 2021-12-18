@@ -43,4 +43,10 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 
 		return null;
 	}
+
+	public clear(): IDictionaryData<T> {
+		const dictionary = {...this.data};
+		this._data = {};
+		return dictionary;
+	}
 }

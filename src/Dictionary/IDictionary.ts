@@ -7,6 +7,7 @@ interface IDictionary<T> {
 	remove(_key: string): [string, T] | null;
 	hasKey(_key: string): boolean;
 	get(_key: string): T | null;
+	clear(): IDictionaryData<T>
 }
 
 export default IDictionary;

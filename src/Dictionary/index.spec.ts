@@ -52,7 +52,20 @@ describe('Dictionary', () => {
 				fourth: 4,
 			});
 
-			expect(dictionary.keys).toEqual(['first', 'second', 'third', 'fourth']);
+			expect(dictionary.keys.sort()).toEqual(['first', 'second', 'third', 'fourth'].sort());
+		});
+	});
+
+	describe('.values', () => {
+		it('Should return an array with all the dictionary values', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+
+			expect(dictionary.values.sort()).toEqual([1, 2, 3, 4].sort());
 		});
 	});
 

@@ -5,6 +5,7 @@ interface IDictionary<T> {
 	get size(): number;
 	get isEmpty(): boolean;
 	get keys(): string[];
+	get values(): T[];
 	set(_key: string, _value: T): [string, T];
 	remove(_key: string): [string, T] | null;
 	hasKey(_key: string): boolean;

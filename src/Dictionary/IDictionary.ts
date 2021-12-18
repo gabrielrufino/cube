@@ -12,6 +12,7 @@ interface IDictionary<T> {
 	hasKey(_key: string): boolean;
 	get(_key: string): T | null;
 	clear(): IDictionaryData<T>
+	forEach(_func: (_key: string, _value: T) => any): void;
 }
 
 export default IDictionary;

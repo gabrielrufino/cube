@@ -67,4 +67,10 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 		this._data = {};
 		return dictionary;
 	}
+
+	public forEach(func: (_key: string, _value: T) => any): void {
+		for (const [key, value] of this.pairs) {
+			func(key, value);
+		}
+	}
 }

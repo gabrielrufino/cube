@@ -1,4 +1,4 @@
-import {describe, it, expect} from '@jest/globals';
+import {describe, it, expect, jest} from '@jest/globals';
 
 import Dictionary from './';
 
@@ -259,6 +259,26 @@ describe('Dictionary', () => {
 				third: 3,
 				fourth: 3,
 			});
+		});
+	});
+
+	describe('.forEach()', () => {
+		it('Should call the received function for each elements', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const func = jest.fn();
+
+			dictionary.forEach(func);
+
+			expect(func).toBeCalledTimes(4);
+			expect(func).toBeCalledWith('first', 1);
+			expect(func).toBeCalledWith('second', 2);
+			expect(func).toBeCalledWith('third', 3);
+			expect(func).toBeCalledWith('fourth', 4);
 		});
 	});
 });

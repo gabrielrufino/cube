@@ -30,6 +30,10 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 		return Object.values(this.data);
 	}
 
+	get pairs(): [string, T][] {
+		return Object.entries(this.data);
+	}
+
 	public set(key: string, value: T): [string, T] {
 		Reflect.set(this._data, key, value);
 		return [key, value];

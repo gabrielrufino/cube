@@ -69,6 +69,20 @@ describe('Dictionary', () => {
 		});
 	});
 
+	describe('.pairs', () => {
+		it('Should return an array of key value pairs', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+
+			expect(dictionary.pairs.sort())
+				.toEqual([['first', 1], ['second', 2], ['third', 3], ['fourth', 4]].sort());
+		});
+	});
+
 	describe('.set()', () => {
 		it('Should set a new key with a value in the dictionary', () => {
 			const dictionary = new Dictionary({

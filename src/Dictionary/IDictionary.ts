@@ -6,6 +6,7 @@ interface IDictionary<T> {
 	get isEmpty(): boolean;
 	get keys(): string[];
 	get values(): T[];
+	get pairs(): [string, T][]
 	set(_key: string, _value: T): [string, T];
 	remove(_key: string): [string, T] | null;
 	hasKey(_key: string): boolean;

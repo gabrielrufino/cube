@@ -43,6 +43,19 @@ describe('Dictionary', () => {
 		});
 	});
 
+	describe('.keys', () => {
+		it('Should return an array with all the dictionary keys', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+
+			expect(dictionary.keys).toEqual(['first', 'second', 'third', 'fourth']);
+		});
+	});
+
 	describe('.set()', () => {
 		it('Should set a new key with a value in the dictionary', () => {
 			const dictionary = new Dictionary({

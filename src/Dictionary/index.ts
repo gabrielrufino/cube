@@ -20,6 +20,12 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 		return this.size === 0;
 	}
 
+	get keys(): string[] {
+		return Reflect
+			.ownKeys(this.data)
+			.map(key => String(key));
+	}
+
 	public set(key: string, value: T): [string, T] {
 		Reflect.set(this._data, key, value);
 		return [key, value];

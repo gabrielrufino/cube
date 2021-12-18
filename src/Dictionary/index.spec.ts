@@ -10,7 +10,7 @@ describe('Dictionary', () => {
 		expect(dictionary.size).toBe(0);
 	});
 
-	it('SHould create a filled dictionary without problems', () => {
+	it('Should create a filled dictionary without problems', () => {
 		const dictionary = new Dictionary<number>({
 			first: 1,
 			second: 2,
@@ -25,6 +25,22 @@ describe('Dictionary', () => {
 			fourth: 4,
 		});
 		expect(dictionary.size).toBe(4);
+	});
+
+	describe('.isEmpty', () => {
+		it('Should return true when the dictionary has no key value pairs', () => {
+			const dictionary = new Dictionary({});
+
+			expect(dictionary.isEmpty).toBe(true);
+		});
+
+		it('Should return false when the dictionary has some key value pair', () => {
+			const dictionary = new Dictionary({
+				first: 1,
+			});
+
+			expect(dictionary.isEmpty).toBe(false);
+		});
 	});
 
 	describe('.set()', () => {

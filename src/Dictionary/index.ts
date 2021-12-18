@@ -16,6 +16,10 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 		return Reflect.ownKeys(this.data).length;
 	}
 
+	get isEmpty(): boolean {
+		return this.size === 0;
+	}
+
 	public set(key: string, value: T): [string, T] {
 		Reflect.set(this._data, key, value);
 		return [key, value];

@@ -73,4 +73,16 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 			func(key, value);
 		}
 	}
+
+	private[Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `{ ${this.pairs.map(([key, value]) => `${key} => ${value}`).join(', ')} }`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

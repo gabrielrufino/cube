@@ -281,4 +281,30 @@ describe('Dictionary', () => {
 			expect(func).toBeCalledWith('fourth', 4);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return a comma separated key value pairs in string conversion', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const string = String(dictionary);
+
+			expect(string).toBe('{ first => 1, second => 2, third => 3, fourth => 4 }');
+		});
+
+		it('Should return the dictionary size in number conversion', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const number = Number(dictionary);
+
+			expect(number).toBe(4);
+		});
+	});
 });

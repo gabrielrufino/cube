@@ -38,6 +38,11 @@ export default class HashTable<T = number> implements IHashTable<T> {
 		return value;
 	}
 
+	public get(key: string): T | null {
+		const position = this._hashCode(key);
+		return this.data[position] || null;
+	}
+
 	private _hashCode(key: string): number {
 		const code = key
 			.split('')

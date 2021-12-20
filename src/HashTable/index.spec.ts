@@ -45,4 +45,24 @@ describe('HashTable', () => {
 			expect(returned).toEqual(1);
 		});
 	});
+
+	describe('.get()', () => {
+		it('Should return the element of the key', () => {
+			const hashTable = new HashTable({
+				first: 1,
+			});
+			const returned = hashTable.get('first');
+
+			expect(returned).toBe(1);
+		});
+
+		it('Should return null if the key does not exists in the hash table', () => {
+			const hashTable = new HashTable({
+				first: 1,
+			});
+			const returned = hashTable.get('second');
+
+			expect(returned).toBeNull();
+		});
+	});
 });

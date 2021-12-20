@@ -63,4 +63,16 @@ export default class HashTable<T = number> implements IHashTable<T> {
 
 		return code % this._maxSize;
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `[ ${Object.entries(this.data).map(([key, value]) => `${key} => ${value}`).join(', ')} ]`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

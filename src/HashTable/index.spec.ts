@@ -111,4 +111,26 @@ describe('HashTable', () => {
 			expect(returned).toBeNull();
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return a separated by comma key value pairs in string conversion', () => {
+			const hashTable = new HashTable({
+				first: 1,
+				second: 2,
+			});
+			const string = String(hashTable);
+
+			expect(string).toBe('[ 36 => 2, 52 => 1 ]');
+		});
+
+		it('Should return the hash table size in number conversion', () => {
+			const hashTable = new HashTable({
+				first: 1,
+				second: 2,
+			});
+			const number = Number(hashTable);
+
+			expect(number).toBe(2)
+		});
+	});
 });

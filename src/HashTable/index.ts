@@ -43,6 +43,18 @@ export default class HashTable<T = number> implements IHashTable<T> {
 		return this.data[position] || null;
 	}
 
+	public remove(key: string): T | null {
+		const value = this.get(key);
+
+		if (value) {
+			const position = this._hashCode(key);
+			Reflect.deleteProperty(this._data, position);
+			return value;
+		}
+
+		return null;
+	}
+
 	private _hashCode(key: string): number {
 		const code = key
 			.split('')

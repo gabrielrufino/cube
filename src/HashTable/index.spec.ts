@@ -65,4 +65,50 @@ describe('HashTable', () => {
 			expect(returned).toBeNull();
 		});
 	});
+
+	describe('.remove()', () => {
+		it('Should remove an existent key value pair', () => {
+			const hashTable = new HashTable<number>({
+				first: 1,
+				second: 2,
+			});
+			hashTable.remove('second');
+
+			expect(hashTable.data).toEqual({
+				52: 1,
+			});
+			expect(hashTable.size).toBe(1);
+		});
+
+		it('Should not change the hash table when receive a non existent key', () => {
+			const hashTable = new HashTable<number>({
+				first: 1,
+			});
+			hashTable.remove('second');
+
+			expect(hashTable.data).toEqual({
+				52: 1,
+			});
+			expect(hashTable.size).toBe(1);
+		});
+
+		it('Should return the removed value', () => {
+			const hashTable = new HashTable({
+				first: 1,
+				second: 2,
+			});
+			const returned = hashTable.remove('second');
+
+			expect(returned).toBe(2);
+		});
+
+		it('Should return null when receive a non existent key', () => {
+			const hashTable = new HashTable({
+				first: 1,
+			});
+			const returned = hashTable.remove('second');
+
+			expect(returned).toBeNull();
+		});
+	});
 });

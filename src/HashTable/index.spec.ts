@@ -130,7 +130,7 @@ describe('HashTable', () => {
 			});
 			const number = Number(hashTable);
 
-			expect(number).toBe(2)
+			expect(number).toBe(2);
 		});
 	});
 });

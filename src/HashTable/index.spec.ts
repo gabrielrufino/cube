@@ -26,4 +26,23 @@ describe('HashTable', () => {
 		});
 		expect(hashTable.size).toBe(4);
 	});
+
+	describe('.put()', () => {
+		it('Should insert a new element in hash table', () => {
+			const hashTable = new HashTable();
+			hashTable.put('first', 1);
+
+			expect(hashTable.data).toEqual({
+				52: 1,
+			});
+			expect(hashTable.size).toBe(1);
+		});
+
+		it('Should return the inserted element', () => {
+			const hashTable = new HashTable();
+			const returned = hashTable.put('first', 1);
+
+			expect(returned).toEqual(1);
+		});
+	});
 });

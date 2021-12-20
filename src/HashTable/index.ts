@@ -15,7 +15,7 @@ export default class HashTable<T = number> implements IHashTable<T> {
 		this._data = new Array(this._maxSize);
 
 		for (const [key, value] of Object.entries(inputs)) {
-			this._data[this._hashCode(key)] = value;
+			this.put(key, value);
 		}
 	}
 
@@ -30,6 +30,12 @@ export default class HashTable<T = number> implements IHashTable<T> {
 
 	get size(): number {
 		return Reflect.ownKeys(this.data).length;
+	}
+
+	public put(key: string, value: T): T {
+		const position = this._hashCode(key);
+		this._data[position] = value;
+		return value;
 	}
 
 	private _hashCode(key: string): number {

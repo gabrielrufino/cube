@@ -1,7 +1,4 @@
-interface ILinkedListItem<T> {
-	value: T;
-	next: T | null;
-}
+import ILinkedListItem from './ILinkedListItem';
 
 interface ILinkedList<T> {
 	get data(): ILinkedListItem<T>[];

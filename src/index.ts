@@ -4,6 +4,7 @@ export {default as Deck} from './Deck';
 export {default as Dictionary} from './Dictionary';
 export {default as DoublyLinkedList} from './DoublyLinkedList';
 export {default as HashTable} from './HashTable';
+export {default as HashTableSeparateChaining} from './HashTableSeparateChaining';
 export {default as LinkedList} from './LinkedList';
 export {default as List} from './List';
 export {default as Queue} from './Queue';

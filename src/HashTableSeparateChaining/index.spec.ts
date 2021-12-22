@@ -2,6 +2,7 @@ import {describe, it, expect} from '@jest/globals';
 
 import HashTableSeparateChaining from './';
 import LinkedList from '../LinkedList';
+import HashTableSeparateChainingElement from './HashTableSeparateChainingElement';
 
 describe('HashTableSeparateChaining', () => {
 	it('Should create an empty hash table separate chaining without problems', () => {
@@ -19,8 +20,13 @@ describe('HashTableSeparateChaining', () => {
 		});
 
 		expect(hashTableSeparateChaining.data).toEqual({
-			36: new LinkedList<number>(2),
-			52: new LinkedList<number>(1, -1),
+			36: new LinkedList(
+				new HashTableSeparateChainingElement('second', 2),
+			),
+			52: new LinkedList(
+				new HashTableSeparateChainingElement('first', 1),
+				new HashTableSeparateChainingElement('tsrif', -1),
+			),
 		});
 		expect(hashTableSeparateChaining.size).toBe(2);
 	});
@@ -33,8 +39,12 @@ describe('HashTableSeparateChaining', () => {
 			hashTableSeparateChaining.put('second', 2);
 
 			expect(hashTableSeparateChaining.data).toEqual({
-				36: new LinkedList<number>(2),
-				52: new LinkedList<number>(1),
+				36: new LinkedList(
+					new HashTableSeparateChainingElement('second', 2),
+				),
+				52: new LinkedList(
+					new HashTableSeparateChainingElement('first', 1),
+				),
 			});
 			expect(hashTableSeparateChaining.size).toBe(2);
 		});
@@ -47,8 +57,13 @@ describe('HashTableSeparateChaining', () => {
 			hashTableSeparateChaining.put('tsrif', -1);
 
 			expect(hashTableSeparateChaining.data).toEqual({
-				36: new LinkedList<number>(2),
-				52: new LinkedList<number>(1, -1),
+				36: new LinkedList(
+					new HashTableSeparateChainingElement('second', 2),
+				),
+				52: new LinkedList(
+					new HashTableSeparateChainingElement('first', 1),
+					new HashTableSeparateChainingElement('tsrif', -1),
+				),
 			});
 			expect(hashTableSeparateChaining.size).toBe(2);
 		});
@@ -69,7 +84,7 @@ describe('HashTableSeparateChaining', () => {
 			});
 			const returned = hashTableSeparateChaining.get('first');
 
-			expect(returned).toEqual(new LinkedList<number>(1));
+			expect(returned).toEqual(new HashTableSeparateChainingElement('first', 1));
 		});
 
 		it('Should return null when the key is not in the hash table separate chaining', () => {
@@ -92,7 +107,7 @@ describe('HashTableSeparateChaining', () => {
 			hashTableSeparateChaining.remove('first');
 
 			expect(hashTableSeparateChaining.data).toEqual({
-				36: new LinkedList(2),
+				36: new LinkedList(new HashTableSeparateChainingElement('second', 2)),
 			});
 			expect(hashTableSeparateChaining.size).toBe(1);
 		});
@@ -105,8 +120,8 @@ describe('HashTableSeparateChaining', () => {
 			hashTableSeparateChaining.remove('third');
 
 			expect(hashTableSeparateChaining.data).toEqual({
-				36: new LinkedList<number>(2),
-				52: new LinkedList<number>(1),
+				36: new LinkedList(new HashTableSeparateChainingElement('second', 2)),
+				52: new LinkedList(new HashTableSeparateChainingElement('first', 1)),
 			});
 			expect(hashTableSeparateChaining.size).toBe(2);
 		});
@@ -118,7 +133,7 @@ describe('HashTableSeparateChaining', () => {
 			});
 			const returned = hashTableSeparateChaining.remove('first');
 
-			expect(returned).toEqual(new LinkedList(1));
+			expect(returned).toEqual(new HashTableSeparateChainingElement('first', 1));
 		});
 
 		it('Should return null when remove a non existent key', () => {
@@ -141,7 +156,7 @@ describe('HashTableSeparateChaining', () => {
 			});
 			const string = String(hashTableSeparateChaining);
 
-			expect(string).toBe('[ [Head] 2, [Head] 1 => -1 ]');
+			expect(string).toBe('[ [Head] { second => 2}, [Head] { first => 1} => { tsrif => -1} ]');
 		});
 
 		it('Should return the size in number conversion', () => {

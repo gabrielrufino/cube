@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "test": "jest",
+    "test:cov": "npm t -- --coverage",
     "build": "rimraf ./build && tsc"
   },
   "repository": {

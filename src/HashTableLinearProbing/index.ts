@@ -50,6 +50,21 @@ export default class HashTableLinearProbing<T = number> implements IHashTableLin
 		return value;
 	}
 
+	public get(key: string): T | null {
+		const position = this._hashCode(key);
+		let i = position;
+
+		do {
+			if (this._data[i]?.key === key) {
+				return this._data[i].value;
+			}
+
+			i = (i + 1) % this._maxSize;
+		} while (this._data[i] && i !== position);
+
+		return null;
+	}
+
 	private _hashCode(key: string): number {
 		const code = key
 			.split('')

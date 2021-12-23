@@ -88,4 +88,48 @@ describe('HashTableLinearProbing', () => {
 			expect(hashTableLinearProbing.size).toBe(2);
 		});
 	});
+
+	describe('.get()', () => {
+		it('Should return the value of the key', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			});
+			const returned = hashTableLinearProbing.get('second');
+
+			expect(returned).toBe(2);
+		});
+
+		it('Should return the correct value in case of collisions', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				tsrif: -1,
+			});
+			const returned = hashTableLinearProbing.get('tsrif');
+
+			expect(returned).toBe(-1);
+		});
+
+		it('Should return null when the key is not in the hash table linear probing', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			});
+			const returned = hashTableLinearProbing.get('third');
+
+			expect(returned).toBeNull();
+		});
+
+		it('Should return null when the key is not in a full hash table linear probing', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			}, {
+				maxSize: 2,
+			});
+			const returned = hashTableLinearProbing.get('third');
+
+			expect(returned).toBeNull();
+		});
+	});
 });

@@ -131,5 +131,12 @@ describe('HashTableLinearProbing', () => {
 
 			expect(returned).toBeNull();
 		});
+
+		it('Should return null for any key in empty hash table linear probing', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing();
+			const returned = hashTableLinearProbing.get('first');
+
+			expect(returned).toBeNull();
+		});
 	});
 });

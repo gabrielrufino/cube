@@ -7,6 +7,7 @@
     "lint": "eslint src/**/*.ts",
     "test": "jest",
     "test:cov": "npm t -- --coverage",
+    "test:watch": "npm t -- --watch",
     "build": "rimraf ./build && tsc"
   },
   "repository": {

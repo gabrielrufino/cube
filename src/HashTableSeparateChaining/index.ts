@@ -1,11 +1,12 @@
-import LinkedList from '../LinkedList';
+import HashTableSeparateChainingElement from './HashTableSeparateChainingElement';
 import IHashTableSeparateChaining from './IHashTableSeparateChaining';
 import IHashTableSeparateChainingData from './IHashTableSeparateChainingData';
 import IHashTableSeparateChainingInputs from './IHashTableSeparateChainingInputs';
+import LinkedList from '../LinkedList';
 
 export default class HashTableSeparateChaining<T = number> implements IHashTableSeparateChaining<T> {
 	private _maxSize: number;
-	private _data: LinkedList<T>[];
+	private _data: LinkedList<HashTableSeparateChainingElement<T>>[];
 
 	constructor(
 		inputs: IHashTableSeparateChainingInputs<T> = {},
@@ -33,33 +34,51 @@ export default class HashTableSeparateChaining<T = number> implements IHashTable
 	}
 
 	public put(key: string, value: T): T {
-		const linkedList = this.get(key);
+		const linkedList = this._getLinkedListByKey(key);
+		const element = new HashTableSeparateChainingElement(key, value);
 
 		if (linkedList) {
-			linkedList.push(value);
+			linkedList.push(element);
 		} else {
 			const position = this._hashCode(key);
-			this._data[position] = new LinkedList<T>(value);
+			this._data[position] = new LinkedList(element);
 		}
 
 		return value;
 	}
 
-	public get(key: string): LinkedList<T> | null {
-		const position = this._hashCode(key);
-		return Reflect.get(this.data, position) || null;
-	}
-
-	public remove(key: string): LinkedList<T> | null {
-		const linkedList = this.get(key);
+	public get(key: string): HashTableSeparateChainingElement<T> | null {
+		const linkedList = this._getLinkedListByKey(key);
 
 		if (linkedList) {
-			const position = this._hashCode(key);
-			Reflect.deleteProperty(this._data, position);
-			return linkedList;
+			const element = linkedList.data.find(element => element.value.key === key);
+			return element?.value || null;
 		}
 
 		return null;
+	}
+
+	public remove(key: string): HashTableSeparateChainingElement<T> | null {
+		const linkedList = this._getLinkedListByKey(key);
+
+		if (linkedList) {
+			const index = linkedList.data.findIndex(element => element.value.key === key);
+			const element = linkedList.removeFromPosition(index);
+
+			if (linkedList.isEmpty) {
+				const position = this._hashCode(key);
+				Reflect.deleteProperty(this._data, position);
+			}
+
+			return element || null;
+		}
+
+		return null;
+	}
+
+	private _getLinkedListByKey(key: string): LinkedList<HashTableSeparateChainingElement<T>> | null {
+		const position = this._hashCode(key);
+		return Reflect.get(this.data, position) || null;
 	}
 
 	private _hashCode(key: string): number {

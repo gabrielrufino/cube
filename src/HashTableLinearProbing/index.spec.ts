@@ -139,4 +139,104 @@ describe('HashTableLinearProbing', () => {
 			expect(returned).toBeNull();
 		});
 	});
+
+	describe('.remove()', () => {
+		it('Should remove an element', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			});
+			hashTableLinearProbing.remove('second');
+
+			expect(hashTableLinearProbing.data).toEqual({
+				52: new HashTableLinearProbingElement('first', 1),
+			});
+			expect(hashTableLinearProbing.size).toBe(1);
+		});
+
+		it('Should return the removed value', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			});
+			const returned = hashTableLinearProbing.remove('second');
+
+			expect(returned).toBe(2);
+		});
+
+		it('Should change nothing if the key is not in the hash table linear probing', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			});
+			hashTableLinearProbing.remove('third');
+
+			expect(hashTableLinearProbing.data).toEqual({
+				36: new HashTableLinearProbingElement('second', 2),
+				52: new HashTableLinearProbingElement('first', 1),
+			});
+			expect(hashTableLinearProbing.size).toBe(2);
+		});
+
+		it('Should return null if the key is not in the hash table linear probing', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+			});
+			const returned = hashTableLinearProbing.remove('third');
+
+			expect(returned).toBeNull();
+		});
+
+		it('Should move all the subsequent elements that have the same hash code to the left', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				tsrif: -1,
+				irstf: -2,
+				srift: -3,
+			});
+			hashTableLinearProbing.remove('tsrif');
+
+			expect(hashTableLinearProbing.data).toEqual({
+				52: new HashTableLinearProbingElement('first', 1),
+				53: new HashTableLinearProbingElement('irstf', -2),
+				54: new HashTableLinearProbingElement('srift', -3),
+			});
+			expect(hashTableLinearProbing.size).toBe(3);
+		});
+
+		it('Should move all the subsequent elements that have the same hash code to the left when remove the first position', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				tsrif: 0,
+				irstf: -1,
+			}, {
+				maxSize: 3,
+			});
+			hashTableLinearProbing.remove('first');
+
+			expect(hashTableLinearProbing.data).toEqual({
+				0: new HashTableLinearProbingElement('tsrif', 0),
+				1: new HashTableLinearProbingElement('irstf', -1),
+			});
+			expect(hashTableLinearProbing.size).toBe(2);
+		});
+
+		it('Should move all the subsequent elements that have the same hash code to the left when remove a middle position', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				third: 3,
+				driht: -3,
+				rihtd: 0,
+			}, {
+				maxSize: 3,
+			});
+			hashTableLinearProbing.remove('third');
+
+			expect(hashTableLinearProbing.data).toEqual({
+				0: new HashTableLinearProbingElement('rihtd', 0),
+				2: new HashTableLinearProbingElement('driht', -3),
+			});
+			expect(hashTableLinearProbing.size).toBe(2);
+		});
+	});
 });

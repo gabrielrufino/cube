@@ -113,4 +113,16 @@ export default class HashTableLinearProbing<T = number> implements IHashTableLin
 	private _previousPositionOf(position: number) {
 		return (position + this.size - 1) % this._maxSize;
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `[ ${Object.values(this.data).join(', ')} ]`;
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

@@ -239,4 +239,28 @@ describe('HashTableLinearProbing', () => {
 			expect(hashTableLinearProbing.size).toBe(2);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return the elements separated by comma in string conversion', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+				third: 3,
+			});
+			const string = String(hashTableLinearProbing);
+
+			expect(string).toBe('[ { second => 2 }, { third => 3 }, { first => 1 } ]');
+		});
+
+		it('Should return the size in number conversion', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+				third: 3,
+			});
+			const number = Number(hashTableLinearProbing);
+
+			expect(number).toBe(3);
+		});
+	});
 });

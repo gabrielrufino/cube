@@ -44,6 +44,10 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		this._visitNodePreOrder(this._root, callback);
 	}
 
+	public walkPostOrder(callback: (_value: T) => any): void {
+		this._visitNodePostOrder(this._root, callback);
+	}
+
 	private _lessThanOrEqualTo(value1: T, value2: T): boolean {
 		if (value1 <= value2) {
 			return true;
@@ -83,6 +87,14 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 			callback(node.value);
 			this._visitNodePreOrder(node.left, callback);
 			this._visitNodePreOrder(node.right, callback);
+		}
+	}
+
+	private _visitNodePostOrder(node: BinarySearchTreeNode<T> | null, callback: (_value: T) => any): void {
+		if (node) {
+			this._visitNodePostOrder(node.left, callback);
+			this._visitNodePostOrder(node.right, callback);
+			callback(node.value);
 		}
 	}
 }

@@ -5,6 +5,7 @@ interface IBinarySearchTree<T> {
 	insert(_value: T): T;
 	walkInOrder(_callback: (_value: T) => any): void;
 	walkPreOrder(_callback: (_value: T) => any): void;
+	walkPostOrder(_callback: (_value: T) => any): void;
 }
 
 export default IBinarySearchTree;

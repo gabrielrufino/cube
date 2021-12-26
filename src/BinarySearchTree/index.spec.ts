@@ -174,4 +174,34 @@ describe('BinarySearchTree', () => {
 			}
 		});
 	});
+
+	describe('.walkPreOrder()', () => {
+		it('Should walk the tree pre order', () => {
+			const bst = new BinarySearchTree({
+				inputs: [3, 8, 4, 2, 5, 9, 1, 6, 10, 7],
+			});
+
+			const calls: number[] = [];
+			const callback = (value: number) => {
+				calls.push(value);
+			};
+
+			bst.walkPreOrder(callback);
+
+			expect(calls).toEqual([3, 2, 1, 8, 4, 5, 6, 7, 9, 10]);
+		});
+
+		it('Should call the callback function with correct arguments', () => {
+			const inputs = [3, 8, 4, 2, 5, 9, 1, 6, 10, 7];
+			const bst = new BinarySearchTree({
+				inputs,
+			});
+			const callback = jest.fn();
+			bst.walkPreOrder(callback);
+
+			for (const value of inputs) {
+				expect(callback).toBeCalledWith(value);
+			}
+		});
+	});
 });

@@ -11,7 +11,7 @@ export default class BinarySearchTreeNode<T> {
 
 	[Symbol.toPrimitive](type: string): string | number | null {
 		if (type === 'string') {
-			return `[${this.left} <= ${this.value} => ${this.right}]`;
+			return `[${this.left}] <= (${this.value}) => [${this.right}]`;
 		}
 
 		if (type === 'number') {

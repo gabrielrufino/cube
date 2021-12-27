@@ -451,4 +451,17 @@ describe('BinarySearchTree', () => {
 			});
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return arrow separated values in string conversion', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 2, 1, 3, 6, 5, 7],
+			});
+			const string = String(bst);
+
+			console.log(string);
+
+			expect(string).toBe('[[[null] <= (1) => [null]] <= (2) => [[null] <= (3) => [null]]] <= (4) => [[[null] <= (5) => [null]] <= (6) => [[null] <= (7) => [null]]]');
+		});
+	});
 });

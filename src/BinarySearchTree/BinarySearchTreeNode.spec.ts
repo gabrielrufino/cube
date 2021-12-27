@@ -23,7 +23,7 @@ describe('BinarySearchTreeNode', () => {
 			node.right = new BinarySearchTreeNode(rightNumber);
 			const string = String(node);
 
-			expect(string).toBe(`[[null <= ${leftNumber} => null] <= ${rootNumber} => [null <= ${rightNumber} => null]]`);
+			expect(string).toBe(`[[null] <= (${leftNumber}) => [null]] <= (${rootNumber}) => [[null] <= (${rightNumber}) => [null]]`);
 		});
 	});
 });

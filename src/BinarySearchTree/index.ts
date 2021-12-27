@@ -171,4 +171,12 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 			callback(node.value);
 		}
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return `${this._root}`;
+		}
+
+		return null;
+	}
 }

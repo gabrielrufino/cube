@@ -34,6 +34,16 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		return current?.value || null;
 	}
 
+	get max(): T | null {
+		let current = this._root;
+
+		while (current && current.right) {
+			current = current.right;
+		}
+
+		return current?.value || null;
+	}
+
 	public insert(value: T): T {
 		const node = new BinarySearchTreeNode(value);
 

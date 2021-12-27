@@ -251,4 +251,21 @@ describe('BinarySearchTree', () => {
 			expect(bst.min).toBe(Math.min(...inputs));
 		});
 	});
+
+	describe('.max', () => {
+		it('Should return null when the bst in empty', () => {
+			const bst = new BinarySearchTree();
+
+			expect(bst.max).toBeNull();
+		});
+
+		it('Should return the maximum value of the bst', () => {
+			const inputs = new Array(10).fill(undefined).map(faker.datatype.number);
+			const bst = new BinarySearchTree({
+				inputs,
+			});
+
+			expect(bst.max).toBe(Math.max(...inputs));
+		});
+	});
 });

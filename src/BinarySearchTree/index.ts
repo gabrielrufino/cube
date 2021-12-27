@@ -82,6 +82,46 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		return Boolean(current);
 	}
 
+	public remove(value: T): T | null {
+		let current = this._root;
+		const path: Array<'left' | 'right'> = [];
+
+		while (current && current.value !== value) {
+			if (this._lessThanOrEqualTo(value, current.value)) {
+				current = current.left;
+				path.push('left');
+			} else {
+				current = current.right;
+				path.push('right');
+			}
+		}
+
+		const found = {...current};
+		const parent = path
+			.slice(0, path.length - 1)
+			.reduce((accumulator, current) => accumulator && accumulator[current], this._root);
+		const child = path[path.length - 1];
+
+		if (current?.left && current?.right && parent) {
+			let head = current.right;
+
+			while (head.left) {
+				head = head.left;
+			}
+
+			this.remove(head.value);
+			current.value = head.value;
+		} else if (current?.left && parent) {
+			parent[child] = current.left;
+		} else if (current?.right && parent) {
+			parent[child] = current.right;
+		} else if (parent) {
+			parent[child] = null;
+		}
+
+		return found.value || null;
+	}
+
 	private _lessThanOrEqualTo(value1: T, value2: T): boolean {
 		if (value1 <= value2) {
 			return true;

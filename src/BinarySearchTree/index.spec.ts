@@ -288,4 +288,167 @@ describe('BinarySearchTree', () => {
 			expect(returned).toBe(false);
 		});
 	});
+
+	describe('.remove()', () => {
+		it('Should remove a node that is a leaf', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 5, 2, 7, 6, 1],
+			});
+			bst.remove(6);
+
+			expect(bst.data).toEqual({
+				left: {
+					left: {
+						left: null,
+						value: 1,
+						right: null,
+					},
+					value: 2,
+					right: null,
+				},
+				value: 4,
+				right: {
+					left: null,
+					value: 5,
+					right: {
+						left: null,
+						value: 7,
+						right: null,
+					},
+				},
+			});
+		});
+
+		it('Should remove a node that has a right child', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 5, 2, 7, 6, 1],
+			});
+			bst.remove(5);
+
+			expect(bst.data).toEqual({
+				left: {
+					left: {
+						left: null,
+						value: 1,
+						right: null,
+					},
+					value: 2,
+					right: null,
+				},
+				value: 4,
+				right: {
+					left: {
+						left: null,
+						value: 6,
+						right: null,
+					},
+					value: 7,
+					right: null,
+				},
+			});
+		});
+
+		it('Should remove a node that has a left child', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 5, 2, 7, 6, 1],
+			});
+			bst.remove(2);
+
+			expect(bst.data).toEqual({
+				left: {
+					left: null,
+					right: null,
+					value: 1,
+				},
+				value: 4,
+				right: {
+					left: null,
+					value: 5,
+					right: {
+						left: {
+							left: null,
+							value: 6,
+							right: null,
+						},
+						value: 7,
+						right: null,
+					},
+				},
+			});
+		});
+
+		it('Should remove a node thar has a left child and a right child', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 5, 2, 7, 6, 1, 3, 2.5, 2.1, 3.5],
+			});
+			bst.remove(2);
+
+			expect(bst.data).toEqual({
+				left: {
+					left: {
+						left: null,
+						value: 1,
+						right: null,
+					},
+					value: 2.1,
+					right: {
+						left: {
+							left: null,
+							value: 2.5,
+							right: null,
+						},
+						value: 3,
+						right: {
+							left: null,
+							value: 3.5,
+							right: null,
+						},
+					},
+				},
+				value: 4,
+				right: {
+					left: null,
+					value: 5,
+					right: {
+						left: {
+							left: null,
+							value: 6,
+							right: null,
+						},
+						value: 7,
+						right: null,
+					},
+				},
+			});
+		});
+
+		it('Should remove the root', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 5, 2, 7, 6, 1],
+			});
+			bst.remove(4);
+
+			expect(bst.data).toEqual({
+				left: {
+					left: {
+						left: null,
+						value: 1,
+						right: null,
+					},
+					value: 2,
+					right: null,
+				},
+				value: 5,
+				right: {
+					left: {
+						left: null,
+						value: 6,
+						right: null,
+					},
+					value: 7,
+					right: null,
+				},
+			});
+		});
+	});
 });

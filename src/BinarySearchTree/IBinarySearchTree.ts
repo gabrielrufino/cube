@@ -8,6 +8,7 @@ interface IBinarySearchTree<T> {
 	walkInOrder(_callback: (_value: T) => any): void;
 	walkPreOrder(_callback: (_value: T) => any): void;
 	walkPostOrder(_callback: (_value: T) => any): void;
+	search(_value: T): boolean;
 }
 
 export default IBinarySearchTree;

@@ -268,4 +268,24 @@ describe('BinarySearchTree', () => {
 			expect(bst.max).toBe(Math.max(...inputs));
 		});
 	});
+
+	describe('.search()', () => {
+		it('Should return true when the received value is in the bst', () => {
+			const bst = new BinarySearchTree({
+				inputs: [3, 2, 4, 1],
+			});
+			const returned = bst.search(2);
+
+			expect(returned).toBe(true);
+		});
+
+		it('Should return false whe the received value is not in the bst', () => {
+			const bst = new BinarySearchTree({
+				inputs: [3, 2, 4, 1],
+			});
+			const returned = bst.search(5);
+
+			expect(returned).toBe(false);
+		});
+	});
 });

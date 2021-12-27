@@ -68,6 +68,20 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		this._visitNodePostOrder(this._root, callback);
 	}
 
+	public search(value: T): boolean {
+		let current = this._root;
+
+		while (current && current.value !== value) {
+			if (this._lessThanOrEqualTo(value, current.value)) {
+				current = current.left;
+			} else {
+				current = current.right;
+			}
+		}
+
+		return Boolean(current);
+	}
+
 	private _lessThanOrEqualTo(value1: T, value2: T): boolean {
 		if (value1 <= value2) {
 			return true;

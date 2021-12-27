@@ -5,6 +5,7 @@ import IBinarySearchTreeData from './IBinarySearchTreeData';
 
 export default class BinarySearchTree<T = number> implements IBinarySearchTree<T> {
 	private _root: BinarySearchTreeNode<T> | null = null;
+	private _size: number = 0;
 
 	constructor({inputs = [], lessThanOrEqualTo}: IBinarySearchNodeOptions<T> = {inputs: []}) {
 		if (lessThanOrEqualTo) {
@@ -14,6 +15,8 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		for (const value of inputs) {
 			this.insert(value);
 		}
+
+		this._size = inputs.length;
 	}
 
 	get data(): IBinarySearchTreeData<T> {
@@ -22,6 +25,10 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 			value: null,
 			right: null,
 		};
+	}
+
+	get size(): number {
+		return this._size;
 	}
 
 	get min(): T | null {
@@ -52,6 +59,8 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		} else {
 			this._root = node;
 		}
+
+		this._size += 1;
 
 		return value;
 	}
@@ -113,10 +122,13 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 			current.value = head.value;
 		} else if (current?.left && parent) {
 			parent[child] = current.left;
+			this._size -= 1;
 		} else if (current?.right && parent) {
 			parent[child] = current.right;
+			this._size -= 1;
 		} else if (parent) {
 			parent[child] = null;
+			this._size -= 1;
 		}
 
 		return found.value || null;

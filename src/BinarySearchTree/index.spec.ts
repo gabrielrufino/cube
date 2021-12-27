@@ -12,6 +12,7 @@ describe('BinarySearchTree', () => {
 			value: null,
 			right: null,
 		});
+		expect(bst.size).toBe(0);
 	});
 
 	it('Should create a filled bst without problems', () => {
@@ -40,6 +41,7 @@ describe('BinarySearchTree', () => {
 				right: null,
 			},
 		});
+		expect(bst.size).toBe(5);
 	});
 
 	it('Should allow us to customize the comparison function', () => {
@@ -71,6 +73,7 @@ describe('BinarySearchTree', () => {
 				right: null,
 			},
 		});
+		expect(bst.size).toBe(3);
 	});
 
 	describe('.insert()', () => {
@@ -83,6 +86,7 @@ describe('BinarySearchTree', () => {
 				value: 1,
 				right: null,
 			});
+			expect(bst.size).toBe(1);
 		});
 
 		it('Should insert a new value in the left of the root when the new value is less than the root value', () => {
@@ -100,6 +104,7 @@ describe('BinarySearchTree', () => {
 				value: 2,
 				right: null,
 			});
+			expect(bst.size).toBe(2);
 		});
 
 		it('Should insert a new value in the left of the root when the new value is equal to the root value', () => {
@@ -117,6 +122,7 @@ describe('BinarySearchTree', () => {
 				value: 1,
 				right: null,
 			});
+			expect(bst.size).toBe(2);
 		});
 
 		it('Should insert a new value in the right of the root when the new value is greater than the root value', () => {
@@ -134,6 +140,7 @@ describe('BinarySearchTree', () => {
 					right: null,
 				},
 			});
+			expect(bst.size).toBe(2);
 		});
 
 		it('Should return the inserted value', () => {
@@ -317,6 +324,7 @@ describe('BinarySearchTree', () => {
 					},
 				},
 			});
+			expect(bst.size).toBe(5);
 		});
 
 		it('Should remove a node that has a right child', () => {
@@ -346,6 +354,7 @@ describe('BinarySearchTree', () => {
 					right: null,
 				},
 			});
+			expect(bst.size).toBe(5);
 		});
 
 		it('Should remove a node that has a left child', () => {
@@ -375,6 +384,7 @@ describe('BinarySearchTree', () => {
 					},
 				},
 			});
+			expect(bst.size).toBe(5);
 		});
 
 		it('Should remove a node thar has a left child and a right child', () => {
@@ -420,6 +430,7 @@ describe('BinarySearchTree', () => {
 					},
 				},
 			});
+			expect(bst.size).toBe(9);
 		});
 
 		it('Should remove the root', () => {
@@ -449,6 +460,7 @@ describe('BinarySearchTree', () => {
 					right: null,
 				},
 			});
+			expect(bst.size).toBe(5);
 		});
 	});
 

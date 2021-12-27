@@ -234,4 +234,21 @@ describe('BinarySearchTree', () => {
 			}
 		});
 	});
+
+	describe('.min', () => {
+		it('Should return null when the bst in empty', () => {
+			const bst = new BinarySearchTree();
+
+			expect(bst.min).toBeNull();
+		});
+
+		it('Should return the minimum value of the bst', () => {
+			const inputs = new Array(10).fill(undefined).map(faker.datatype.number);
+			const bst = new BinarySearchTree({
+				inputs,
+			});
+
+			expect(bst.min).toBe(Math.min(...inputs));
+		});
+	});
 });

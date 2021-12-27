@@ -24,6 +24,16 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		};
 	}
 
+	get min(): T | null {
+		let current = this._root;
+
+		while (current && current.left) {
+			current = current.left;
+		}
+
+		return current?.value || null;
+	}
+
 	public insert(value: T): T {
 		const node = new BinarySearchTreeNode(value);
 

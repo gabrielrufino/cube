@@ -189,6 +189,10 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 			return `${this._root}`;
 		}
 
+		if (type === 'number') {
+			return this.size;
+		}
+
 		return null;
 	}
 }

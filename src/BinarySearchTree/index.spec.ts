@@ -473,5 +473,14 @@ describe('BinarySearchTree', () => {
 
 			expect(string).toBe('[[[null] <= (1) => [null]] <= (2) => [[null] <= (3) => [null]]] <= (4) => [[[null] <= (5) => [null]] <= (6) => [[null] <= (7) => [null]]]');
 		});
+
+		it('Should return the size in number conversion', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 2, 1, 3, 6, 5, 7],
+			});
+			const number = Number(bst);
+
+			expect(number).toBe(7);
+		});
 	});
 });

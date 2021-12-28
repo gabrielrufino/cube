@@ -30,14 +30,22 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 		return this.data[0] || null;
 	}
 
-	get max(): T | null {
-		return this.data[this.size - 1] || null;
-	}
-
 	public insert(value: T): T {
 		this._data = [...this.data, value];
 		this._siftUp(this.size - 1);
 		return value;
+	}
+
+	public extract(): T | null {
+		if (!this.isEmpty) {
+			const [min, ...rest] = this.data;
+			this._data = [rest[rest.length - 1], ...rest.slice(0, rest.length - 1)].filter(value => value !== undefined);
+			this._siftDown(0);
+
+			return min;
+		}
+
+		return null;
 	}
 
 	private _lessThanOrEqualTo = (value1: T, value2: T): boolean => value1 <= value2;
@@ -51,6 +59,19 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 		if (index > 0 && this._lessThanOrEqualTo(this.data[index], this.data[parent])) {
 			[this._data[parent], this._data[index]] = [this.data[index], this.data[parent]];
 			this._siftUp(parent);
+		}
+	}
+
+	private _siftDown(index: number): void {
+		const left = this._getLeftIndex(index);
+		const right = this._getRightIndex(index);
+
+		if (left < this.size && this._lessThanOrEqualTo(this.data[left], this.data[index])) {
+			[this._data[left], this._data[index]] = [this.data[index], this.data[left]];
+			this._siftDown(left);
+		} else if (right < this.size && this._lessThanOrEqualTo(this.data[right], this.data[index])) {
+			[this._data[right], this._data[index]] = [this.data[index], this.data[right]];
+			this._siftDown(right);
 		}
 	}
 }

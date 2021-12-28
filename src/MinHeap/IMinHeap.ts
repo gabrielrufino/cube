@@ -3,8 +3,8 @@ interface IMinHeap<T> {
 	get size(): number;
 	get isEmpty(): boolean;
 	get min(): T | null;
-	get max(): T | null;
 	insert(_value: T): T;
+	extract(): T | null;
 }
 
 export default IMinHeap;

@@ -53,23 +53,6 @@ describe('MinHeap', () => {
 		});
 	});
 
-	describe('.max', () => {
-		it('Should be the max value when the heap is not empty', () => {
-			const inputs = new Array(10).fill(undefined).map(faker.datatype.number);
-			const minHeap = new MinHeap({
-				inputs,
-			});
-
-			expect(minHeap.max).toBe(Math.max(...inputs));
-		});
-
-		it('Should be null when the heap is empty', () => {
-			const minHeap = new MinHeap();
-
-			expect(minHeap.max).toBeNull();
-		});
-	});
-
 	describe('.insert()', () => {
 		it('Should insert new values in the heap', () => {
 			const minHeap = new MinHeap();
@@ -97,6 +80,34 @@ describe('MinHeap', () => {
 			const returned = minHeap.insert(value);
 
 			expect(returned).toBe(value);
+		});
+	});
+
+	describe('.extract()', () => {
+		it('Should extract the min value of the heap and adjust the heap after this', () => {
+			const minHeap = new MinHeap({
+				inputs: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+			});
+			minHeap.extract();
+
+			expect(minHeap.data).toEqual([2, 4, 3, 8, 5, 6, 7, 9]);
+			expect(minHeap.size).toBe(8);
+		});
+
+		it('Should return the extracted value', () => {
+			const inputs = new Array(10).fill(undefined).map(faker.datatype.number);
+			const minHeap = new MinHeap({inputs});
+			const returned = minHeap.extract();
+
+			expect(returned).toBe(Math.min(...inputs));
+		});
+
+		it('Should change nothing if the heap is empty', () => {
+			const minHeap = new MinHeap();
+			minHeap.extract();
+
+			expect(minHeap.data).toEqual([]);
+			expect(minHeap.size).toBe(0);
 		});
 	});
 });

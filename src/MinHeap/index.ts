@@ -22,6 +22,10 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 		return this.data.length;
 	}
 
+	get isEmpty(): boolean {
+		return this.size === 0;
+	}
+
 	get min(): T | null {
 		return this.data[0] || null;
 	}

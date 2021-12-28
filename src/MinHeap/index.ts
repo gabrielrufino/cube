@@ -15,7 +15,7 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 	}
 
 	get data(): T[] {
-		return this._data;
+		return [...this._data];
 	}
 
 	get size(): number {

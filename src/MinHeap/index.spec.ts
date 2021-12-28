@@ -20,6 +20,23 @@ describe('MinHeap', () => {
 		expect(minHeap.size).toBe(4);
 	});
 
+	describe('.min', () => {
+		it('Should be the min value when the heap is not empty', () => {
+			const inputs = new Array(10).fill(undefined).map(faker.datatype.number);
+			const minHeap = new MinHeap({
+				inputs,
+			});
+
+			expect(minHeap.min).toBe(Math.min(...inputs));
+		});
+
+		it('Should be null when the heap is empty', () => {
+			const minHeap = new MinHeap();
+
+			expect(minHeap.min).toBeNull();
+		});
+	});
+
 	describe('.insert()', () => {
 		it('Should insert new values in the heap', () => {
 			const minHeap = new MinHeap();

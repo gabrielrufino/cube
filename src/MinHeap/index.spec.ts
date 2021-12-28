@@ -110,4 +110,32 @@ describe('MinHeap', () => {
 			expect(minHeap.size).toBe(0);
 		});
 	});
+
+	describe('Heap Sort', () => {
+		it('Should sort an array in ASC order', () => {
+			const minHeap = new MinHeap({
+				inputs: [
+					7,
+					1,
+					10,
+					4,
+					8,
+					6,
+					2,
+					3,
+					5,
+					9,
+				],
+			});
+
+			const {size} = minHeap;
+			const result = [];
+
+			for (let i = 1; i <= size; i++) {
+				result.push(minHeap.extract());
+			}
+
+			expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+		});
+	});
 });

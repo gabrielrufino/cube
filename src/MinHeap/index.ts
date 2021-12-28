@@ -69,7 +69,9 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 		if (left < this.size && this._lessThanOrEqualTo(this.data[left], this.data[index])) {
 			[this._data[left], this._data[index]] = [this.data[index], this.data[left]];
 			this._siftDown(left);
-		} else if (right < this.size && this._lessThanOrEqualTo(this.data[right], this.data[index])) {
+		}
+
+		if (right < this.size && this._lessThanOrEqualTo(this.data[right], this.data[index])) {
 			[this._data[right], this._data[index]] = [this.data[index], this.data[right]];
 			this._siftDown(right);
 		}

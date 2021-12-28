@@ -30,6 +30,10 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 		return this.data[0] || null;
 	}
 
+	get max(): T | null {
+		return this.data[this.size - 1] || null;
+	}
+
 	public insert(value: T): T {
 		this._data = [...this.data, value];
 		this._siftUp(this.size - 1);

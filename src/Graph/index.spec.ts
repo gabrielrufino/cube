@@ -1,4 +1,5 @@
 import {describe, it, expect} from '@jest/globals';
+import { isExpressionWithTypeArguments } from 'typescript';
 
 import Graph from './';
 import GraphNodeNotFoundError from './GraphNodeNotFoundError';
@@ -97,6 +98,65 @@ describe('Graph', () => {
 			const returned = graph.insert('A');
 
 			expect(returned).toBeNull();
+		});
+	});
+
+	describe('.connect', () => {
+		it('Should connect two different nodes', () => {
+			const graph = new Graph({
+				inputs: {
+					A: [],
+					B: [],
+				},
+			});
+			graph.connect('A', 'B');
+
+			expect(graph.data).toEqual({
+				A: ['B'],
+				B: ['A'],
+			});
+			expect(graph.size).toBe(2);
+		});
+
+		it('Should throw an error when the first node is not in the graph', () => {
+			const graph = new Graph({
+				inputs: {
+					B: [],
+				},
+			});
+
+			expect(() => {
+				graph.connect('A', 'B');
+			}).toThrow(new GraphNodeNotFoundError('A'));
+		});
+
+		it('Should throw an error when the second node is not in the graph', () => {
+			const graph = new Graph({
+				inputs: {
+					A: [],
+				},
+			});
+
+			expect(() => {
+				graph.connect('A', 'B');
+			}).toThrow(new GraphNodeNotFoundError('B'));
+		});
+
+		it('Should connect only the first node to the second when the graph is directed', () => {
+			const graph = new Graph({
+				isDirected: true,
+				inputs: {
+					A: [],
+					B: [],
+				},
+			});
+			graph.connect('A', 'B');
+
+			expect(graph.data).toEqual({
+				A: ['B'],
+				B: [],
+			});
+			expect(graph.size).toBe(2);
 		});
 	});
 

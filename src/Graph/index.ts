@@ -48,4 +48,22 @@ export default class Graph implements IGraph {
 
 		return node;
 	}
+
+	public connect(node1: string, node2: string): [string, string] {
+		if (!this._data.hasKey(node1)) {
+			throw new GraphNodeNotFoundError(node1);
+		}
+
+		if (!this._data.hasKey(node2)) {
+			throw new GraphNodeNotFoundError(node2);
+		}
+
+		this._data.get(node1)?.add(node2);
+
+		if (!this._isDirected) {
+			this._data.get(node2)?.add(node1);
+		}
+
+		return [node1, node2];
+	}
 }

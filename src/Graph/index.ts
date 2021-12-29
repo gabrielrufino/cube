@@ -27,6 +27,10 @@ export default class Graph implements IGraph {
 		}
 	}
 
+	get isDirected(): boolean {
+		return this._isDirected;
+	}
+
 	get data(): { [key: string]: string[]; } {
 		return Object.entries(this._data.data)
 			.reduce((accumulator, [key, value]) => ({

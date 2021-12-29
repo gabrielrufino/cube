@@ -1,5 +1,4 @@
 import {describe, it, expect} from '@jest/globals';
-import { isExpressionWithTypeArguments } from 'typescript';
 
 import Graph from './';
 import GraphNodeNotFoundError from './GraphNodeNotFoundError';
@@ -52,6 +51,24 @@ describe('Graph', () => {
 				},
 			});
 		}).toThrow(new GraphNodeNotFoundError('C'));
+	});
+
+	describe('.isDirected', () => {
+		it('Should be true when the graph is directed', () => {
+			const graph = new Graph({
+				isDirected: true,
+			});
+
+			expect(graph.isDirected).toBe(true);
+		});
+
+		it('Should be false when the graph is not directed', () => {
+			const graph = new Graph({
+				isDirected: false,
+			});
+
+			expect(graph.isDirected).toBe(false);
+		});
 	});
 
 	describe('.insert()', () => {

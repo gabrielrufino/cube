@@ -72,7 +72,7 @@ describe('Graph', () => {
 	});
 
 	describe('.nodes', () => {
-		it('Should return the graph nodes', () => {
+		it('Should be the graph nodes', () => {
 			const graph = new Graph({
 				inputs: {
 					A: ['B'],
@@ -82,6 +82,41 @@ describe('Graph', () => {
 			});
 
 			expect(graph.nodes.sort()).toEqual(['A', 'B', 'C'].sort());
+		});
+	});
+
+	describe('.edges', () => {
+		it('Should be the correct edges when the graph is directed', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['A', 'C'],
+					C: [],
+				},
+				isDirected: true,
+			});
+
+			expect(graph.edges).toEqual([
+				['A', 'B'],
+				['B', 'A'],
+				['B', 'C'],
+			]);
+		});
+
+		it('Should be the correct edges when the graph is not directed', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['A', 'C'],
+					C: ['B'],
+				},
+				isDirected: false,
+			});
+
+			expect(graph.edges).toEqual([
+				['A', 'B'],
+				['B', 'C'],
+			]);
 		});
 	});
 

@@ -45,6 +45,27 @@ export default class Graph implements IGraph {
 		return [...this._data.keys];
 	}
 
+	get edges(): [string, string][] {
+		if (this.isDirected) {
+			return Object.entries(this.data)
+				.flatMap((
+					[node, links]) => links.map<[string, string]>(link => [node, link]),
+				);
+		}
+
+		return Object.entries(this.data)
+			.reduce<[string, string][]>((accumulator, [node, links]) => {
+				const edges = links
+					.map<[string, string]>(link => [node, link])
+					.filter(edge => !accumulator.find(item => item.includes(edge[0]) && item.includes(edge[1])));
+
+				return [
+					...accumulator,
+					...edges,
+				];
+			}, []);
+	}
+
 	public insert(node: string): string | null {
 		if (this._data.hasKey(node)) {
 			return null;

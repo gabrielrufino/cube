@@ -9,7 +9,7 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 	}
 
 	get data(): IDictionaryData<T> {
-		return this._data;
+		return {...this._data};
 	}
 
 	get size(): number {

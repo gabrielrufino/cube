@@ -1,1 +1,3 @@
-export default class Graph {}
+import IGraph from './IGraph';
+
+export default class Graph implements IGraph {}

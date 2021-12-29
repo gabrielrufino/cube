@@ -138,4 +138,24 @@ describe('MaxHeap', () => {
 			expect(result).toEqual([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
 		});
 	});
+
+	describe('Conversion to primitive', () => {
+		it('Should return separated by comma values in string conversion', () => {
+			const maxHeap = new MaxHeap({
+				inputs: [1, 2, 3, 4, 5],
+			});
+			const string = String(maxHeap);
+
+			expect(string).toBe('5, 4, 2, 1, 3');
+		});
+
+		it('Should return the size in number conversion', () => {
+			const maxHeap = new MaxHeap({
+				inputs: [1, 2, 3, 4, 5],
+			});
+			const number = Number(maxHeap);
+
+			expect(number).toBe(5);
+		});
+	});
 });

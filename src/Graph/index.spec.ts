@@ -53,6 +53,53 @@ describe('Graph', () => {
 		}).toThrow(new GraphNodeNotFoundError('C'));
 	});
 
+	describe('.insert()', () => {
+		it('Should insert a new node in the graph', () => {
+			const graph = new Graph();
+			graph.insert('A');
+
+			expect(graph.data).toEqual({
+				A: [],
+			});
+			expect(graph.size).toBe(1);
+		});
+
+		it('Should return the inserted node', () => {
+			const graph = new Graph();
+			const returned = graph.insert('A');
+
+			expect(returned).toBe('A');
+		});
+
+		it('Should change nothing if the node is already in the graph', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['A'],
+				},
+			});
+			graph.insert('A');
+
+			expect(graph.data).toEqual({
+				A: ['B'],
+				B: ['A'],
+			});
+			expect(graph.size).toBe(2);
+		});
+
+		it('Should return null when the node is already in the graph', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['A'],
+				},
+			});
+			const returned = graph.insert('A');
+
+			expect(returned).toBeNull();
+		});
+	});
+
 	it('Lab', () => {
 		const graph = new Graph({
 			inputs: {

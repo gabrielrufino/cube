@@ -15,7 +15,7 @@ export default class Graph implements IGraph {
 
 		const nodes = Object.keys(inputs);
 		for (const node of nodes) {
-			this._data.set(node, new Set<string>());
+			this.insert(node);
 
 			for (const value of inputs[node]) {
 				if (!nodes.includes(value)) {
@@ -37,5 +37,15 @@ export default class Graph implements IGraph {
 
 	get size(): number {
 		return this._data.size;
+	}
+
+	public insert(node: string): string | null {
+		if (this._data.hasKey(node)) {
+			return null;
+		}
+
+		this._data.set(node, new Set<string>());
+
+		return node;
 	}
 }

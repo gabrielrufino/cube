@@ -225,6 +225,19 @@ describe('Graph', () => {
 			});
 			expect(graph.size).toBe(2);
 		});
+
+		it('Should return the inserted edge', () => {
+			const graph = new Graph({
+				isDirected: true,
+				inputs: {
+					A: [],
+					B: [],
+				},
+			});
+			const returned = graph.connect('A', 'B');
+
+			expect(returned).toEqual(['A', 'B']);
+		});
 	});
 
 	describe('.breadthFirstSearch', () => {

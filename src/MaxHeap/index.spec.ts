@@ -110,4 +110,32 @@ describe('MaxHeap', () => {
 			expect(maxHeap.size).toBe(0);
 		});
 	});
+
+	describe('Heap Sort', () => {
+		it('Should sort an array in DESC order', () => {
+			const maxHeap = new MaxHeap({
+				inputs: [
+					7,
+					1,
+					10,
+					4,
+					8,
+					6,
+					2,
+					3,
+					5,
+					9,
+				],
+			});
+
+			const {size} = maxHeap;
+			const result = [];
+
+			for (let i = 1; i <= size; i++) {
+				result.push(maxHeap.extract());
+			}
+
+			expect(result).toEqual([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+		});
+	});
 });

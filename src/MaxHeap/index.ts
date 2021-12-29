@@ -26,6 +26,10 @@ export default class MaxHeap<T = number> implements IMaxHeap<T> {
 		return this.size === 0;
 	}
 
+	get max(): T | null {
+		return this.data[0] || null;
+	}
+
 	public insert(value: T): T {
 		this._data = [...this.data, value];
 		this._siftUp(this.size - 1);

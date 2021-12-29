@@ -36,6 +36,23 @@ describe('MaxHeap', () => {
 		});
 	});
 
+	describe('.max', () => {
+		it('Should be the min value when the heap is not empty', () => {
+			const inputs = new Array(10).fill(undefined).map(faker.datatype.number);
+			const maxHeap = new MaxHeap({
+				inputs,
+			});
+
+			expect(maxHeap.max).toBe(Math.max(...inputs));
+		});
+
+		it('Should be null when the heap is empty', () => {
+			const maxHeap = new MaxHeap();
+
+			expect(maxHeap.max).toBeNull();
+		});
+	});
+
 	describe('.insert()', () => {
 		it('Should insert new values in the heap', () => {
 			const maxHeap = new MaxHeap();

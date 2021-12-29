@@ -9,6 +9,7 @@ export {default as HashTableLinearProbing} from './HashTableLinearProbing';
 export {default as HashTableSeparateChaining} from './HashTableSeparateChaining';
 export {default as LinkedList} from './LinkedList';
 export {default as List} from './List';
+export {default as MaxHeap} from './MaxHeap';
 export {default as MinHeap} from './MinHeap';
 export {default as Queue} from './Queue';
 export {default as Set} from './Set';

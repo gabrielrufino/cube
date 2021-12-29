@@ -1,9 +1,12 @@
+import GraphNodeNotFoundError from './GraphNodeNotFoundError';
+import GraphSearchNodeStates from './GraphSearchNodeStates';
 import IGraph from './IGraph';
 import IGraphOptions from './IGraphOptions';
 
 import Dictionary from '../Dictionary';
+import Queue from '../Queue';
 import Set from '../Set';
-import GraphNodeNotFoundError from './GraphNodeNotFoundError';
+import Stack from '../Stack';
 
 export default class Graph implements IGraph {
 	private _isDirected: boolean;
@@ -92,5 +95,38 @@ export default class Graph implements IGraph {
 		}
 
 		return [node1, node2];
+	}
+
+	public breadthFirstSearch(startNode: string, callback: (_node: string) => void): void {
+		if (!this._data.hasKey(startNode)) {
+			throw new GraphNodeNotFoundError(startNode);
+		}
+
+		const {nodes} = this;
+		const states: { [key: string]: GraphSearchNodeStates } = nodes.reduce((accumulator, node) => ({
+			...accumulator,
+			[node]: GraphSearchNodeStates.UNEXPLORED,
+		}), {});
+
+		const queue = new Queue<string>();
+		queue.enqueue(startNode);
+
+		while (!queue.isEmpty) {
+			const current = queue.dequeue() || '';
+
+			if (current) {
+				states[current] = GraphSearchNodeStates.DISCOVERED;
+				const neighbors = this._data.get(current)?.data || [];
+				const unvisitedNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
+
+				for (const neighbor of unvisitedNeighbors) {
+					states[neighbor] = GraphSearchNodeStates.DISCOVERED;
+					queue.enqueue(neighbor);
+				}
+			}
+
+			states[current] = GraphSearchNodeStates.EXPLORED;
+			callback(current);
+		}
 	}
 }

@@ -1,4 +1,5 @@
-import {describe, it, expect} from '@jest/globals';
+import {describe, it, expect, jest} from '@jest/globals';
+import faker from 'faker';
 
 import Graph from './';
 import GraphNodeNotFoundError from './GraphNodeNotFoundError';
@@ -226,17 +227,43 @@ describe('Graph', () => {
 		});
 	});
 
-	it('Lab', () => {
-		const graph = new Graph({
-			inputs: {
-				A: ['B'],
-				B: ['C'],
-				C: [],
-			},
+	describe('.breadthFirstSearch', () => {
+		it('Should traverse all the graph', () => {
+			const keys = new Array(10).fill(undefined).map(faker.datatype.string);
+			const graph = new Graph();
+
+			for (const key of keys) {
+				graph.insert(key);
+			}
+
+			for (const key1 of keys) {
+				for (const key2 of keys) {
+					if (Math.random() > 0.5) {
+						graph.connect(key1, key2);
+					}
+				}
+			}
+
+			const callback = jest.fn();
+			graph.breadthFirstSearch(keys[0], callback);
+
+			expect(callback).toBeCalledTimes(keys.length);
+			for (const key of keys) {
+				expect(callback).toBeCalledWith(key);
+			}
 		});
 
-		console.log(
-			graph.data,
-		);
+		it('Should throw an error when the start node is not in the graph', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['A'],
+				},
+			});
+
+			expect(() => {
+				graph.breadthFirstSearch('C', jest.fn());
+			}).toThrow(new GraphNodeNotFoundError('C'));
+		});
 	});
 });

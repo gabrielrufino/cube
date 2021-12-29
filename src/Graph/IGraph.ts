@@ -7,6 +7,7 @@ interface IGraph {
 	insert(_node: string): string | null;
 	connect(_node1: string, _node2: string): [string, string];
 	breadthFirstSearch(_startNode: string, _callback: (_node: string) => void): void;
+	getDistancesFrom(_node: string): { [key: string]: number };
 }
 
 export default IGraph;

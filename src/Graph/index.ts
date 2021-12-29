@@ -6,7 +6,6 @@ import IGraphOptions from './IGraphOptions';
 import Dictionary from '../Dictionary';
 import Queue from '../Queue';
 import Set from '../Set';
-import Stack from '../Stack';
 
 export default class Graph implements IGraph {
 	private _isDirected: boolean;
@@ -117,9 +116,9 @@ export default class Graph implements IGraph {
 			if (current) {
 				states[current] = GraphSearchNodeStates.DISCOVERED;
 				const neighbors = this._data.get(current)?.data || [];
-				const unvisitedNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
+				const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
 
-				for (const neighbor of unvisitedNeighbors) {
+				for (const neighbor of unexploredNeighbors) {
 					states[neighbor] = GraphSearchNodeStates.DISCOVERED;
 					queue.enqueue(neighbor);
 				}
@@ -128,5 +127,44 @@ export default class Graph implements IGraph {
 			states[current] = GraphSearchNodeStates.EXPLORED;
 			callback(current);
 		}
+	}
+
+	public getDistancesFrom(node: string): { [key: string]: number; } {
+		if (!this._data.hasKey(node)) {
+			throw new GraphNodeNotFoundError(node);
+		}
+
+		const {nodes} = this;
+		const states: { [key: string]: GraphSearchNodeStates } = nodes.reduce((accumulator, node) => ({
+			...accumulator,
+			[node]: GraphSearchNodeStates.UNEXPLORED,
+		}), {});
+		const distances: { [key: string]: number } = nodes.reduce((accumulator, node) => ({
+			...accumulator,
+			[node]: 0,
+		}), {});
+
+		const queue = new Queue<string>();
+		queue.enqueue(node);
+
+		while (!queue.isEmpty) {
+			const current = queue.dequeue() || '';
+
+			if (current) {
+				states[current] = GraphSearchNodeStates.DISCOVERED;
+				const neighbors = this._data.get(current)?.data || [];
+				const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
+
+				for (const neighbor of unexploredNeighbors) {
+					states[neighbor] = GraphSearchNodeStates.DISCOVERED;
+					distances[neighbor] = distances[current] + 1;
+					queue.enqueue(neighbor);
+				}
+			}
+
+			states[current] = GraphSearchNodeStates.EXPLORED;
+		}
+
+		return distances;
 	}
 }

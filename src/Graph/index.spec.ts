@@ -266,4 +266,40 @@ describe('Graph', () => {
 			}).toThrow(new GraphNodeNotFoundError('C'));
 		});
 	});
+
+	describe('.getDistancesFrom()', () => {
+		it('Should return the distances from the origin to the others nodes', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['C', 'D', 'E'],
+					B: ['C', 'E'],
+					C: ['A', 'B'],
+					D: ['A'],
+					E: ['A', 'B'],
+				},
+			});
+			const returned = graph.getDistancesFrom('B');
+
+			expect(returned).toEqual({
+				A: 2,
+				B: 0,
+				C: 1,
+				D: 3,
+				E: 1,
+			});
+		});
+
+		it('Should throw an error when the origin node is not in the graph', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['A'],
+				},
+			});
+
+			expect(() => {
+				graph.getDistancesFrom('C');
+			}).toThrow(new GraphNodeNotFoundError('C'));
+		});
+	});
 });

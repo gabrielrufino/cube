@@ -76,4 +76,16 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 			this._siftDown(right);
 		}
 	}
+
+	private [Symbol.toPrimitive](type: string): string | number | null {
+		if (type === 'string') {
+			return this.data.join(', ');
+		}
+
+		if (type === 'number') {
+			return this.size;
+		}
+
+		return null;
+	}
 }

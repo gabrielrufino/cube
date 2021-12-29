@@ -71,6 +71,20 @@ describe('Graph', () => {
 		});
 	});
 
+	describe('.nodes', () => {
+		it('Should return the graph nodes', () => {
+			const graph = new Graph({
+				inputs: {
+					A: ['B'],
+					B: ['C'],
+					C: [],
+				},
+			});
+
+			expect(graph.nodes.sort()).toEqual(['A', 'B', 'C'].sort());
+		});
+	});
+
 	describe('.insert()', () => {
 		it('Should insert a new node in the graph', () => {
 			const graph = new Graph();

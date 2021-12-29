@@ -41,6 +41,10 @@ export default class Graph implements IGraph {
 		return this._data.size;
 	}
 
+	get nodes(): string[] {
+		return [...this._data.keys];
+	}
+
 	public insert(node: string): string | null {
 		if (this._data.hasKey(node)) {
 			return null;

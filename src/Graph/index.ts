@@ -16,13 +16,11 @@ export default class Graph implements IGraph {
 		const nodes = Object.keys(inputs);
 		for (const node of nodes) {
 			this.insert(node);
+		}
 
+		for (const node of nodes) {
 			for (const value of inputs[node]) {
-				if (!nodes.includes(value)) {
-					throw new GraphNodeNotFoundError(value);
-				}
-
-				this._data.get(node)?.add(value);
+				this.connect(node, value);
 			}
 		}
 	}

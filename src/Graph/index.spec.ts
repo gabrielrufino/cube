@@ -118,7 +118,7 @@ describe('Graph', () => {
 		});
 	});
 
-	describe('.connect', () => {
+	describe('.connect()', () => {
 		it('Should connect two different nodes', () => {
 			const graph = new Graph({
 				inputs: {

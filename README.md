@@ -12,13 +12,12 @@ npm i @gabrielrufino/cube
 
 ##### Importing package
 
-**ESModules:**
+<small>ESModules:</small>
 ```js
 import cube from '@gabrielrufino/cube'
 ```
 
-**CommonJS:**
-
+<small>CommonJS:</small>
 ```js
 const cube = require('@gabrielrufino/cube')
 ```

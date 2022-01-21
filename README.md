@@ -2,15 +2,15 @@
 
 Data Structures and Algorithms made in Typescript
 
-### Getting started
+## Getting started
 
-##### Installing package
+#### Installing package
 
 ```bash
 npm i @gabrielrufino/cube
 ```
 
-##### Importing package
+#### Importing package
 
 <small>ESModules:</small>
 ```js
@@ -22,9 +22,9 @@ import cube from '@gabrielrufino/cube'
 const cube = require('@gabrielrufino/cube')
 ```
 
-### Data Structures
+## Data Structures
 
-##### Array/List
+#### Array/List
 
 The **List** data structure is just an alias to the **Array** data structure.
 

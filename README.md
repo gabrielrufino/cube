@@ -492,4 +492,5 @@ import cube from '@gabrielrufino/cube'
 
 const linkedList = new cube.LinkedList(1, 2, 3, 4)
 const position = linkedList.positionOf(2)
+console.log(position) // 1
 ```

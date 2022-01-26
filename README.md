@@ -357,7 +357,7 @@ console.log(deck.data) // [ 1, 2, 3, 4 ]
 console.log(element) // 4
 ```
 
-#### Linked list
+#### Linked List
 
 You can initialize an empty linked list or a linked list with some elements:
 
@@ -953,7 +953,7 @@ Key: fourth, Value: 4
 */
 ```
 
-#### Hash table
+#### Hash Table
 
 You can initialize an empty hash table or a hash table with some elements:
 
@@ -1036,4 +1036,80 @@ const hashTable = new cube.HashTable({
 hashTable.remove('second')
 
 console.log(hashTable.data) // { '52': 1 }
+```
+
+##### Hash Table Separate Chaining
+
+The `HashTableSeparateChaining` class has the same method of the `HashTable` class. The difference is on the collision strategy.
+
+All the values are actually linked lists. This means that in case of conflict, the new element is pushed to the linked list.
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const hashTableSeparateChaining = new cube.HashTableSeparateChaining({
+  first: 1
+})
+
+console.log(hashTableSeparateChaining.data)
+/*
+{
+  '52': LinkedList {}
+}
+*/
+
+console.log(hashTableSeparateChaining.data['52'].data)
+/*
+[
+  {
+    value: HashTableSeparateChainingElement { key: 'first', value: 1 },
+    next: null
+  }
+]
+*/
+
+hashTableSeparateChaining.put('tsrif', -1)
+console.log(hashTableSeparateChaining.data['52'].data)
+/*
+[
+  {
+    value: HashTableSeparateChainingElement { key: 'first', value: 1 },
+    next: HashTableSeparateChainingElement { key: 'tsrif', value: -1 }
+  },
+  {
+    value: HashTableSeparateChainingElement { key: 'tsrif', value: -1 },
+    next: null
+  }
+]
+*/
+```
+
+##### Hash Table Linear Probing
+
+The `HashTableLinearProbing` class has the same method of the `HashTable` class. The difference is on the collision strategy.
+
+In case of conflict, the position of the new element will be the next available position.
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const hashTableLinearProbing = new cube.HashTableLinearProbing({
+  first: 1
+}, {
+  maxSize: 2
+})
+
+console.log(hashTableLinearProbing.data)
+/*
+{ '0': HashTableLinearProbingElement { key: 'first', value: 1 } }
+*/
+
+hashTableLinearProbing.put('tsrif', -1)
+console.log(hashTableLinearProbing.data)
+/*
+{
+  '0': HashTableLinearProbingElement { key: 'first', value: 1 },
+  '1': HashTableLinearProbingElement { key: 'tsrif', value: -1 }
+}
+*/
 ```

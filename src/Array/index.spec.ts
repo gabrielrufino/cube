@@ -40,7 +40,7 @@ describe('Array', () => {
 		});
 	});
 
-	describe('insertInFirstPosition()', () => {
+	describe('.insertInFirstPosition()', () => {
 		it('Should insert a new element in the first position', () => {
 			const array = new Array(2, 3, 4);
 			array.insertInFirstPosition(1);

@@ -1114,7 +1114,7 @@ console.log(hashTableLinearProbing.data)
 */
 ```
 
-### Binary Search Tree
+#### Binary Search Tree
 
 You can initialize an empty binary search tree or a binary search tree with some elements:
 

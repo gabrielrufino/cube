@@ -95,7 +95,7 @@ describe('DoublyLinkedList', () => {
 		});
 	});
 
-	describe('getFromPosition()', () => {
+	describe('.getFromPosition()', () => {
 		it('Should return undefined when receive a position lower than zero', () => {
 			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
 			const returned = doublyLinkedList.getFromPosition(-1);
@@ -140,7 +140,7 @@ describe('DoublyLinkedList', () => {
 		});
 	});
 
-	describe('positionOf()', () => {
+	describe('.positionOf()', () => {
 		it('Should return the position of an element', () => {
 			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
 			const returned = doublyLinkedList.positionOf(3);
@@ -156,7 +156,7 @@ describe('DoublyLinkedList', () => {
 		});
 	});
 
-	describe('insertInPosition()', () => {
+	describe('.insertInPosition()', () => {
 		it('Should return undefined when receive a negative position', () => {
 			const doublyLinkedList = new DoublyLinkedList();
 			const returned = doublyLinkedList.insertInPosition(1, -1);

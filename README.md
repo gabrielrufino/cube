@@ -1113,3 +1113,42 @@ console.log(hashTableLinearProbing.data)
 }
 */
 ```
+
+### Binary Search Tree
+
+You can initialize an empty binary search tree or a binary search tree with some elements:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst1 = new cube.BinarySearchTree()
+const bst2 = new cube.BinarySearchTree({
+  inputs: [4, 2, 1, 3, 5],
+})
+```
+
+Use the property `.data` to access the elements in the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [4, 2, 1, 3, 5],
+})
+
+console.log(bst.data)
+/*
+
+*/
+```
+
+Use the property `.size` to get how many elements the binary search tree has:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(bst.size) // 4
+```

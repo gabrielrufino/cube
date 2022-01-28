@@ -1113,3 +1113,583 @@ console.log(hashTableLinearProbing.data)
 }
 */
 ```
+
+#### Binary Search Tree
+
+You can initialize an empty binary search tree or a binary search tree with some elements:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst1 = new cube.BinarySearchTree()
+const bst2 = new cube.BinarySearchTree({
+  inputs: [4, 2, 1, 3, 5],
+})
+```
+
+Use the property `.data` to access the elements in the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [4, 2, 1, 3, 5],
+})
+
+console.log(bst.data)
+/*
+{
+  left: {
+    left: { left: null, right: null, value: 1 },
+    right: { left: null, right: null, value: 3 },
+    value: 2
+  },
+  right: { left: null, right: null, value: 5 },
+  value: 4
+}
+*/
+```
+
+Use the property `.size` to get how many elements the binary search tree has:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(bst.size) // 5
+```
+
+Use the method `.insert()` to insert a new element in the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4]
+})
+bst.insert(3)
+
+console.log(bst.data)
+/*
+{
+  left: { left: null, right: null, value: 1 },
+  right: {
+    left: { left: null, right: null, value: 3 },
+    right: null,
+    value: 4
+  },
+  value: 2
+}
+*/
+```
+
+Use the method `.walkInOrder()` to walk through the tree using the algorithm **in order** with the specified callback:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+
+bst.walkInOrder(value => {
+  console.log(value)
+})
+/*
+1
+2
+3
+4
+*/
+```
+
+Use the method `.walkPreOrder()` to walk through the tree using the algorithm **pre order** with the specified callback:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+
+bst.walkPreOrder(value => {
+  console.log(value)
+})
+/*
+2
+1
+4
+3
+*/
+```
+
+Use the method `.walkPostOrder()` to walk through the tree using the algorithm **post order** with the specified callback:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+
+bst.walkPostOrder(value => {
+  console.log(value)
+})
+
+/*
+1
+3
+4
+2
+*/
+```
+
+Use the property `.min` to get the minimum element in the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+console.log(bst.min) // 1
+```
+
+Use the property `.max` to get the maximum element in the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+console.log(bst.max) // 4
+```
+
+Use the method `.search()` to find out if the specified element in the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+console.log(bst.search(4)) // true
+console.log(bst.search(5)) // false
+```
+
+Use the method `.remove()` to remove the specified element from the binary search tree:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const bst = new cube.BinarySearchTree({
+  inputs: [2, 1, 4, 3]
+})
+bst.remove(4)
+
+console.log(bst.search(4)) // false
+console.log(bst.data)
+/*
+{
+  left: { left: null, right: null, value: 1 },
+  right:  { left: null, right: null, value: 3 },
+  value: 2
+}
+*/
+```
+
+#### Min Heap
+
+You can initialize an empty min heap or a min heap with some elements:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap1 = new cube.MinHeap()
+const minHeap2 = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+```
+
+Use the property `.data` to access the elements in the min heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+
+console.log(minHeap.data) // [ 1, 3, 2, 4, 5 ]
+```
+
+Use the property `.size` to get how many elements the min heap has:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(minHeap.size) // 5
+```
+
+Use the property `.isEmpty` to find out if the min heap is empty:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap1 = new cube.MinHeap()
+const minHeap2 = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(minHeap1.isEmpty) // true
+console.log(minHeap2.isEmpty) // false
+```
+
+Use the property `.min` to get the minimum element in the min heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(minHeap.min) // 1
+```
+
+Use the method `.insert()` to insert a new element in the min heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+minHeap.insert(6)
+
+console.log(minHeap.data) // [ 1, 3, 2, 4, 5, 6 ]
+```
+
+Use the method `.extract()` to extract the min value of the min heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const minHeap = new cube.MinHeap({
+  inputs: [4, 2, 1, 3, 5]
+})
+const min = minHeap.extract()
+
+console.log(min) // 1
+console.log(minHeap.data) // [ 2, 4, 3, 5 ]
+```
+
+#### Max Heap
+
+You can initialize an empty max heap or a max heap with some elements:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap1 = new cube.MaxHeap()
+const maxHeap2 = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+```
+
+Use the property `.data` to access the elements in the max heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+
+console.log(maxHeap.data) // [ 5, 4, 1, 2, 3 ]
+```
+
+Use the property `.size` to get how many elements the max heap has:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(maxHeap.size) // 5
+```
+
+Use the property `.isEmpty` to find out if the max heap is empty:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap1 = new cube.MaxHeap()
+const maxHeap2 = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(maxHeap1.isEmpty) // true
+console.log(maxHeap2.isEmpty) // false
+```
+
+Use the property `.max` to get the maximum element in the max heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+console.log(maxHeap.max) // 5
+```
+
+Use the method `.insert()` to insert a new element in the max heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5],
+})
+maxHeap.insert(6)
+
+console.log(maxHeap.data) // [ 6, 4, 5, 2, 3, 1 ]
+```
+
+Use the method `.extract()` to extract the max value of the max heap:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const maxHeap = new cube.MaxHeap({
+  inputs: [4, 2, 1, 3, 5]
+})
+const max = maxHeap.extract()
+
+console.log(max) // 5
+console.log(maxHeap.data) // [ 4, 3, 1, 2 ]
+```
+
+#### Graph
+
+You can initialize an empty graph or a graph with some elements:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph1 = new cube.Graph()
+const graph2 = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+```
+
+Use the property `.data` to access the elements in the graph:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+
+console.log(graph.data)
+/*
+{
+  A: [ 'B', 'C', 'D' ],
+  B: [ 'A', 'C' ],
+  C: [ 'A', 'B' ],
+  D: [ 'A' ]
+}
+*/
+```
+
+Use the property `.size` to get how many elements the graph has:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+console.log(graph.size) // 4
+```
+
+Use the property `.nodes` to get a list of all the nodes in the graph:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+console.log(graph.nodes) // [ 'A', 'B', 'C', 'D' ]
+```
+
+Use the property `.edges` to get a list of all the links between nodes in the graph:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+console.log(graph.edges)
+/*
+[
+  [ 'A', 'B' ],
+  [ 'A', 'C' ],
+  [ 'A', 'D' ],
+  [ 'B', 'C' ]
+]
+*/
+```
+
+Use the method `.insert()` to insert a new node in the graph:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+graph.insert('E')
+
+console.log(graph.data)
+/*
+{
+  A: [ 'B', 'C', 'D' ],
+  B: [ 'A', 'C' ],
+  C: [ 'A', 'B' ],
+  D: [ 'A' ],
+  E: []
+}
+*/
+
+console.log(graph.nodes) // [ 'A', 'B', 'C', 'D', 'E' ]
+```
+
+Use the method `.connect()` to connect two disconnected nodes:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+    E: []
+  }
+})
+
+console.log(graph.data)
+/*
+{
+  A: [ 'B', 'C', 'D' ],
+  B: [ 'A', 'C' ],
+  C: [ 'A', 'B' ],
+  D: [ 'A' ],
+  E: []
+}
+*/
+
+graph.connect('A', 'E')
+
+console.log(graph.data)
+/*
+{
+  A: [ 'B', 'C', 'D', 'E' ],
+  B: [ 'A', 'C' ],
+  C: [ 'A', 'B' ],
+  D: [ 'A' ],
+  E: [ 'A' ]
+}
+*/
+```
+
+Use the method `.breadthFirstSearch()` to walk through all the graph:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+
+graph.breadthFirstSearch('A', value => {
+  console.log(value)
+})
+/*
+A
+B
+C
+D
+*/
+```
+
+Use the method `.getDistancesFrom()` to get the distance between the specified node and the rest of nodes:
+
+```js
+import cube from '@gabrielrufino/cube'
+
+const graph = new cube.Graph({
+  inputs: {
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
+  }
+})
+
+const distances = graph.getDistancesFrom('B')
+console.log(distances)
+/*
+{
+  A: 1,
+  B: 0,
+  C: 1,
+  D: 2
+}
+*/
+```

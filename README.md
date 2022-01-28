@@ -1485,10 +1485,10 @@ import cube from '@gabrielrufino/cube'
 const graph1 = new cube.Graph()
 const graph2 = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 ```
@@ -1500,10 +1500,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 
@@ -1525,10 +1525,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 console.log(graph.size) // 4
@@ -1541,10 +1541,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 console.log(graph.nodes) // [ 'A', 'B', 'C', 'D' ]
@@ -1557,10 +1557,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 console.log(graph.edges)
@@ -1581,10 +1581,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 graph.insert('E')
@@ -1610,10 +1610,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
     E: []
   }
 })
@@ -1650,10 +1650,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 
@@ -1675,10 +1675,10 @@ import cube from '@gabrielrufino/cube'
 
 const graph = new cube.Graph({
   inputs: {
-		A: ['B', 'C', 'D'],
-		B: ['A', 'C'],
-		C: ['A', 'B'],
-		D: ['A'],
+    A: ['B', 'C', 'D'],
+    B: ['A', 'C'],
+    C: ['A', 'B'],
+    D: ['A'],
   }
 })
 

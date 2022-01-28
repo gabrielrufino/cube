@@ -240,7 +240,7 @@ describe('Graph', () => {
 		});
 	});
 
-	describe('.breadthFirstSearch', () => {
+	describe('.breadthFirstSearch()', () => {
 		it('Should traverse all the graph', () => {
 			const keys = new Array(10).fill(undefined).map(faker.datatype.string);
 			const graph = new Graph();

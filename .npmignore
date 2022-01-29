@@ -1,5 +1,9 @@
-./src
+# Folders
+.github
+coverage
+src
+
+# Files
 .eslintrc.js
 .gitignore
 jest.config.js
-README.md

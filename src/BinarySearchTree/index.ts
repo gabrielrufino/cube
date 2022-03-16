@@ -20,11 +20,9 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 	}
 
 	get data(): IBinarySearchTreeData<T> {
-		return this._root || {
-			left: null,
-			value: null,
-			right: null,
-		};
+		return this._root
+			? {...this._root}
+			: {left: null, value: null, right: null};
 	}
 
 	get size(): number {

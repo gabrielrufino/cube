@@ -8,7 +8,8 @@
     "test": "jest",
     "test:cov": "npm t -- --coverage",
     "test:watch": "npm t -- --watch",
-    "build": "rimraf ./build && tsc"
+    "build": "rimraf ./build && tsc",
+    "reinstall": "rimraf node_modules && npm ci"
   },
   "repository": {
     "type": "git",

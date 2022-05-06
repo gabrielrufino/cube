@@ -7,7 +7,18 @@ on:
     branches: [ '*' ]
 
 jobs:
-  unit-tests:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
     name: Unit tests
     strategy:
       matrix:
@@ -24,7 +35,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run lint
     - run: npm test
     - run: npm run build
   mutation-tests:

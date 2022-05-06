@@ -36,7 +36,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
-    - run: npm run build
   mutation-tests:
     name: Mutation tests
     runs-on: ubuntu-latest
@@ -53,3 +52,14 @@ jobs:
         with:
           name: mutation-tests-reports
           path: reports
+  building:
+    name: Building
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build

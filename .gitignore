@@ -105,3 +105,6 @@ dist
 
 # Others
 build
+
+# stryker temp files
+.stryker-tmp

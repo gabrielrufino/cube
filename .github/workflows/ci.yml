@@ -7,7 +7,8 @@ on:
     branches: [ '*' ]
 
 jobs:
-  test:
+  unit-tests:
+    name: Unit tests
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -26,3 +27,19 @@ jobs:
     - run: npm run lint
     - run: npm test
     - run: npm run build
+  mutation-tests:
+    name: Mutation tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test:mutation
+      - uses: actions/upload-artifact@v3
+        with:
+          name: mutation-tests-reports
+          path: reports

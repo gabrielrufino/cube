@@ -147,5 +147,12 @@ describe('Array', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return boolean true in default conversion', () => {
+			const array = new Array(1, 2, 3, 4);
+			const boolean = array[Symbol.toPrimitive]('default');
+
+			expect(boolean).toBe(true);
+		});
 	});
 });

@@ -55,6 +55,7 @@ jobs:
           path: reports
   building:
     name: Building
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16.x

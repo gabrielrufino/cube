@@ -12,12 +12,7 @@ export default class Array<T = number> extends DataStructure<T> implements IArra
 	}
 
 	public insertInFirstPosition(element: T): T {
-		for (let i = this.size; i > 0; i--) {
-			this._data[i] = this._data[i - 1];
-		}
-
-		this._data[0] = element;
-		return element;
+		return this.insertInPosition(0, element);
 	}
 
 	public insertInPosition(position: number, element: T): T {
@@ -54,15 +49,13 @@ export default class Array<T = number> extends DataStructure<T> implements IArra
 		return element;
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return this.data.join(', ');
-		}
+	private [Symbol.toPrimitive](type: 'string' | 'number' | 'default'): string | number | boolean {
+		const primitives = {
+			number: this.size,
+			string: this.data.join(', '),
+			default: true,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

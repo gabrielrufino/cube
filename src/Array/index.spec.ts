@@ -48,11 +48,11 @@ describe('Array', () => {
 			expect(array.data).toEqual([1, 2, 3, 4]);
 		});
 
-		it('Should insert a new element in a arbitrary position of an array', () => {
-			const array = new Array(1, 2, 4);
-			array.insertInPosition(2, 3);
+		it('Should return the inserted element', () => {
+			const array = new Array(2, 3, 4);
+			const element = array.insertInFirstPosition(1);
 
-			expect(array.data).toEqual([1, 2, 3, 4]);
+			expect(element).toBe(1);
 		});
 	});
 
@@ -146,6 +146,13 @@ describe('Array', () => {
 			const number = Number(array);
 
 			expect(number).toBe(4);
+		});
+
+		it('Should return boolean true in default conversion', () => {
+			const array = new Array(1, 2, 3, 4);
+			const boolean = array[Symbol.toPrimitive]('default');
+
+			expect(boolean).toBe(true);
 		});
 	});
 });

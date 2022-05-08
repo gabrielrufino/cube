@@ -7,7 +7,7 @@ Data Structures and Algorithms made in Typescript
 #### Installing package
 
 ```bash
-npm i @gabrielrufino/cube
+npm install @gabrielrufino/cube
 ```
 
 #### Importing package

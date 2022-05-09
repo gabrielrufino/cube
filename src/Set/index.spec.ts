@@ -33,6 +33,13 @@ describe('Set', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return true in default conversion', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 
 	describe('.has()', () => {
@@ -217,19 +224,27 @@ describe('Set', () => {
 		it('Should optimize the search by tranverse the smallest set', () => {
 			const set1 = new cube.Set(1, 2, 3, 4);
 			const set2 = new cube.Set(3, 4);
-			jest.spyOn(set1, 'has');
 
+			jest.spyOn(set1, 'has');
 			cube.Set.intersection(set1, set2);
 
 			expect(set1.has).toBeCalledTimes(2);
 
 			const set3 = new cube.Set(3, 4);
 			const set4 = new cube.Set(1, 2, 3, 4);
-			jest.spyOn(set4, 'has');
 
+			jest.spyOn(set4, 'has');
 			cube.Set.intersection(set3, set4);
 
 			expect(set4.has).toBeCalledTimes(2);
+
+			const set5 = new cube.Set(1, 2, 3, 4);
+			const set6 = new cube.Set(1, 2, 3, 4);
+
+			jest.spyOn(set5, 'has');
+			cube.Set.intersection(set5, set6);
+
+			expect(set5.has).toBeCalledTimes(4);
 		});
 	});
 

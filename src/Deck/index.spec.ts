@@ -127,5 +127,12 @@ describe('Deck', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return true in default conversion', () => {
+			const deck = new Deck(1, 2, 3, 4);
+			const returned = deck[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 });

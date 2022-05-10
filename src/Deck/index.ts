@@ -37,15 +37,13 @@ export default class Deck<T = number> extends DataStructure<T> implements IDeck<
 		return element;
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `[Front] ${this.data.join(', ')} [Back]`;
-		}
+	private [Symbol.toPrimitive](type: 'number' | 'string' | 'default'): number | string | boolean {
+		const primitives = {
+			number: this.size,
+			string: `[Front] ${this.data.join(', ')} [Back]`,
+			default: true,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

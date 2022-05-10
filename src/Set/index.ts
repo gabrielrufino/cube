@@ -120,15 +120,13 @@ export default class Set<T = number> implements ISet<T> {
 			.every(element => set2.has(element));
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `{ ${this.data.join(', ')} }`;
-		}
+	private [Symbol.toPrimitive](type: 'number' | 'string' | 'default'): string | number | boolean {
+		const primitives = {
+			number: this.size,
+			string: `{ ${this.data.join(', ')} }`,
+			default: true,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

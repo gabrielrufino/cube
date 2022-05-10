@@ -1,4 +1,4 @@
-import {describe, it, expect} from '@jest/globals';
+import {describe, it, expect, jest} from '@jest/globals';
 
 import Set from './';
 
@@ -32,6 +32,13 @@ describe('Set', () => {
 			const number = Number(set);
 
 			expect(number).toBe(4);
+		});
+
+		it('Should return true in default conversion', () => {
+			const set = new cube.Set(1, 2, 3, 4);
+			const returned = set[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
 		});
 	});
 
@@ -213,6 +220,32 @@ describe('Set', () => {
 			expect(intersection.size).toBe(2);
 			expect(intersection.data.sort()).toEqual([3, 4].sort());
 		});
+
+		it('Should optimize the search by tranverse the smallest set', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(3, 4);
+
+			jest.spyOn(set1, 'has');
+			cube.Set.intersection(set1, set2);
+
+			expect(set1.has).toBeCalledTimes(2);
+
+			const set3 = new cube.Set(3, 4);
+			const set4 = new cube.Set(1, 2, 3, 4);
+
+			jest.spyOn(set4, 'has');
+			cube.Set.intersection(set3, set4);
+
+			expect(set4.has).toBeCalledTimes(2);
+
+			const set5 = new cube.Set(1, 2, 3, 4);
+			const set6 = new cube.Set(1, 2, 3, 4);
+
+			jest.spyOn(set5, 'has');
+			cube.Set.intersection(set5, set6);
+
+			expect(set5.has).toBeCalledTimes(4);
+		});
 	});
 
 	describe('Set.difference()', () => {
@@ -235,11 +268,30 @@ describe('Set', () => {
 			expect(isSubset).toBe(true);
 		});
 
+		it('Should return true when the arguments are the same set', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(1, 2, 3, 4);
+			const isSubset = cube.Set.isSubset(set1, set2);
+
+			expect(isSubset).toBe(true);
+		});
+
 		it('Should return false when the first argument is not a subset of the second argument', () => {
 			const set1 = new cube.Set(4, 5);
 			const set2 = new cube.Set(1, 2, 3, 4);
 			const isSubset = cube.Set.isSubset(set1, set2);
 
+			expect(isSubset).toBe(false);
+		});
+
+		it('Should optimize the checking by not transverse the set when the first set is larger than the second', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(1, 2);
+
+			jest.spyOn(set2, 'has');
+			const isSubset = set1.isSubsetOf(set2);
+
+			expect(set2.has).not.toBeCalled();
 			expect(isSubset).toBe(false);
 		});
 	});

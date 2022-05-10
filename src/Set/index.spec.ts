@@ -268,6 +268,14 @@ describe('Set', () => {
 			expect(isSubset).toBe(true);
 		});
 
+		it('Should return true when the arguments are the same set', () => {
+			const set1 = new cube.Set(1, 2, 3, 4);
+			const set2 = new cube.Set(1, 2, 3, 4);
+			const isSubset = cube.Set.isSubset(set1, set2);
+
+			expect(isSubset).toBe(true);
+		});
+
 		it('Should return false when the first argument is not a subset of the second argument', () => {
 			const set1 = new cube.Set(4, 5);
 			const set2 = new cube.Set(1, 2, 3, 4);

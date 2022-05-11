@@ -104,5 +104,12 @@ describe('Stack', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return true in default conversion', () => {
+			const stack = new Stack(1, 2, 3, 4);
+			const returned = stack[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 });

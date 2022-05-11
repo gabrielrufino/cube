@@ -30,15 +30,13 @@ export default class Queue<T = number> extends DataStructure<T> implements IQueu
 		this._data = [];
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `[Front] ${this.data.join(', ')}`;
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `[Front] ${this.data.join(', ')}`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

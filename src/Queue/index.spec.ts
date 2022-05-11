@@ -88,5 +88,12 @@ describe('Queue', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return true in default conversion', () => {
+			const queue = new Queue(1, 2, 3, 4);
+			const returned = queue[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 });

@@ -74,15 +74,13 @@ export default class Dictionary<T = number> implements IDictionary<T> {
 		}
 	}
 
-	private[Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `{ ${this.pairs.map(([key, value]) => `${key} => ${value}`).join(', ')} }`;
-		}
+	private[Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `{ ${this.pairs.map(([key, value]) => `${key} => ${value}`).join(', ')} }`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

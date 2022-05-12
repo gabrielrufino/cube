@@ -306,5 +306,17 @@ describe('Dictionary', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return true in default conversion', () => {
+			const dictionary = new Dictionary<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+			const returned = dictionary[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 });

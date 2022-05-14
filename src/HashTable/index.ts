@@ -8,7 +8,7 @@ export default class HashTable<T = number> implements IHashTable<T> {
 
 	constructor(
 		inputs: IHashTableInputs<T> = {},
-		{maxSize = 100}: IHashTableOptions = {maxSize: 100},
+		{maxSize = 100}: IHashTableOptions = {},
 	) {
 		this._data = new Array(maxSize);
 
@@ -47,10 +47,6 @@ export default class HashTable<T = number> implements IHashTable<T> {
 
 	public remove(key: string): T | null {
 		const value = this.get(key);
-		if (!value) {
-			return null;
-		}
-
 		const position = this._hashCode(key);
 		Reflect.deleteProperty(this._data, position);
 		return value;

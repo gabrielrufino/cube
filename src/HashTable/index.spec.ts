@@ -1,4 +1,5 @@
 import {describe, it, expect} from '@jest/globals';
+import faker from '@faker-js/faker';
 
 import HashTable from './';
 
@@ -25,6 +26,33 @@ describe('HashTable', () => {
 			64: 4,
 		});
 		expect(hashTable.size).toBe(4);
+	});
+
+	describe('.maxSize', () => {
+		it('Should be 100 by default', () => {
+			const hashTable = new HashTable<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			});
+
+			expect(hashTable.maxSize).toBe(100);
+		});
+
+		it('Should be customizable', () => {
+			const maxSize = faker.datatype.number({max: 2000});
+			const hashTable = new HashTable<number>({
+				first: 1,
+				second: 2,
+				third: 3,
+				fourth: 4,
+			}, {
+				maxSize,
+			});
+
+			expect(hashTable.maxSize).toBe(maxSize);
+		});
 	});
 
 	describe('.put()', () => {
@@ -131,6 +159,16 @@ describe('HashTable', () => {
 			const number = Number(hashTable);
 
 			expect(number).toBe(2);
+		});
+
+		it('Should return true in default conversion', () => {
+			const hashTable = new HashTable({
+				first: 1,
+				second: 2,
+			});
+			const returned = hashTable[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
 		});
 	});
 });

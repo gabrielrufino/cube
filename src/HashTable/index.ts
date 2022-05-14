@@ -4,15 +4,13 @@ import IHashTableInputs from './IHashTableInputs';
 import IHashTableOptions from './IHashTableOptions';
 
 export default class HashTable<T = number> implements IHashTable<T> {
-	private _maxSize: number;
 	private _data: T[];
 
 	constructor(
 		inputs: IHashTableInputs<T> = {},
-		{maxSize = 100}: IHashTableOptions = {maxSize: 100},
+		{maxSize = 100}: IHashTableOptions = {},
 	) {
-		this._maxSize = maxSize;
-		this._data = new Array(this._maxSize);
+		this._data = new Array(maxSize);
 
 		for (const [key, value] of Object.entries(inputs)) {
 			this.put(key, value);
@@ -32,6 +30,10 @@ export default class HashTable<T = number> implements IHashTable<T> {
 		return Reflect.ownKeys(this.data).length;
 	}
 
+	get maxSize(): number {
+		return this._data.length;
+	}
+
 	public put(key: string, value: T): T {
 		const position = this._hashCode(key);
 		this._data[position] = value;
@@ -45,14 +47,9 @@ export default class HashTable<T = number> implements IHashTable<T> {
 
 	public remove(key: string): T | null {
 		const value = this.get(key);
-
-		if (value) {
-			const position = this._hashCode(key);
-			Reflect.deleteProperty(this._data, position);
-			return value;
-		}
-
-		return null;
+		const position = this._hashCode(key);
+		Reflect.deleteProperty(this._data, position);
+		return value;
 	}
 
 	private _hashCode(key: string): number {
@@ -61,18 +58,16 @@ export default class HashTable<T = number> implements IHashTable<T> {
 			.map(character => character.charCodeAt(0))
 			.reduce((previous, current) => previous + current, 0);
 
-		return code % this._maxSize;
+		return code % this.maxSize;
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `[ ${Object.entries(this.data).map(([key, value]) => `${key} => ${value}`).join(', ')} ]`;
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | string | number {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `[ ${Object.entries(this.data).map(([key, value]) => `${key} => ${value}`).join(', ')} ]`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

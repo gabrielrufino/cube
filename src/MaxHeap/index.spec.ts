@@ -109,6 +109,13 @@ describe('MaxHeap', () => {
 			expect(maxHeap.data).toEqual([]);
 			expect(maxHeap.size).toBe(0);
 		});
+
+		it('Should return null when the heap is empty', () => {
+			const maxHeap = new MaxHeap();
+			const returned = maxHeap.extract();
+
+			expect(returned).toBeNull();
+		});
 	});
 
 	describe('Heap Sort', () => {
@@ -156,6 +163,15 @@ describe('MaxHeap', () => {
 			const number = Number(maxHeap);
 
 			expect(number).toBe(5);
+		});
+
+		it('Should return true in default conversion', () => {
+			const maxHeap = new MaxHeap({
+				inputs: [1, 2, 3, 4, 5],
+			});
+			const returned = maxHeap[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
 		});
 	});
 });

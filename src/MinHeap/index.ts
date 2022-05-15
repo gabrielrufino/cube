@@ -4,7 +4,7 @@ import IMinHeapOptions from './IMinHeapOptions';
 export default class MinHeap<T = number> implements IMinHeap<T> {
 	private _data: T[] = [];
 
-	constructor({lessThanOrEqualTo, inputs = []}: IMinHeapOptions<T> = {inputs: []}) {
+	constructor({lessThanOrEqualTo, inputs = []}: IMinHeapOptions<T> = {}) {
 		if (lessThanOrEqualTo) {
 			this._lessThanOrEqualTo = lessThanOrEqualTo;
 		}
@@ -77,15 +77,13 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
 		}
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return this.data.join(', ');
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: this.data.join(', '),
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

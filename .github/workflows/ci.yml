@@ -65,3 +65,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true

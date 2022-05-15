@@ -4,7 +4,7 @@ import IMaxHeapOptions from './IMaxHeapOptions';
 export default class MaxHeap<T = number> implements IMaxHeap<T> {
 	private _data: T[] = [];
 
-	constructor({greaterThanOrEqualTo, inputs = []}: IMaxHeapOptions<T> = {inputs: []}) {
+	constructor({greaterThanOrEqualTo, inputs = []}: IMaxHeapOptions<T> = {}) {
 		if (greaterThanOrEqualTo) {
 			this._greaterThanOrEqualTo = greaterThanOrEqualTo;
 		}
@@ -77,15 +77,13 @@ export default class MaxHeap<T = number> implements IMaxHeap<T> {
 		}
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return this.data.join(', ');
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: this.data.join(', '),
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

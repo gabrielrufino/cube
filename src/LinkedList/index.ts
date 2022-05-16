@@ -7,16 +7,14 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 	private _size: number = 0;
 
 	constructor(...inputs: T[]) {
-		if (inputs.length) {
-			const nodes = inputs.map(input => new Node<T>(input));
+		const nodes = inputs.map(input => new Node<T>(input));
 
-			for (let i = 0; i < inputs.length - 1; i++) {
-				nodes[i].next = nodes[i + 1];
-			}
-
-			this._head = nodes[0];
-			this._size = nodes.length;
+		for (let i = 0; i < inputs.length - 1; i++) {
+			nodes[i].next = nodes[i + 1];
 		}
+
+		this._head = nodes[0];
+		this._size = nodes.length;
 	}
 
 	public get data() {
@@ -171,15 +169,13 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return node || undefined;
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `[Head] ${this.data.map(({value}) => value).join(' => ')}`;
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `[Head] ${this.data.map(({value}) => value).join(' => ')}`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

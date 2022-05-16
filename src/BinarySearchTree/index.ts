@@ -7,7 +7,7 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 	private _root: BinarySearchTreeNode<T> | null = null;
 	private _size: number = 0;
 
-	constructor({inputs = [], lessThanOrEqualTo}: IBinarySearchNodeOptions<T> = {inputs: []}) {
+	constructor({inputs = [], lessThanOrEqualTo}: IBinarySearchNodeOptions<T> = {}) {
 		if (lessThanOrEqualTo) {
 			this._lessThanOrEqualTo = lessThanOrEqualTo;
 		}
@@ -182,15 +182,13 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 		}
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `${this._root}`;
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `${this._root}`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

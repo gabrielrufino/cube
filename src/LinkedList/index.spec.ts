@@ -351,5 +351,12 @@ describe('LinkedList', () => {
 
 			expect(number).toBe(4);
 		});
+
+		it('Should return true in default conversion', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 });

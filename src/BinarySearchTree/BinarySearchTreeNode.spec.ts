@@ -25,5 +25,12 @@ describe('BinarySearchTreeNode', () => {
 
 			expect(string).toBe(`[[null] <= (${leftNumber}) => [null]] <= (${rootNumber}) => [[null] <= (${rightNumber}) => [null]]`);
 		});
+
+		it('Should return true in default conversion', () => {
+			const node = new BinarySearchTreeNode(faker.datatype.number());
+			const returned = node[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
+		});
 	});
 });

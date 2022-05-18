@@ -238,7 +238,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		const primitives = {
 			default: true,
 			number: this.size,
-			string: `[Head] ${this.data.map(({value}) => value).join(' <=> ')} [Tail]`
+			string: `[Head] ${this.data.map(({value}) => value).join(' <=> ')} [Tail]`,
 		};
 
 		return primitives[type];

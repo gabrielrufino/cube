@@ -94,7 +94,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 			node.next = this._head;
 			this._head = node;
 		} else {
-			const before = this.getNodeFromPosition(position - 1);
+			const before = this._getNodeFromPosition(position - 1);
 			const after = (before && before.next) || null;
 
 			if (before) {
@@ -110,14 +110,9 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 	}
 
 	public getFromPosition(position: number): ILinkedListItem<T> | null {
-		if (position < this._FIRST_POSITION || position > this.size - 1) {
+		const node = this._getNodeFromPosition(position);
+		if (!node) {
 			return null;
-		}
-
-		let node = this._head;
-
-		for (let i = 0; i < position && node; i++) {
-			node = node.next;
 		}
 
 		return {
@@ -152,18 +147,18 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return current?.value;
 	}
 
-	private getNodeFromPosition(position: number): Node<T> | undefined {
+	private _getNodeFromPosition(position: number): Node<T> | null {
 		if (position < this._FIRST_POSITION || position > this.size - 1) {
-			return undefined;
+			return null;
 		}
 
 		let node = this._head;
 
-		for (let i = 0; i < position; i++) {
-			node = node?.next || null;
+		for (let i = 0; i < position && node; i++) {
+			node = node.next;
 		}
 
-		return node || undefined;
+		return node;
 	}
 
 	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {

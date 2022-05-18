@@ -7,18 +7,16 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 	private _size: number = 0;
 
 	constructor(...inputs: T[]) {
-		if (inputs.length) {
-			const nodes = inputs.map(input => new Node(input));
+		const nodes = inputs.map(input => new Node(input));
 
-			for (let i = 0; i < inputs.length; i++) {
-				nodes[i].previous = nodes[i - 1] || null;
-				nodes[i].next = nodes[i + 1] || null;
-			}
-
-			this._head = nodes[0];
-			this._tail = nodes[nodes.length - 1];
-			this._size = inputs.length;
+		for (let i = 0; i < inputs.length; i++) {
+			nodes[i].previous = nodes[i - 1] || null;
+			nodes[i].next = nodes[i + 1] || null;
 		}
+
+		this._head = nodes[0];
+		this._tail = nodes[nodes.length - 1];
+		this._size = inputs.length;
 	}
 
 	public get data(): IDoublyLinkedListItem<T>[] {
@@ -63,7 +61,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 	 * Complexity: O(n/2)
 	 */
 	public getFromPosition(position: number): IDoublyLinkedListItem<T> | undefined {
-		if (position < 0 || position >= this._size) {
+		if (position < 0 || position >= this.size) {
 			return undefined;
 		}
 
@@ -87,9 +85,9 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
 		if (current?.value) {
 			return {
-				previous: current?.previous?.value || null,
-				value: current?.value,
-				next: current?.next?.value || null,
+				previous: current.previous?.value || null,
+				value: current.value,
+				next: current.next?.value || null,
 			};
 		}
 	}
@@ -236,15 +234,13 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 		return 'DESC';
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `[Head] ${this.data.map(({value}) => value).join(' <=> ')} [Tail]`;
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `[Head] ${this.data.map(({value}) => value).join(' <=> ')} [Tail]`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

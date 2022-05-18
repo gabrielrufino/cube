@@ -1,4 +1,5 @@
 import ILinkedList from './ILinkedList';
+import ILinkedListItem from './ILinkedListItem';
 import Node from './Node';
 
 export default class LinkedList<T = number> implements ILinkedList<T> {
@@ -47,7 +48,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		let position = 0;
 
 		while (current && current.value !== element) {
-			current = current?.next;
+			current = current.next;
 			position += 1;
 		}
 
@@ -108,25 +109,21 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return element;
 	}
 
-	public getFromPosition(position: number) {
+	public getFromPosition(position: number): ILinkedListItem<T> | null {
 		if (position < this._FIRST_POSITION || position > this.size - 1) {
-			return undefined;
+			return null;
 		}
 
 		let node = this._head;
 
-		for (let i = 0; i < position; i++) {
-			node = node?.next || null;
+		for (let i = 0; i < position && node; i++) {
+			node = node.next;
 		}
 
-		if (node?.value) {
-			return {
-				value: node.value,
-				next: node.next?.value || null,
-			};
-		}
-
-		return undefined;
+		return {
+			value: node?.value as T,
+			next: node?.next?.value || null,
+		};
 	}
 
 	public removeFromPosition(position: number): T | undefined {

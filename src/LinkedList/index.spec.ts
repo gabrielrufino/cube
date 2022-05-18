@@ -170,7 +170,21 @@ describe('LinkedList', () => {
 	});
 
 	describe('.getFromPosition()', () => {
-		it('Should get then element at a valid position', () => {
+		it('Should return undefined when receive a negative position', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.getFromPosition(-1);
+
+			expect(returned).toBeNull();
+		});
+
+		it('Should return undefined whe the position is greater than the last position', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.getFromPosition(4);
+
+			expect(returned).toBeNull();
+		});
+
+		it('Should get the element at a valid position', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.getFromPosition(2);
 

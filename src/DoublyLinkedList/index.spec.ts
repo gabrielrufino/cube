@@ -117,6 +117,17 @@ describe('DoublyLinkedList', () => {
 			expect(returned).toBeUndefined();
 		});
 
+		it('Should return the first value when receive the position zero', () => {
+			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
+			const returned = doublyLinkedList.getFromPosition(0);
+
+			expect(returned).toEqual({
+				previous: null,
+				value: 1,
+				next: 2,
+			});
+		});
+
 		it('Should return the correct item when closest to the head', () => {
 			const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4);
 			const returned = doublyLinkedList.getFromPosition(1);

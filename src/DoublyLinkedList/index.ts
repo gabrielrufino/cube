@@ -61,7 +61,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 	 * Complexity: O(n/2)
 	 */
 	public getFromPosition(position: number): IDoublyLinkedListItem<T> | undefined {
-		if (position < 0 || position >= this._size) {
+		if (position < 0 || position >= this.size) {
 			return undefined;
 		}
 
@@ -85,9 +85,9 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
 		if (current?.value) {
 			return {
-				previous: current?.previous?.value || null,
-				value: current?.value,
-				next: current?.next?.value || null,
+				previous: current.previous?.value || null,
+				value: current.value,
+				next: current.next?.value || null,
 			};
 		}
 	}

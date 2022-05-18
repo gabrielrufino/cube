@@ -116,8 +116,8 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		}
 
 		return {
-			value: node?.value as T,
-			next: node?.next?.value || null,
+			value: node.value,
+			next: node.next?.value || null,
 		};
 	}
 

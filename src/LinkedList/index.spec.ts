@@ -91,21 +91,21 @@ describe('LinkedList', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.removeFromPosition(-1);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 
 		it('Should return undefined when given a position equal size', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.removeFromPosition(linkedList.size);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 
 		it('Should return undefined when given a position larger than size', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.removeFromPosition(linkedList.size + 1);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 
 		it('Should remove item from the head', () => {
@@ -343,11 +343,11 @@ describe('LinkedList', () => {
 			expect(returned).toBe(3);
 		});
 
-		it('Should return undefined when the element doesn\'t belongs to the linked list', () => {
+		it('Should return null when the element doesn\'t belongs to the linked list', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.remove(5);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 	});
 

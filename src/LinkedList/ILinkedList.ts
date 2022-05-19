@@ -8,8 +8,8 @@ interface ILinkedList<T> {
 	getFromPosition(_position: number): ILinkedListItem<T> | null;
 	positionOf(_element: T): number | undefined;
 	insertInPosition(_element: T, _position: number): T | undefined;
-	remove(_element: T): T | undefined;
-	removeFromPosition(_position: number): T | undefined;
+	remove(_element: T): T | null;
+	removeFromPosition(_position: number): T | null;
 }
 
 export default ILinkedList;

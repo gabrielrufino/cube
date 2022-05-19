@@ -75,12 +75,14 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return element;
 	}
 
-	public remove(element: T): T | undefined {
+	public remove(element: T): T | null {
 		const position = this.positionOf(element);
 
 		if (position) {
 			return this.removeFromPosition(position);
 		}
+
+		return null;
 	}
 
 	public insertInPosition(element: T, position: number): T | undefined {
@@ -121,9 +123,9 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		};
 	}
 
-	public removeFromPosition(position: number): T | undefined {
+	public removeFromPosition(position: number): T | null {
 		if (position < this._FIRST_POSITION || position > (this.size - 1)) {
-			return undefined;
+			return null;
 		}
 
 		let current: Node<T> | null = this._head;
@@ -144,17 +146,16 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		}
 
 		this._size -= 1;
-		return current?.value;
+		return current?.value || null;
 	}
 
 	private _getNodeFromPosition(position: number): Node<T> | null {
-		if (position < this._FIRST_POSITION || position > this.size - 1) {
+		if (position < this._FIRST_POSITION || position > (this.size - 1)) {
 			return null;
 		}
 
 		let node = this._head;
-
-		for (let i = 0; i < position && node; i++) {
+		for (let i = 0; i < position && node?.next; i++) {
 			node = node.next;
 		}
 

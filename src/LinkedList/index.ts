@@ -124,7 +124,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 	}
 
 	public removeFromPosition(position: number): T | null {
-		if (position < this._FIRST_POSITION || position > (this.size - 1)) {
+		if (position < this._FIRST_POSITION || position >= this.size) {
 			return null;
 		}
 
@@ -135,9 +135,9 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		} else {
 			let previous: Node<T> | null | undefined;
 
-			for (let i = 0; i < position; i++) {
+			for (let i = 0; i < position && current; i++) {
 				previous = current;
-				current = current?.next || null;
+				current = current.next;
 			}
 
 			if (previous) {

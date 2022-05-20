@@ -1,4 +1,5 @@
 import ILinkedList from './ILinkedList';
+import ILinkedListItem from './ILinkedListItem';
 import Node from './Node';
 
 export default class LinkedList<T = number> implements ILinkedList<T> {
@@ -47,7 +48,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		let position = 0;
 
 		while (current && current.value !== element) {
-			current = current?.next;
+			current = current.next;
 			position += 1;
 		}
 
@@ -74,12 +75,14 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return element;
 	}
 
-	public remove(element: T): T | undefined {
+	public remove(element: T): T | null {
 		const position = this.positionOf(element);
 
 		if (position) {
 			return this.removeFromPosition(position);
 		}
+
+		return null;
 	}
 
 	public insertInPosition(element: T, position: number): T | undefined {
@@ -93,7 +96,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 			node.next = this._head;
 			this._head = node;
 		} else {
-			const before = this.getNodeFromPosition(position - 1);
+			const before = this._getNodeFromPosition(position - 1);
 			const after = (before && before.next) || null;
 
 			if (before) {
@@ -108,65 +111,55 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		return element;
 	}
 
-	public getFromPosition(position: number) {
-		if (position < this._FIRST_POSITION || position > this.size - 1) {
-			return undefined;
+	public getFromPosition(position: number): ILinkedListItem<T> | null {
+		const node = this._getNodeFromPosition(position);
+		if (!node) {
+			return null;
 		}
 
-		let node = this._head;
-
-		for (let i = 0; i < position; i++) {
-			node = node?.next || null;
-		}
-
-		if (node?.value) {
-			return {
-				value: node.value,
-				next: node.next?.value || null,
-			};
-		}
-
-		return undefined;
+		return {
+			value: node.value,
+			next: node.next?.value || null,
+		};
 	}
 
-	public removeFromPosition(position: number): T | undefined {
-		if (position < this._FIRST_POSITION || position > (this.size - 1)) {
-			return undefined;
+	public removeFromPosition(position: number): T | null {
+		if (position < this._FIRST_POSITION || position >= this.size) {
+			return null;
 		}
 
-		let current: Node<T> | null = this._head;
+		let current: Node<T> = this._head as Node<T>;
 
 		if (position === this._FIRST_POSITION) {
-			this._head = current?.next || null;
+			this._head = current.next;
 		} else {
 			let previous: Node<T> | null | undefined;
 
-			for (let i = 0; i < position; i++) {
+			for (let i = 0; i < position && current; i++) {
 				previous = current;
-				current = current?.next || null;
+				current = current.next as Node<T>;
 			}
 
 			if (previous) {
-				previous.next = current?.next || null;
+				previous.next = current.next;
 			}
 		}
 
 		this._size -= 1;
-		return current?.value;
+		return current.value;
 	}
 
-	private getNodeFromPosition(position: number): Node<T> | undefined {
-		if (position < this._FIRST_POSITION || position > this.size - 1) {
-			return undefined;
+	private _getNodeFromPosition(position: number): Node<T> | null {
+		if (position < this._FIRST_POSITION || position > (this.size - 1)) {
+			return null;
 		}
 
 		let node = this._head;
-
-		for (let i = 0; i < position; i++) {
-			node = node?.next || null;
+		for (let i = 0; i < position && node?.next; i++) {
+			node = node.next;
 		}
 
-		return node || undefined;
+		return node;
 	}
 
 	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {

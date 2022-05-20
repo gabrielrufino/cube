@@ -131,7 +131,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 		let current: Node<T> = this._head as Node<T>;
 
 		if (position === this._FIRST_POSITION) {
-			this._head = current?.next || null;
+			this._head = current.next;
 		} else {
 			let previous: Node<T> | null | undefined;
 
@@ -141,7 +141,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 			}
 
 			if (previous) {
-				previous.next = current?.next || null;
+				previous.next = current.next;
 			}
 		}
 

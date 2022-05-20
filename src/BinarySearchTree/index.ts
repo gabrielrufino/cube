@@ -109,7 +109,7 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 			.reduce((accumulator, current) => accumulator && accumulator[current], this._root);
 		const child = path[path.length - 1];
 
-		if (current?.left && current?.right && parent) {
+		if (current?.left && current.right && parent) {
 			let head = current.right;
 
 			while (head.left) {

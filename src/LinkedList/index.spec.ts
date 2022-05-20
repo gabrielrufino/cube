@@ -91,21 +91,21 @@ describe('LinkedList', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.removeFromPosition(-1);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 
 		it('Should return undefined when given a position equal size', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.removeFromPosition(linkedList.size);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 
 		it('Should return undefined when given a position larger than size', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.removeFromPosition(linkedList.size + 1);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 
 		it('Should remove item from the head', () => {
@@ -170,7 +170,21 @@ describe('LinkedList', () => {
 	});
 
 	describe('.getFromPosition()', () => {
-		it('Should get then element at a valid position', () => {
+		it('Should return undefined when receive a negative position', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.getFromPosition(-1);
+
+			expect(returned).toBeNull();
+		});
+
+		it('Should return undefined whe the position is greater than the last position', () => {
+			const linkedList = new LinkedList(1, 2, 3, 4);
+			const returned = linkedList.getFromPosition(4);
+
+			expect(returned).toBeNull();
+		});
+
+		it('Should get the element at a valid position', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.getFromPosition(2);
 
@@ -329,11 +343,11 @@ describe('LinkedList', () => {
 			expect(returned).toBe(3);
 		});
 
-		it('Should return undefined when the element doesn\'t belongs to the linked list', () => {
+		it('Should return null when the element doesn\'t belongs to the linked list', () => {
 			const linkedList = new LinkedList(1, 2, 3, 4);
 			const returned = linkedList.remove(5);
 
-			expect(returned).toBeUndefined();
+			expect(returned).toBeNull();
 		});
 	});
 

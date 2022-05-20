@@ -45,35 +45,50 @@ describe('BinarySearchTree', () => {
 	});
 
 	it('Should allow us to customize the comparison function', () => {
-		const bst = new BinarySearchTree<any[]>({
-			lessThanOrEqualTo: (value1: any[], value2: any[]) => {
-				if (value1.length <= value2.length) {
-					return true;
-				}
-
-				return false;
-			},
+		const bst = new BinarySearchTree<{ quantity: number }>({
+			lessThanOrEqualTo: (value1: { quantity: number }, value2: { quantity: number }) => value1.quantity <= value2.quantity,
 			inputs: [
-				['one', 'two'],
-				['one'],
-				['one', 'two', 'three'],
+				{
+					quantity: 2,
+				},
+				{
+					quantity: 1,
+				},
+				{
+					quantity: 4,
+				},
+				{
+					quantity: 3,
+				},
 			],
 		});
 
 		expect(bst.data).toEqual({
 			left: {
 				left: null,
-				value: ['one'],
+				value: {
+					quantity: 1,
+				},
 				right: null,
 			},
-			value: ['one', 'two'],
+			value: {
+				quantity: 2,
+			},
 			right: {
-				left: null,
-				value: ['one', 'two', 'three'],
+				left: {
+					left: null,
+					value: {
+						quantity: 3,
+					},
+					right: null,
+				},
+				value: {
+					quantity: 4,
+				},
 				right: null,
 			},
 		});
-		expect(bst.size).toBe(3);
+		expect(bst.size).toBe(4);
 	});
 
 	describe('.insert()', () => {
@@ -481,6 +496,15 @@ describe('BinarySearchTree', () => {
 			const number = Number(bst);
 
 			expect(number).toBe(7);
+		});
+
+		it('Should return trun in default conversion', () => {
+			const bst = new BinarySearchTree({
+				inputs: [4, 2, 1, 3, 6, 5, 7],
+			});
+			const returned = bst[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
 		});
 	});
 });

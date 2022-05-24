@@ -87,9 +87,7 @@ export default class HashTableLinearProbing<T = number> implements IHashTableLin
 				this._data[i] = this._data[this._nextPositionOf(i)];
 			}
 
-			if (i !== position) {
-				Reflect.deleteProperty(this._data, i);
-			}
+			Reflect.deleteProperty(this._data, i);
 
 			return value;
 		}
@@ -114,15 +112,13 @@ export default class HashTableLinearProbing<T = number> implements IHashTableLin
 		return (position + this.size - 1) % this._maxSize;
 	}
 
-	private [Symbol.toPrimitive](type: string): string | number | null {
-		if (type === 'string') {
-			return `[ ${Object.values(this.data).join(', ')} ]`;
-		}
+	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | string | number {
+		const primitives = {
+			default: true,
+			number: this.size,
+			string: `[ ${Object.values(this.data).join(', ')} ]`,
+		};
 
-		if (type === 'number') {
-			return this.size;
-		}
-
-		return null;
+		return primitives[type];
 	}
 }

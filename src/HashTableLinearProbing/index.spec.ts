@@ -194,6 +194,7 @@ describe('HashTableLinearProbing', () => {
 				tsrif: -1,
 				irstf: -2,
 				srift: -3,
+				firsth: -4,
 			});
 			hashTableLinearProbing.remove('tsrif');
 
@@ -201,8 +202,9 @@ describe('HashTableLinearProbing', () => {
 				52: new HashTableLinearProbingElement('first', 1),
 				53: new HashTableLinearProbingElement('irstf', -2),
 				54: new HashTableLinearProbingElement('srift', -3),
+				56: new HashTableLinearProbingElement('firsth', -4),
 			});
-			expect(hashTableLinearProbing.size).toBe(3);
+			expect(hashTableLinearProbing.size).toBe(4);
 		});
 
 		it('Should move all the subsequent elements that have the same hash code to the left when remove the first position', () => {
@@ -261,6 +263,17 @@ describe('HashTableLinearProbing', () => {
 			const number = Number(hashTableLinearProbing);
 
 			expect(number).toBe(3);
+		});
+
+		it('Should return true in default conversion', () => {
+			const hashTableLinearProbing = new HashTableLinearProbing({
+				first: 1,
+				second: 2,
+				third: 3,
+			});
+			const returned = hashTableLinearProbing[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
 		});
 	});
 });

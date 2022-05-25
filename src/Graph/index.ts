@@ -11,7 +11,7 @@ export default class Graph implements IGraph {
 	private _isDirected: boolean;
 	private _data: Dictionary<Set<string>>;
 
-	constructor({inputs = {}, isDirected = false}: IGraphOptions = {inputs: {}, isDirected: false}) {
+	constructor({inputs = {}, isDirected = false}: IGraphOptions = {}) {
 		this._isDirected = isDirected;
 		this._data = new Dictionary<Set<string>>();
 
@@ -113,15 +113,13 @@ export default class Graph implements IGraph {
 		while (!queue.isEmpty) {
 			const current = queue.dequeue() || '';
 
-			if (current) {
-				states[current] = GraphSearchNodeStates.DISCOVERED;
-				const neighbors = this._data.get(current)?.data || [];
-				const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
+			states[current] = GraphSearchNodeStates.DISCOVERED;
+			const neighbors = this._data.get(current)?.data || [];
+			const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
 
-				for (const neighbor of unexploredNeighbors) {
-					states[neighbor] = GraphSearchNodeStates.DISCOVERED;
-					queue.enqueue(neighbor);
-				}
+			for (const neighbor of unexploredNeighbors) {
+				states[neighbor] = GraphSearchNodeStates.DISCOVERED;
+				queue.enqueue(neighbor);
 			}
 
 			states[current] = GraphSearchNodeStates.EXPLORED;
@@ -150,16 +148,14 @@ export default class Graph implements IGraph {
 		while (!queue.isEmpty) {
 			const current = queue.dequeue() || '';
 
-			if (current) {
-				states[current] = GraphSearchNodeStates.DISCOVERED;
-				const neighbors = this._data.get(current)?.data || [];
-				const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
+			states[current] = GraphSearchNodeStates.DISCOVERED;
+			const neighbors = this._data.get(current)?.data || [];
+			const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
 
-				for (const neighbor of unexploredNeighbors) {
-					states[neighbor] = GraphSearchNodeStates.DISCOVERED;
-					distances[neighbor] = distances[current] + 1;
-					queue.enqueue(neighbor);
-				}
+			for (const neighbor of unexploredNeighbors) {
+				states[neighbor] = GraphSearchNodeStates.DISCOVERED;
+				distances[neighbor] = distances[current] + 1;
+				queue.enqueue(neighbor);
 			}
 
 			states[current] = GraphSearchNodeStates.EXPLORED;

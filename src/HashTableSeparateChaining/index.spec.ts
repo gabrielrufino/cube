@@ -10,6 +10,7 @@ describe('HashTableSeparateChaining', () => {
 
 		expect(hashTableSeparateChaining.data).toEqual({});
 		expect(hashTableSeparateChaining.size).toBe(0);
+		expect(hashTableSeparateChaining.maxSize).toBe(100);
 	});
 
 	it('Should create an filled hash table separate chaining without problems', () => {
@@ -29,6 +30,13 @@ describe('HashTableSeparateChaining', () => {
 			),
 		});
 		expect(hashTableSeparateChaining.size).toBe(2);
+		expect(hashTableSeparateChaining.maxSize).toBe(100);
+	});
+
+	it('Should customize the size of the hash table separate chaining', () => {
+		const hashTableSeparateChaining = new HashTableSeparateChaining<number>({}, {maxSize: 50});
+
+		expect(hashTableSeparateChaining.maxSize).toBe(50);
 	});
 
 	describe('.put()', () => {
@@ -87,6 +95,17 @@ describe('HashTableSeparateChaining', () => {
 			expect(returned).toEqual(new HashTableSeparateChainingElement('first', 1));
 		});
 
+		it('Should return the correct element in case of collision', () => {
+			const hashTableSeparateChaining = new HashTableSeparateChaining({
+				first: 1,
+				tsrif: -1,
+				second: 2,
+			});
+			const returned = hashTableSeparateChaining.get('tsrif');
+
+			expect(returned).toEqual(new HashTableSeparateChainingElement('tsrif', -1));
+		});
+
 		it('Should return null when the key is not in the hash table separate chaining', () => {
 			const hashTableSeparateChaining = new HashTableSeparateChaining({
 				first: 1,
@@ -110,6 +129,31 @@ describe('HashTableSeparateChaining', () => {
 				36: new LinkedList(new HashTableSeparateChainingElement('second', 2)),
 			});
 			expect(hashTableSeparateChaining.size).toBe(1);
+		});
+
+		it('Should remove the correct element in case of collision', () => {
+			const hashTableSeparateChaining = new HashTableSeparateChaining({
+				first: 1,
+				tsrif: -1,
+				second: 2,
+			});
+			hashTableSeparateChaining.remove('tsrif');
+
+			expect(hashTableSeparateChaining.data).toEqual({
+				36: new LinkedList(new HashTableSeparateChainingElement('second', 2)),
+				52: new LinkedList(new HashTableSeparateChainingElement('first', 1)),
+			});
+			expect(hashTableSeparateChaining.size).toBe(2);
+		});
+
+		it('Should bla blabla', () => {
+			const hashTableSeparateChaining = new HashTableSeparateChaining({
+				first: 1,
+			});
+			hashTableSeparateChaining.remove('first');
+
+			expect(hashTableSeparateChaining.data).toEqual({});
+			expect(hashTableSeparateChaining.size).toBe(0);
 		});
 
 		it('Should change nothing if the key is not in the hash table separate chaining', () => {
@@ -168,6 +212,17 @@ describe('HashTableSeparateChaining', () => {
 			const string = Number(hashTableSeparateChaining);
 
 			expect(string).toBe(2);
+		});
+
+		it('Should return true in default conversion', () => {
+			const hashTableSeparateChaining = new HashTableSeparateChaining({
+				first: 1,
+				tsrif: -1,
+				second: 2,
+			});
+			const returned = hashTableSeparateChaining[Symbol.toPrimitive]('default');
+
+			expect(returned).toBe(true);
 		});
 	});
 });

@@ -108,10 +108,6 @@ export default class HashTableLinearProbing<T = number> implements IHashTableLin
 		return (position + 1) % this._maxSize;
 	}
 
-	private _previousPositionOf(position: number) {
-		return (position + this.size - 1) % this._maxSize;
-	}
-
 	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | string | number {
 		const primitives = {
 			default: true,

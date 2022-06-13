@@ -1,6 +1,7 @@
 # Folders
 .github
 coverage
+docs
 src
 
 # Files
@@ -8,3 +9,4 @@ src
 .gitignore
 jest.config.js
 stryker.conf.json
+README.md

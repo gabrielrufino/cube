@@ -1,4 +1,4 @@
-#### Graph
+# Cube - Graph
 
 You can initialize an empty graph or a graph with some elements:
 

@@ -111,10 +111,10 @@ export default class Graph implements IGraph {
 		queue.enqueue(startNode);
 
 		while (!queue.isEmpty) {
-			const current = queue.dequeue() || '';
+			const current = queue.dequeue() as string;
 
 			states[current] = GraphSearchNodeStates.DISCOVERED;
-			const neighbors = this._data.get(current)?.data || [];
+			const neighbors = this._data.get(current)?.data as string[];
 			const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
 
 			for (const neighbor of unexploredNeighbors) {
@@ -146,10 +146,10 @@ export default class Graph implements IGraph {
 		queue.enqueue(node);
 
 		while (!queue.isEmpty) {
-			const current = queue.dequeue() || '';
+			const current = queue.dequeue() as string;
 
 			states[current] = GraphSearchNodeStates.DISCOVERED;
-			const neighbors = this._data.get(current)?.data || [];
+			const neighbors = this._data.get(current)?.data as string[];
 			const unexploredNeighbors = neighbors.filter(neighbor => states[neighbor] === GraphSearchNodeStates.UNEXPLORED);
 
 			for (const neighbor of unexploredNeighbors) {

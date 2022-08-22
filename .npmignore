@@ -7,6 +7,8 @@ src
 # Files
 .eslintrc.js
 .gitignore
+_config.yml
 jest.config.js
 stryker.conf.json
+CNAME
 README.md

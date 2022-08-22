@@ -24,3 +24,7 @@ jobs:
     - run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true

@@ -1,5 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import faker from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 import Array from './';
 
@@ -20,7 +20,7 @@ describe('Array', () => {
 
 	it('Should return the correct size of the array', () => {
 		const size = faker.datatype.number(200);
-		const params = [];
+		const params: number[] = [];
 
 		for (let i = 0; i < size; i++) {
 			params.push(faker.datatype.number());

@@ -1,5 +1,5 @@
 import {describe, it, expect, jest} from '@jest/globals';
-import faker from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 import Graph from './';
 import GraphNodeNotFoundError from './GraphNodeNotFoundError';

@@ -2,6 +2,8 @@
 
 Data Structures and Algorithms made in Typescript
 
+<small>Black Tech By [Gabriel Rufino](https://github.com/gabrielrufino) 🖤</small>
+
 ## Getting started
 
 #### Installing package

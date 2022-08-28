@@ -1,5 +1,5 @@
 import {describe, it, expect} from '@jest/globals';
-import faker from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 import MaxHeap from './';
 

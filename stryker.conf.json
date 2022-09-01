@@ -9,6 +9,6 @@
   ],
   "testRunner": "jest",
   "coverageAnalysis": "perTest",
-  "checkers": ["typescript"],
+  "checkers": [],
   "tsconfigFile": "tsconfig.json"
 }

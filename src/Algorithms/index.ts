@@ -12,8 +12,7 @@ export default class Algorithms {
 
 		let binary = '';
 		while (!stack.isEmpty) {
-			// eslint-disable-next-line no-unsafe-optional-chaining
-			binary += stack.pop()?.toString();
+			binary += stack.pop()!.toString();
 		}
 
 		return binary;

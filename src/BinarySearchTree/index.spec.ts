@@ -477,6 +477,25 @@ describe('BinarySearchTree', () => {
 			});
 			expect(bst.size).toBe(5);
 		});
+
+		it('Should return the removed value', () => {
+			const value = faker.datatype.number();
+			const bst = new BinarySearchTree({
+				inputs: [value],
+			});
+			const returned = bst.remove(value);
+
+			expect(returned).toBe(value);
+		});
+
+		it('Should return null when none element is found', () => {
+			const bst = new BinarySearchTree<number>({
+				inputs: [],
+			});
+			const returned = bst.remove(faker.datatype.number());
+
+			expect(returned).toBeNull();
+		});
 	});
 
 	describe('Conversion to primitive', () => {

@@ -54,7 +54,7 @@ export default class HashTableSeparateChaining<T = number> implements IHashTable
 
 		if (linkedList) {
 			const element = linkedList.data.find(element => element.value.key === key);
-			return element?.value || null;
+			return element!.value;
 		}
 
 		return null;

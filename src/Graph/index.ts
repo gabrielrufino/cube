@@ -87,10 +87,10 @@ export default class Graph implements IGraph {
 			throw new GraphNodeNotFoundError(node2);
 		}
 
-		this._data.get(node1)?.add(node2);
+		this._data.get(node1)!.add(node2);
 
 		if (!this._isDirected) {
-			this._data.get(node2)?.add(node1);
+			this._data.get(node2)!.add(node1);
 		}
 
 		return [node1, node2];

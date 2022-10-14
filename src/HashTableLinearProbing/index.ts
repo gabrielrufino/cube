@@ -9,7 +9,7 @@ export default class HashTableLinearProbing<T = number> implements IHashTableLin
 
 	constructor(
 		inputs: IHashTableLinearProbingInputs<T> = {},
-		{maxSize = 100}: IHashTableLinearProbingOptions = {maxSize: 100},
+		{maxSize = 100}: IHashTableLinearProbingOptions = {},
 	) {
 		this._maxSize = maxSize;
 

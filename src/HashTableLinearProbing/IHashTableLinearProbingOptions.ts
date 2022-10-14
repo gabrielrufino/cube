@@ -1,5 +1,5 @@
 interface IHashTableLinearProbingOptions {
-	maxSize: number;
+	maxSize?: number;
 }
 
 export default IHashTableLinearProbingOptions;

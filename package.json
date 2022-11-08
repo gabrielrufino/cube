@@ -9,8 +9,8 @@
     "test:cov": "npm t -- --coverage",
     "test:mutation": "npx stryker run",
     "test:watch": "npm t -- --watch",
-    "build": "rimraf ./build && tsc",
-    "reinstall": "rimraf node_modules && npm ci"
+    "build": "npx rimraf ./build && tsc",
+    "reinstall": "npx rimraf node_modules && npm ci"
   },
   "repository": {
     "type": "git",

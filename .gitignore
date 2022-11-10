@@ -105,6 +105,7 @@ dist
 
 # Others
 build
+.clinic
 
 # stryker temp files
 .stryker-tmp

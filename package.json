@@ -4,13 +4,13 @@
   "description": "Data Structures and Algorithms made in Typescript",
   "main": "build/index.js",
   "scripts": {
+    "build": "npx rimraf ./build && tsc",
     "lint": "eslint src/**/*.ts",
+    "reinstall": "npx rimraf node_modules && npm ci",
     "test": "jest",
     "test:cov": "npm t -- --coverage",
     "test:mutation": "npx stryker run",
-    "test:watch": "npm t -- --watch",
-    "build": "npx rimraf ./build && tsc",
-    "reinstall": "npx rimraf node_modules && npm ci"
+    "test:watch": "npm t -- --watch"
   },
   "repository": {
     "type": "git",

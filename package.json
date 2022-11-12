@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx rimraf ./build && tsc",
     "lint": "eslint src/**/*.ts",
-    "profiling": "clinic doctor -- node node_modules/.bin/jest && clinic flame -- node node_modules/.bin/jest",
+    "profiling": "clinic doctor -- node node_modules/.bin/jest && clinic flame -- node node_modules/.bin/jest && clinic bubbleprof -- node node_modules/.bin/jest && clinic heapprofiler -- node node_modules/.bin/jest",
     "reinstall": "npx rimraf node_modules && npm ci",
     "test": "jest",
     "test:cov": "npm t -- --coverage",

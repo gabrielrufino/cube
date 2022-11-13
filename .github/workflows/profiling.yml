@@ -20,7 +20,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Profiling
-          path: .clinic
+          path: '.clinic'
 
 concurrency:
   group: ${{ github.ref }}

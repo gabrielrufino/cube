@@ -80,7 +80,7 @@ export default class HashTableSeparateChaining<T = number> implements IHashTable
 
 	private _getLinkedListByKey(key: string): LinkedList<HashTableSeparateChainingElement<T>> | null {
 		const position = this._hashCode(key);
-		return Reflect.get(this.data, position) || null;
+		return Reflect.get(this.data, position) as LinkedList<HashTableSeparateChainingElement<T>> || null;
 	}
 
 	private _hashCode(key: string): number {

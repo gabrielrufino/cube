@@ -81,5 +81,5 @@ jobs:
           path: build
 
 concurrency:
-  group: ${{ github.ref }}
+  group: ci_${{ github.ref }}
   cancel-in-progress: true

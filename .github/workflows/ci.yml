@@ -18,19 +18,14 @@ jobs:
       - run: npm run lint
   unit-tests:
     name: Unit tests
-    strategy:
-      matrix:
-        node-version: [14, 16, 18]
-        os: [ubuntu-latest, macos-latest, windows-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
       - run: npm ci
       - run: npm test
   coverage:

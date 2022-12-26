@@ -31,8 +31,8 @@ jobs:
   coverage:
     name: Coverage
     runs-on: ubuntu-latest
-    after:
-      - Unit tests
+    needs:
+      - unit-tests
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 18
@@ -48,8 +48,8 @@ jobs:
   mutation-tests:
     name: Mutation tests
     runs-on: ubuntu-latest
-    after:
-      - - Unit tests
+    needs:
+      - unit-tests
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 18

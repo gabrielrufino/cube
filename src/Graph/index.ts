@@ -11,7 +11,7 @@ export default class Graph implements IGraph {
 	private _isDirected: boolean;
 	private _data: Dictionary<Set<string>>;
 
-	constructor({inputs = {}, isDirected = false}: IGraphOptions = {}) {
+	constructor({inputs = {}, isDirected = false}: Readonly<IGraphOptions> = {}) {
 		this._isDirected = isDirected;
 		this._data = new Dictionary<Set<string>>();
 

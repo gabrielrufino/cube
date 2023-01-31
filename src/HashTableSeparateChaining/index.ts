@@ -8,7 +8,7 @@ export default class HashTableSeparateChaining<T = number> implements IHashTable
 	private _data: LinkedList<HashTableSeparateChainingElement<T>>[];
 
 	constructor(
-		inputs: IHashTableSeparateChainingInputs<T> = {},
+		inputs: Readonly<IHashTableSeparateChainingInputs<T>> = {},
 		{maxSize} = {maxSize: 100},
 	) {
 		this._data = new Array(maxSize);

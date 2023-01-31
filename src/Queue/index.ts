@@ -2,7 +2,7 @@ import DataStructure from '../DataStructure';
 import IQueue from './IQueue';
 
 export default class Queue<T = number> extends DataStructure<T> implements IQueue<T> {
-	constructor(...inputs: T[]) {
+	constructor(...inputs: Readonly<T[]>) {
 		super(inputs);
 	}
 

@@ -2,7 +2,7 @@ import DataStructure from '../DataStructure';
 import IDeck from './IDeck';
 
 export default class Deck<T = number> extends DataStructure<T> implements IDeck<T> {
-	constructor(...inputs: T[]) {
+	constructor(...inputs: Readonly<T[]>) {
 		super(inputs);
 	}
 

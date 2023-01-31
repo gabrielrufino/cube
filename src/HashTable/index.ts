@@ -7,7 +7,7 @@ export default class HashTable<T = number> implements IHashTable<T> {
 	private _data: T[];
 
 	constructor(
-		inputs: IHashTableInputs<T> = {},
+		inputs: Readonly<IHashTableInputs<T>> = {},
 		{maxSize = 100}: IHashTableOptions = {},
 	) {
 		this._data = new Array(maxSize);

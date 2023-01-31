@@ -7,7 +7,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 	private _head: Node<T> | null = null;
 	private _size: number = 0;
 
-	constructor(...inputs: T[]) {
+	constructor(...inputs: Readonly<T[]>) {
 		const nodes = inputs.map(input => new Node<T>(input));
 
 		for (let i = 0; i < inputs.length - 1; i++) {

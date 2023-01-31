@@ -1,7 +1,7 @@
 export default abstract class DataStructure<T> {
 	protected _data: T[];
 
-	constructor(inputs: T[]) {
+	constructor(inputs: Readonly<T[]>) {
 		this._data = [...inputs];
 	}
 

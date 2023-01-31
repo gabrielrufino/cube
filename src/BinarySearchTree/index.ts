@@ -7,7 +7,7 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
 	private _root: BinarySearchTreeNode<T> | null = null;
 	private _size: number = 0;
 
-	constructor({inputs = [], lessThanOrEqualTo}: IBinarySearchNodeOptions<T> = {}) {
+	constructor({inputs = [], lessThanOrEqualTo}: Readonly<IBinarySearchNodeOptions<T>> = {}) {
 		if (lessThanOrEqualTo) {
 			this._lessThanOrEqualTo = lessThanOrEqualTo;
 		}

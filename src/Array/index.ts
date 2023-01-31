@@ -2,7 +2,7 @@ import DataStructure from '../DataStructure';
 import IArray from './IArray';
 
 export default class Array<T = number> extends DataStructure<T> implements IArray<T> {
-	constructor(...inputs: T[]) {
+	constructor(...inputs: Readonly<T[]>) {
 		super(inputs);
 	}
 

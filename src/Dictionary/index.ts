@@ -4,7 +4,7 @@ import IDictionaryData from './IDictionaryData';
 export default class Dictionary<T = number> implements IDictionary<T> {
 	private _data: IDictionaryData<T> = {};
 
-	constructor(inputs: { [key: string]: T } = {}) {
+	constructor(inputs: Readonly<{ [key: string]: T }> = {}) {
 		this._data = inputs;
 	}
 

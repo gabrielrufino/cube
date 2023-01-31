@@ -6,7 +6,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 	private _tail: Node<T> | null = null;
 	private _size: number = 0;
 
-	constructor(...inputs: T[]) {
+	constructor(...inputs: Readonly<T[]>) {
 		const nodes = inputs.map(input => new Node(input));
 
 		for (let i = 0; i < inputs.length; i++) {

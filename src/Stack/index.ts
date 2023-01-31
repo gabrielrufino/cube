@@ -2,7 +2,7 @@ import DataStructure from '../DataStructure';
 import IStack from './IStack';
 
 export default class Stack<T = number> extends DataStructure<T> implements IStack<T> {
-	constructor(...inputs: T[]) {
+	constructor(...inputs: Readonly<T[]>) {
 		super(inputs);
 	}
 

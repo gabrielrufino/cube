@@ -60,12 +60,18 @@ jobs:
           name: build
           path: build
   sonarqube:
-    name: Sonarqube
+    name: SonarQube
     runs-on: ubuntu-latest
+    needs:
+      - unit-tests
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

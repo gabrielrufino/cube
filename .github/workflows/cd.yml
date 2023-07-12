@@ -13,7 +13,8 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps: [] 
+    steps:
+      - run: exit 0
   publish:
     needs:
       - ci

@@ -24,7 +24,7 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm run test:cov
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage

@@ -1,17 +1,16 @@
 {
   "name": "@gabrielrufino/cube",
-  "version": "1.0.90",
+  "version": "1.0.91",
   "description": "Data Structures and Algorithms made in Typescript",
   "main": "build/index.js",
   "scripts": {
     "build": "npx rimraf ./build && tsc",
     "lint": "eslint src/**/*.ts",
-    "reinstall": "npx rimraf node_modules && npm ci",
     "test": "jest",
     "test:cov": "npm t -- --coverage",
     "test:mutation": "npx stryker run",
     "test:watch": "npm t -- --watch",
-    "prepare": "husky"
+    "postinstall": "husky"
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/cube#readme",
   "devDependencies": {
-    "@commitlint/cli": "^19.2.2",
+    "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@faker-js/faker": "^7.6.0",
     "@stryker-mutator/core": "^6.4.2",
@@ -43,7 +42,6 @@
     "eslint-config-xo": "^0.43.1",
     "husky": "^9.0.11",
     "jest": "^28.1.3",
-    "rimraf": "^3.0.2",
     "ts-jest": "^28.0.8",
     "ts-node": "^10.9.2",
     "typescript": "^4.9.5"

@@ -1,6 +1,6 @@
 {
   "name": "@gabrielrufino/cube",
-  "version": "1.0.91",
+  "version": "1.0.92",
   "description": "Data Structures and Algorithms made in Typescript",
   "main": "build/index.js",
   "scripts": {

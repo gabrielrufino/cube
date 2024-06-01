@@ -1,5 +1,6 @@
 # Folders
 .github
+.husky
 coverage
 docs
 src
@@ -8,7 +9,10 @@ src
 .eslintrc.js
 .gitignore
 _config.yml
+commitlint.config.js
 jest.config.js
 stryker.conf.json
 CNAME
 README.md
+sonar-project.properties
+tsconfig.json

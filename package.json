@@ -10,7 +10,7 @@
     "test:cov": "npm t -- --coverage",
     "test:mutation": "npx stryker run",
     "test:watch": "npm t -- --watch",
-    "postinstall": "husky"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",

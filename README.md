@@ -1,6 +1,6 @@
 # Cube
 
-Data Structures and Algorithms made in Typescript
+Data structures made in Typescript
 
 <small>Black Tech By [Gabriel Rufino](https://github.com/gabrielrufino) 🖤</small>
 

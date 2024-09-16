@@ -1,7 +1,7 @@
 {
   "name": "@gabrielrufino/cube",
   "version": "1.0.96",
-  "description": "Data Structures and Algorithms made in Typescript",
+  "description": "Data structures made in Typescript",
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
@@ -18,8 +18,7 @@
   },
   "keywords": [
     "Data",
-    "Structures",
-    "Algorithms"
+    "Structures"
   ],
   "author": "Gabriel Rufino <contato@gabrielrufino.com>",
   "funding": "https://github.com/sponsors/gabrielrufino",

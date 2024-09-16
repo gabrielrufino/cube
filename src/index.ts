@@ -1,4 +1,3 @@
-export {default as Algorithms} from './Algorithms';
 export {default as Array} from './Array';
 export {default as BinarySearchTree} from './BinarySearchTree';
 export {default as Deck} from './Deck';

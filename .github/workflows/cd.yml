@@ -15,5 +15,5 @@ jobs:
       - uses: gabrielrufino/check-ci@main
       - uses: actions/checkout@v4
       - uses: gabrielrufino/node-pkg-cd@v1
-      - with:
+        with:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}

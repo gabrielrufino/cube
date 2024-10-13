@@ -31,9 +31,9 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@faker-js/faker": "^8.4.1",
-    "@stryker-mutator/core": "^8.5.0",
-    "@stryker-mutator/jest-runner": "^8.5.0",
-    "@stryker-mutator/typescript-checker": "^8.5.0",
+    "@stryker-mutator/core": "^8.6.0",
+    "@stryker-mutator/jest-runner": "^8.6.0",
+    "@stryker-mutator/typescript-checker": "^8.6.0",
     "@types/jest": "^28.1.8",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -43,6 +43,6 @@
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   }
 }

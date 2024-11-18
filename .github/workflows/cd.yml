@@ -12,8 +12,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: gabrielrufino/check-ci@main
+      - uses: actalog/check-ci@main
       - uses: actions/checkout@v4
-      - uses: gabrielrufino/node-pkg-cd@v1
+      - uses: actalog/node-pkg-cd@v1
         with:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}

@@ -8,8 +8,8 @@ import Queue from '../Queue';
 import Set from '../Set';
 
 export default class Graph implements IGraph {
-	private _isDirected: boolean;
-	private _data: Dictionary<Set<string>>;
+	private readonly _isDirected: boolean;
+	private readonly _data: Dictionary<Set<string>>;
 
 	constructor({inputs = {}, isDirected = false}: Readonly<IGraphOptions> = {}) {
 		this._isDirected = isDirected;

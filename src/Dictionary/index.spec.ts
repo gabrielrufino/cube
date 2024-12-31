@@ -1,4 +1,4 @@
-import {describe, it, expect, jest} from '@jest/globals';
+import {describe, it, expect, vi} from 'vitest';
 
 import Dictionary from './';
 
@@ -270,7 +270,7 @@ describe('Dictionary', () => {
 				third: 3,
 				fourth: 4,
 			});
-			const func = jest.fn();
+			const func = vi.fn();
 
 			dictionary.forEach(func);
 

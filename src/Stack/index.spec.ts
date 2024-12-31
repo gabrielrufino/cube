@@ -1,4 +1,4 @@
-import {describe, expect, it} from '@jest/globals';
+import {describe, expect, it} from 'vitest';
 import {faker} from '@faker-js/faker';
 
 import Stack from './';

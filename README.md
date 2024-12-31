@@ -1,8 +1,10 @@
 # Cube
 
-Data structures made in Typescript
+[![CI](https://github.com/gabrielrufino/cube/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrielrufino/cube/actions/workflows/ci.yml)
+[![CD](https://github.com/gabrielrufino/cube/actions/workflows/cd.yml/badge.svg)](https://github.com/gabrielrufino/cube/actions/workflows/cd.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gabrielrufino_cube&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gabrielrufino_cube)
 
-<small>Black Tech By [Gabriel Rufino](https://github.com/gabrielrufino) 🖤</small>
+Data structures made in Typescript
 
 ## Getting started
 
@@ -41,3 +43,7 @@ const cube = require('@gabrielrufino/cube')
 * [Min Heap](./docs/MinHeap.md)
 * [Max Heap](./docs/MaxHeap.md)
 * [Graph](./docs/Graph.md)
+
+---
+
+<small>Black Tech By [Gabriel Rufino](https://github.com/gabrielrufino) 🖤</small>

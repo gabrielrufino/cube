@@ -1,4 +1,4 @@
-import {describe, it, expect} from '@jest/globals';
+import {describe, it, expect} from 'vitest';
 
 import HashTableLinearProbing from './';
 import HashTableLinearProbingElement from './HashTableLinearProbingElement';

@@ -1,5 +1,9 @@
 # Cube
 
+[![CI](https://github.com/gabrielrufino/cube/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrielrufino/cube/actions/workflows/ci.yml)
+[![CD](https://github.com/gabrielrufino/cube/actions/workflows/cd.yml/badge.svg)](https://github.com/gabrielrufino/cube/actions/workflows/cd.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gabrielrufino_cube&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gabrielrufino_cube)
+
 Data structures made in Typescript
 
 <small>Black Tech By [Gabriel Rufino](https://github.com/gabrielrufino) 🖤</small>

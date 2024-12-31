@@ -6,6 +6,7 @@ import IGraphOptions from './IGraphOptions';
 import Dictionary from '../Dictionary';
 import Queue from '../Queue';
 import Set from '../Set';
+import { Edge } from './Edge';
 
 export default class Graph implements IGraph {
 	private readonly _isDirected: boolean;
@@ -47,16 +48,16 @@ export default class Graph implements IGraph {
 		return [...this._data.keys];
 	}
 
-	get edges(): [string, string][] {
+	get edges(): Edge[] {
 		if (this.isDirected) {
 			return Object.entries(this.data)
 				.flatMap((
-					[node, links]) => links.map<[string, string]>(link => [node, link]),
+					[node, links]) => links.map<Edge>(link => [node, link]),
 				);
 		}
 
 		return Object.entries(this.data)
-			.reduce<[string, string][]>((accumulator, [node, links]) => {
+			.reduce<Edge[]>((accumulator, [node, links]) => {
 				const edges = links
 					.map<[string, string]>(link => [node, link])
 					.filter(edge => !accumulator.find(item => item.includes(edge[0]) && item.includes(edge[1])));
@@ -78,7 +79,7 @@ export default class Graph implements IGraph {
 		return node;
 	}
 
-	public connect(node1: string, node2: string): [string, string] {
+	public connect(node1: string, node2: string): Edge {
 		if (!this._data.hasKey(node1)) {
 			throw new GraphNodeNotFoundError(node1);
 		}

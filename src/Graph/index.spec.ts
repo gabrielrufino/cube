@@ -1,4 +1,4 @@
-import {describe, it, expect, jest} from '@jest/globals';
+import {describe, it, expect, vi} from 'vitest';
 import {faker} from '@faker-js/faker';
 
 import Graph from './';
@@ -257,7 +257,7 @@ describe('Graph', () => {
 				}
 			}
 
-			const callback = jest.fn();
+			const callback = vi.fn();
 			graph.breadthFirstSearch(keys[0], callback);
 
 			expect(callback).toBeCalledTimes(keys.length);
@@ -275,7 +275,7 @@ describe('Graph', () => {
 			});
 
 			expect(() => {
-				graph.breadthFirstSearch('C', jest.fn());
+				graph.breadthFirstSearch('C', vi.fn());
 			}).toThrow(new GraphNodeNotFoundError('C'));
 		});
 	});

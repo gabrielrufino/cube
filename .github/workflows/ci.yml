@@ -26,8 +26,8 @@ jobs:
       - run: npm run test:mutation
       - uses: actions/upload-artifact@v3
         with:
-          name: mutation-tests-reports
-          path: reports
+          name: stryker-reports
+          path: .stryker-reports
 
 concurrency:
   group: ci_${{ github.ref }}

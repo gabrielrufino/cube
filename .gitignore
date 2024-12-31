@@ -109,4 +109,4 @@ build
 
 # stryker temp files
 .stryker-tmp
-reports
+.stryker-reports

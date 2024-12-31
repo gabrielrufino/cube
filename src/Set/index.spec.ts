@@ -1,4 +1,4 @@
-import {describe, it, expect, jest} from '@jest/globals';
+import {describe, it, expect, vi} from 'vitest';
 
 import Set from './';
 
@@ -225,7 +225,7 @@ describe('Set', () => {
 			const set1 = new cube.Set(1, 2, 3, 4);
 			const set2 = new cube.Set(3, 4);
 
-			jest.spyOn(set1, 'has');
+			vi.spyOn(set1, 'has');
 			cube.Set.intersection(set1, set2);
 
 			expect(set1.has).toBeCalledTimes(2);
@@ -233,7 +233,7 @@ describe('Set', () => {
 			const set3 = new cube.Set(3, 4);
 			const set4 = new cube.Set(1, 2, 3, 4);
 
-			jest.spyOn(set4, 'has');
+			vi.spyOn(set4, 'has');
 			cube.Set.intersection(set3, set4);
 
 			expect(set4.has).toBeCalledTimes(2);
@@ -241,7 +241,7 @@ describe('Set', () => {
 			const set5 = new cube.Set(1, 2, 3, 4);
 			const set6 = new cube.Set(1, 2, 3, 4);
 
-			jest.spyOn(set5, 'has');
+			vi.spyOn(set5, 'has');
 			cube.Set.intersection(set5, set6);
 
 			expect(set5.has).toBeCalledTimes(4);
@@ -288,7 +288,7 @@ describe('Set', () => {
 			const set1 = new cube.Set(1, 2, 3, 4);
 			const set2 = new cube.Set(1, 2);
 
-			jest.spyOn(set2, 'has');
+			vi.spyOn(set2, 'has');
 			const isSubset = set1.isSubsetOf(set2);
 
 			expect(set2.has).not.toBeCalled();

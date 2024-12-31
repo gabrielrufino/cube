@@ -1,4 +1,4 @@
-import {describe, it, expect, jest} from '@jest/globals';
+import {describe, it, expect, vi} from 'vitest';
 import {faker} from '@faker-js/faker';
 
 import BinarySearchTree from './';
@@ -188,7 +188,7 @@ describe('BinarySearchTree', () => {
 			const bst = new BinarySearchTree({
 				inputs,
 			});
-			const callback = jest.fn();
+			const callback = vi.fn();
 			bst.walkInOrder(callback);
 
 			for (const value of inputs) {
@@ -218,7 +218,7 @@ describe('BinarySearchTree', () => {
 			const bst = new BinarySearchTree({
 				inputs,
 			});
-			const callback = jest.fn();
+			const callback = vi.fn();
 			bst.walkPreOrder(callback);
 
 			for (const value of inputs) {
@@ -248,7 +248,7 @@ describe('BinarySearchTree', () => {
 			const bst = new BinarySearchTree({
 				inputs,
 			});
-			const callback = jest.fn();
+			const callback = vi.fn();
 			bst.walkPostOrder(callback);
 
 			for (const value of inputs) {

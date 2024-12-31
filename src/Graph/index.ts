@@ -6,7 +6,7 @@ import IGraphOptions from './IGraphOptions';
 import Dictionary from '../Dictionary';
 import Queue from '../Queue';
 import Set from '../Set';
-import { Edge } from './Edge';
+import {Edge} from './Edge';
 
 export default class Graph implements IGraph {
 	private readonly _isDirected: boolean;

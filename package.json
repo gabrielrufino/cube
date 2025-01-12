@@ -2,7 +2,7 @@
   "name": "@gabrielrufino/cube",
   "version": "2.0.4",
   "description": "Data structures made in Typescript",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/**/*.ts",

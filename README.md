@@ -44,7 +44,3 @@ const cube = require('@gabrielrufino/cube')
 * [Min Heap](./docs/MinHeap.md)
 * [Max Heap](./docs/MaxHeap.md)
 * [Graph](./docs/Graph.md)
-
----
-
-<small>Black Tech By [Gabriel Rufino](https://github.com/gabrielrufino) 🖤</small>

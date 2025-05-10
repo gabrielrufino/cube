@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import Dictionary from './'
 
-describe('dictionary', () => {
+describe(Dictionary.name, () => {
   it('should create an empty dictionary without problems', () => {
     const dictionary = new Dictionary<number>()
 

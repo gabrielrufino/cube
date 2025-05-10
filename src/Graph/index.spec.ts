@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import Graph from './'
 import GraphNodeNotFoundError from './GraphNodeNotFoundError'
 
-describe('graph', () => {
+describe(Graph.name, () => {
   it('should create an empty graph without problems', () => {
     const graph = new Graph()
 

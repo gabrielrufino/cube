@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import Deck from './'
 
-describe('deck', () => {
+describe(Deck.name, () => {
   it('should create an empty deck without problems', () => {
     const deck = new Deck()
 

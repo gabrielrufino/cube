@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
 enum GraphSearchNodeStates {
-	UNEXPLORED,
-	DISCOVERED,
-	EXPLORED,
+  UNEXPLORED,
+  DISCOVERED,
+  EXPLORED,
 }
 
-export default GraphSearchNodeStates;
+export default GraphSearchNodeStates

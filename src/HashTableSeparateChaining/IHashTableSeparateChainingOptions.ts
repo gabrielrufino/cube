@@ -1,5 +1,5 @@
 interface IHashTableSeparateChainingOptions {
-	maxSize: number;
+  maxSize: number
 }
 
-export default IHashTableSeparateChainingOptions;
+export default IHashTableSeparateChainingOptions

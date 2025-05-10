@@ -1,86 +1,86 @@
-import IDictionary from './IDictionary';
-import IDictionaryData from './IDictionaryData';
+import type IDictionary from './IDictionary'
+import type IDictionaryData from './IDictionaryData'
 
 export default class Dictionary<T = number> implements IDictionary<T> {
-	private _data: IDictionaryData<T> = {};
+  private _data: IDictionaryData<T> = {}
 
-	constructor(inputs: Readonly<{ [key: string]: T }> = {}) {
-		this._data = inputs;
-	}
+  constructor(inputs: Readonly<{ [key: string]: T }> = {}) {
+    this._data = inputs
+  }
 
-	get data(): IDictionaryData<T> {
-		return {...this._data};
-	}
+  get data(): IDictionaryData<T> {
+    return { ...this._data }
+  }
 
-	get size(): number {
-		return Reflect.ownKeys(this.data).length;
-	}
+  get size(): number {
+    return Reflect.ownKeys(this.data).length
+  }
 
-	get isEmpty(): boolean {
-		return this.size === 0;
-	}
+  get isEmpty(): boolean {
+    return this.size === 0
+  }
 
-	get keys(): string[] {
-		return Reflect
-			.ownKeys(this.data)
-			.map(key => String(key));
-	}
+  get keys(): string[] {
+    return Reflect
+      .ownKeys(this.data)
+      .map(key => String(key))
+  }
 
-	get values(): T[] {
-		return Object.values(this.data);
-	}
+  get values(): T[] {
+    return Object.values(this.data)
+  }
 
-	get pairs(): [string, T][] {
-		return Object.entries(this.data);
-	}
+  get pairs(): [string, T][] {
+    return Object.entries(this.data)
+  }
 
-	public set(key: string, value: T): [string, T] {
-		Reflect.set(this._data, key, value);
-		return [key, value];
-	}
+  public set(key: string, value: T): [string, T] {
+    Reflect.set(this._data, key, value)
+    return [key, value]
+  }
 
-	public remove(key: string): [string, T] | null {
-		if (this.hasKey(key)) {
-			const value = Reflect.get(this.data, key);
-			Reflect.deleteProperty(this._data, key);
+  public remove(key: string): [string, T] | null {
+    if (this.hasKey(key)) {
+      const value = Reflect.get(this.data, key)
+      Reflect.deleteProperty(this._data, key)
 
-			return [key, value];
-		}
+      return [key, value]
+    }
 
-		return null;
-	}
+    return null
+  }
 
-	public hasKey(key: string): boolean {
-		return Reflect.has(this.data, key);
-	}
+  public hasKey(key: string): boolean {
+    return Reflect.has(this.data, key)
+  }
 
-	public get(key: string): T | null {
-		if (this.hasKey(key)) {
-			return Reflect.get(this.data, key);
-		}
+  public get(key: string): T | null {
+    if (this.hasKey(key)) {
+      return Reflect.get(this.data, key)
+    }
 
-		return null;
-	}
+    return null
+  }
 
-	public clear(): IDictionaryData<T> {
-		const dictionary = {...this.data};
-		this._data = {};
-		return dictionary;
-	}
+  public clear(): IDictionaryData<T> {
+    const dictionary = { ...this.data }
+    this._data = {}
+    return dictionary
+  }
 
-	public forEach(func: (_key: string, _value: T) => any): void {
-		for (const [key, value] of this.pairs) {
-			func(key, value);
-		}
-	}
+  public forEach(func: (_key: string, _value: T) => any): void {
+    for (const [key, value] of this.pairs) {
+      func(key, value)
+    }
+  }
 
-	private[Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
-		const primitives = {
-			default: true,
-			number: this.size,
-			string: `{ ${this.pairs.map(([key, value]) => `${key} => ${value}`).join(', ')} }`,
-		};
+  private[Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {
+    const primitives = {
+      default: true,
+      number: this.size,
+      string: `{ ${this.pairs.map(([key, value]) => `${key} => ${value}`).join(', ')} }`,
+    }
 
-		return primitives[type];
-	}
+    return primitives[type]
+  }
 }

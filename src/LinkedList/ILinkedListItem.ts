@@ -1,6 +1,6 @@
 interface ILinkedListItem<T> {
-	value: T;
-	next: T | null;
+  value: T
+  next: T | null
 }
 
-export default ILinkedListItem;
+export default ILinkedListItem

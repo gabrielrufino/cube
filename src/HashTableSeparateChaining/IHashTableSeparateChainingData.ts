@@ -1,7 +1,7 @@
-import LinkedList from '../LinkedList';
+import type LinkedList from '../LinkedList'
 
 interface IHashTableSeparateChainingData<T> {
-  [key: number]: LinkedList<T>;
+  [key: number]: LinkedList<T>
 }
 
-export default IHashTableSeparateChainingData;
+export default IHashTableSeparateChainingData

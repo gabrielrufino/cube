@@ -1,4 +1,3 @@
-
 # Cube - Max Heap
 
 You can initialize an empty max heap or a max heap with some elements:

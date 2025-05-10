@@ -1,5 +1,5 @@
 interface IHashTableInputs<T> {
-	[key: string]: T;
+  [key: string]: T
 }
 
-export default IHashTableInputs;
+export default IHashTableInputs

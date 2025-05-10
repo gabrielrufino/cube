@@ -1,6 +1,6 @@
 interface IGraphOptions {
-	inputs?: { [key: string]: string[] },
-	isDirected?: boolean;
+  inputs?: { [key: string]: string[] }
+  isDirected?: boolean
 }
 
-export default IGraphOptions;
+export default IGraphOptions

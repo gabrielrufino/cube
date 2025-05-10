@@ -33,7 +33,7 @@ Use the method `.enqueue()` to put a new element at the end of the queue:
 import cube from '@gabrielrufino/cube'
 
 const queue = new cube.Queue(1, 2, 3)
-queue.enqueue(4);
+queue.enqueue(4)
 console.log(queue.data) // [ 1, 2, 3, 4 ]
 ```
 
@@ -43,7 +43,7 @@ Use the method `.dequeue()` to get and remove the first element of the queue:
 import cube from '@gabrielrufino/cube'
 
 const queue = new cube.Queue(1, 2, 3, 4)
-const element = queue.dequeue();
+const element = queue.dequeue()
 console.log(queue.data) // [ 2, 3, 4 ]
 console.log(element) // 1
 ```

@@ -1,5 +1,5 @@
 interface IHashTableOptions {
-	maxSize?: number;
+  maxSize?: number
 }
 
-export default IHashTableOptions;
+export default IHashTableOptions

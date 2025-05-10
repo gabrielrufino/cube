@@ -180,7 +180,7 @@ const graph = new cube.Graph({
   }
 })
 
-graph.breadthFirstSearch('A', value => {
+graph.breadthFirstSearch('A', (value) => {
   console.log(value)
 })
 /*

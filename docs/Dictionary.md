@@ -49,7 +49,7 @@ Use the property `.isEmpty` to find out is the dictionary is empty:
 import cube from '@gabrielrufino/cube'
 
 const dictionary1 = new cube.Dictionary()
-const dictionary2 = new cube.Dictionary({ first: 1  })
+const dictionary2 = new cube.Dictionary({ first: 1 })
 
 console.log(dictionary1.isEmpty) // true
 console.log(dictionary2.isEmpty) // false

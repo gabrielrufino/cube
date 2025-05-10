@@ -78,7 +78,7 @@ const bst = new cube.BinarySearchTree({
   inputs: [2, 1, 4, 3]
 })
 
-bst.walkInOrder(value => {
+bst.walkInOrder((value) => {
   console.log(value)
 })
 /*
@@ -98,7 +98,7 @@ const bst = new cube.BinarySearchTree({
   inputs: [2, 1, 4, 3]
 })
 
-bst.walkPreOrder(value => {
+bst.walkPreOrder((value) => {
   console.log(value)
 })
 /*
@@ -118,7 +118,7 @@ const bst = new cube.BinarySearchTree({
   inputs: [2, 1, 4, 3]
 })
 
-bst.walkPostOrder(value => {
+bst.walkPostOrder((value) => {
   console.log(value)
 })
 
@@ -138,7 +138,7 @@ import cube from '@gabrielrufino/cube'
 const bst = new cube.BinarySearchTree({
   inputs: [2, 1, 4, 3]
 })
-console.log(bst.min) // 1
+console.log(bst.min) // 1
 ```
 
 Use the property `.max` to get the maximum element in the binary search tree:

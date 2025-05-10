@@ -1,5 +1,5 @@
 interface IHashTableLinearProbingInputs<T> {
-	[key: string]: T;
+  [key: string]: T
 }
 
-export default IHashTableLinearProbingInputs;
+export default IHashTableLinearProbingInputs

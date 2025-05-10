@@ -6,7 +6,7 @@ export default class HashTableLinearProbingElement<T> {
 
   [Symbol.toPrimitive](type: 'string' | 'number'): string | number | null {
     const options = {
-      string:	`{ ${this.key} => ${this.value} }`,
+      string: `{ ${this.key} => ${this.value} }`,
       number: 2,
     }
 

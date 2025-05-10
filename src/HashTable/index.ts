@@ -4,13 +4,16 @@ import type IHashTableInputs from './IHashTableInputs'
 import type IHashTableOptions from './IHashTableOptions'
 
 export default class HashTable<T = number> implements IHashTable<T> {
+  public readonly maxSize: number
+
   private _data: T[]
 
   constructor(
-		inputs: Readonly<IHashTableInputs<T>> = {},
-		{ maxSize = 100 }: IHashTableOptions = {},
+    inputs: Readonly<IHashTableInputs<T>> = {},
+    { maxSize = 100 }: IHashTableOptions = {},
   ) {
-    this._data = new Array(maxSize)
+    this._data = []
+    this.maxSize = maxSize
 
     for (const [key, value] of Object.entries(inputs)) {
       this.put(key, value)
@@ -28,10 +31,6 @@ export default class HashTable<T = number> implements IHashTable<T> {
 
   get size(): number {
     return Reflect.ownKeys(this.data).length
-  }
-
-  get maxSize(): number {
-    return this._data.length
   }
 
   public put(key: string, value: T): T {

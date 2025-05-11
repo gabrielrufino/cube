@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import HashTableLinearProbingElement from './HashTableLinearProbingElement'
 
-describe('hashTableLinearProbingElement', () => {
+describe(HashTableLinearProbingElement.name, () => {
   it('should create a hash table linear probing element without problems', () => {
     const hashTableLinearProbingElement = new HashTableLinearProbingElement('key', 10)
 

@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import BinarySearchTree from './'
 
-describe('binarySearchTree', () => {
+describe(BinarySearchTree.name, () => {
   it('should create an empty bst without problems', () => {
     const bst = new BinarySearchTree()
 

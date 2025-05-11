@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import HashTable from './'
 
-describe('hashTable', () => {
+describe(HashTable.name, () => {
   it('should create an empty hash table without problems', () => {
     const hashTable = new HashTable<number>()
 

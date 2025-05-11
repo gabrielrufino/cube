@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import MaxHeap from './'
 
-describe('maxHeap', () => {
+describe(MaxHeap.name, () => {
   it('should create an empty max heap without problems', () => {
     const maxHeap = new MaxHeap()
 

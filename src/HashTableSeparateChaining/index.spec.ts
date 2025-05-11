@@ -4,7 +4,7 @@ import LinkedList from '../LinkedList'
 import HashTableSeparateChaining from './'
 import HashTableSeparateChainingElement from './HashTableSeparateChainingElement'
 
-describe('hashTableSeparateChaining', () => {
+describe(HashTableSeparateChaining.name, () => {
   it('should create an empty hash table separate chaining without problems', () => {
     const hashTableSeparateChaining = new HashTableSeparateChaining<number>()
 

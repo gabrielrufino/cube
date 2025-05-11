@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import BinarySearchTreeNode from './BinarySearchTreeNode'
 
-describe('binarySearchTreeNode', () => {
+describe(BinarySearchTreeNode.name, () => {
   it('should create a node without problems', () => {
     const number = faker.number.int()
     const binarySearchTreeNode = new BinarySearchTreeNode<number>(number)

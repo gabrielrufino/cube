@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import MinHeap from './'
 
-describe('minHeap', () => {
+describe(MinHeap.name, () => {
   it('should create an empty min heap without problems', () => {
     const minHeap = new MinHeap()
 

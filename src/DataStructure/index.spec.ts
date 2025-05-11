@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import DataStructure from './'
 
-describe('dataStructure', () => {
+describe(DataStructure.name, () => {
   class Something<T = number> extends DataStructure<T> {
     constructor(...inputs: T[]) {
       super(inputs)

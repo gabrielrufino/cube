@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import Stack from './'
 
-describe('stack', () => {
+describe(Stack.name, () => {
   it('should create an empty stack with no problems', () => {
     const stack = new Stack()
 

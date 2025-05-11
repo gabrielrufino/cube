@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import Queue from './'
 
-describe('queue', () => {
+describe(Queue.name, () => {
   it('should create an empty queue without problems', () => {
     const queue = new Queue()
 

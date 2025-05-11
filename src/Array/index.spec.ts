@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import CustomArray from './'
 
-describe('array', () => {
+describe(CustomArray.name, () => {
   it('should create an empty array with no problems', () => {
     const array = new CustomArray()
 

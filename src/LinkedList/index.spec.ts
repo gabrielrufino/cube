@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import LinkedList from './'
 
-describe('linkedList', () => {
+describe(LinkedList.name, () => {
   it('should create an empty linked list without problems', () => {
     const linkedList = new LinkedList()
 

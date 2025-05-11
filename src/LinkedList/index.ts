@@ -99,7 +99,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
     }
     else {
       const before = this._getNodeFromPosition(position - 1)
-      const after = (before && before.next) || null
+      const after = before?.next || null
 
       if (before) {
         before.next = node

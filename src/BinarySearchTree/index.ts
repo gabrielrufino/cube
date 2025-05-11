@@ -109,7 +109,7 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
     const found = { ...current }
     const parent = path
       .slice(0, path.length - 1)
-      .reduce((accumulator, current) => accumulator && accumulator[current], this._root)
+      .reduce((accumulator, current) => accumulator![current], this._root)
     const child = path[path.length - 1]
 
     if (current?.left && current.right && parent) {
@@ -135,7 +135,7 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
       this._size -= 1
     }
 
-    return found.value || null
+    return found.value ?? null
   }
 
   private _lessThanOrEqualTo(value1: T, value2: T): boolean {

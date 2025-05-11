@@ -1,376 +1,376 @@
-import {describe, it, expect} from 'vitest';
+import { describe, expect, it } from 'vitest'
 
-import LinkedList from './';
+import LinkedList from './'
 
-describe('LinkedList', () => {
-	it('Should create an empty linked list without problems', () => {
-		const linkedList = new LinkedList();
+describe(LinkedList.name, () => {
+  it('should create an empty linked list without problems', () => {
+    const linkedList = new LinkedList()
 
-		expect(linkedList.data).toEqual([]);
-		expect(linkedList.size).toBe(0);
-	});
+    expect(linkedList.data).toEqual([])
+    expect(linkedList.size).toBe(0)
+  })
 
-	it('Should create a filled linked list without problems', () => {
-		const linkedList = new LinkedList(1, 2, 3, 4);
+  it('should create a filled linked list without problems', () => {
+    const linkedList = new LinkedList(1, 2, 3, 4)
 
-		expect(linkedList.data).toEqual([
-			{
-				value: 1,
-				next: 2,
-			},
-			{
-				value: 2,
-				next: 3,
-			},
-			{
-				value: 3,
-				next: 4,
-			},
-			{
-				value: 4,
-				next: null,
-			},
-		]);
-		expect(linkedList.size).toBe(4);
-	});
+    expect(linkedList.data).toEqual([
+      {
+        value: 1,
+        next: 2,
+      },
+      {
+        value: 2,
+        next: 3,
+      },
+      {
+        value: 3,
+        next: 4,
+      },
+      {
+        value: 4,
+        next: null,
+      },
+    ])
+    expect(linkedList.size).toBe(4)
+  })
 
-	describe('.isEmpty', () => {
-		it('Should return true when there is no element in the linked list', () => {
-			const linkedList = new LinkedList();
+  describe('.isEmpty', () => {
+    it('should return true when there is no element in the linked list', () => {
+      const linkedList = new LinkedList()
 
-			expect(linkedList.isEmpty).toBe(true);
-		});
+      expect(linkedList.isEmpty).toBe(true)
+    })
 
-		it('Should return false when the is at least one element in the linked list', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
+    it('should return false when the is at least one element in the linked list', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
 
-			expect(linkedList.isEmpty).toBe(false);
-		});
-	});
+      expect(linkedList.isEmpty).toBe(false)
+    })
+  })
 
-	describe('.push()', () => {
-		it('Should push a new element', () => {
-			const linkedList = new LinkedList();
+  describe('.push()', () => {
+    it('should push a new element', () => {
+      const linkedList = new LinkedList()
 
-			linkedList.push(1);
-			linkedList.push(2);
-			linkedList.push(3);
-			linkedList.push(4);
+      linkedList.push(1)
+      linkedList.push(2)
+      linkedList.push(3)
+      linkedList.push(4)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 3,
-				},
-				{
-					value: 3,
-					next: 4,
-				},
-				{
-					value: 4,
-					next: null,
-				},
-			]);
-			expect(linkedList.size).toBe(4);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 3,
+        },
+        {
+          value: 3,
+          next: 4,
+        },
+        {
+          value: 4,
+          next: null,
+        },
+      ])
+      expect(linkedList.size).toBe(4)
+    })
 
-		it('Should return the pushed element', () => {
-			const linkedList = new LinkedList();
-			const returned = linkedList.push(1);
+    it('should return the pushed element', () => {
+      const linkedList = new LinkedList()
+      const returned = linkedList.push(1)
 
-			expect(returned).toBe(1);
-		});
-	});
+      expect(returned).toBe(1)
+    })
+  })
 
-	describe('.removeFromPosition()', () => {
-		it('Should return undefined when given a negative position', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.removeFromPosition(-1);
+  describe('.removeFromPosition()', () => {
+    it('should return undefined when given a negative position', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.removeFromPosition(-1)
 
-			expect(returned).toBeNull();
-		});
+      expect(returned).toBeNull()
+    })
 
-		it('Should return undefined when given a position equal size', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.removeFromPosition(linkedList.size);
+    it('should return undefined when given a position equal size', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.removeFromPosition(linkedList.size)
 
-			expect(returned).toBeNull();
-		});
+      expect(returned).toBeNull()
+    })
 
-		it('Should return undefined when given a position larger than size', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.removeFromPosition(linkedList.size + 1);
+    it('should return undefined when given a position larger than size', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.removeFromPosition(linkedList.size + 1)
 
-			expect(returned).toBeNull();
-		});
+      expect(returned).toBeNull()
+    })
 
-		it('Should remove item from the head', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			linkedList.removeFromPosition(0);
+    it('should remove item from the head', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      linkedList.removeFromPosition(0)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 2,
-					next: 3,
-				},
-				{
-					value: 3,
-					next: 4,
-				},
-				{
-					value: 4,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 2,
+          next: 3,
+        },
+        {
+          value: 3,
+          next: 4,
+        },
+        {
+          value: 4,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should remove item from the middle of the linked list', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			linkedList.removeFromPosition(2);
+    it('should remove item from the middle of the linked list', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      linkedList.removeFromPosition(2)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 4,
-				},
-				{
-					value: 4,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 4,
+        },
+        {
+          value: 4,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should remove item from the last position of the linked list', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			linkedList.removeFromPosition(linkedList.size - 1);
+    it('should remove item from the last position of the linked list', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      linkedList.removeFromPosition(linkedList.size - 1)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 3,
-				},
-				{
-					value: 3,
-					next: null,
-				},
-			]);
-		});
-	});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 3,
+        },
+        {
+          value: 3,
+          next: null,
+        },
+      ])
+    })
+  })
 
-	describe('.getFromPosition()', () => {
-		it('Should return undefined when receive a negative position', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.getFromPosition(-1);
+  describe('.getFromPosition()', () => {
+    it('should return undefined when receive a negative position', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.getFromPosition(-1)
 
-			expect(returned).toBeNull();
-		});
+      expect(returned).toBeNull()
+    })
 
-		it('Should return undefined whe the position is greater than the last position', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.getFromPosition(4);
+    it('should return undefined whe the position is greater than the last position', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.getFromPosition(4)
 
-			expect(returned).toBeNull();
-		});
+      expect(returned).toBeNull()
+    })
 
-		it('Should get the element at a valid position', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.getFromPosition(2);
+    it('should get the element at a valid position', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.getFromPosition(2)
 
-			expect(returned).toEqual({
-				value: 3,
-				next: 4,
-			});
-		});
-	});
+      expect(returned).toEqual({
+        value: 3,
+        next: 4,
+      })
+    })
+  })
 
-	describe('.insertInPosition()', () => {
-		it('Should return undefined when receive a negative position', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.insertInPosition(5, -1);
+  describe('.insertInPosition()', () => {
+    it('should return undefined when receive a negative position', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.insertInPosition(5, -1)
 
-			expect(returned).toBeUndefined();
-		});
+      expect(returned).toBeUndefined()
+    })
 
-		it('Should return undefined when receive a position larger than the size', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.insertInPosition(5, 10);
+    it('should return undefined when receive a position larger than the size', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.insertInPosition(5, 10)
 
-			expect(returned).toBeUndefined();
-		});
+      expect(returned).toBeUndefined()
+    })
 
-		it('Should insert an element in the head when receive position 0', () => {
-			const linkedList = new LinkedList(1);
-			linkedList.insertInPosition(0, 0);
+    it('should insert an element in the head when receive position 0', () => {
+      const linkedList = new LinkedList(1)
+      linkedList.insertInPosition(0, 0)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 0,
-					next: 1,
-				},
-				{
-					value: 1,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 0,
+          next: 1,
+        },
+        {
+          value: 1,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should insert an element in the middle of the linked list', () => {
-			const linkedList = new LinkedList(1, 3);
-			linkedList.insertInPosition(2, 1);
+    it('should insert an element in the middle of the linked list', () => {
+      const linkedList = new LinkedList(1, 3)
+      linkedList.insertInPosition(2, 1)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 3,
-				},
-				{
-					value: 3,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 3,
+        },
+        {
+          value: 3,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should insert an element in the penultimate position', () => {
-			const linkedList = new LinkedList(1, 2, 4);
-			linkedList.insertInPosition(3, linkedList.size - 1);
+    it('should insert an element in the penultimate position', () => {
+      const linkedList = new LinkedList(1, 2, 4)
+      linkedList.insertInPosition(3, linkedList.size - 1)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 3,
-				},
-				{
-					value: 3,
-					next: 4,
-				},
-				{
-					value: 4,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 3,
+        },
+        {
+          value: 3,
+          next: 4,
+        },
+        {
+          value: 4,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should insert an element in the end of the linked list, just like a push', () => {
-			const linkedList = new LinkedList(1, 2);
-			linkedList.insertInPosition(3, linkedList.size);
+    it('should insert an element in the end of the linked list, just like a push', () => {
+      const linkedList = new LinkedList(1, 2)
+      linkedList.insertInPosition(3, linkedList.size)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 3,
-				},
-				{
-					value: 3,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 3,
+        },
+        {
+          value: 3,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should increase the size by one', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const {size} = linkedList;
-			linkedList.insertInPosition(5, linkedList.size);
+    it('should increase the size by one', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const { size } = linkedList
+      linkedList.insertInPosition(5, linkedList.size)
 
-			expect(linkedList.size).toBe(size + 1);
-		});
-	});
+      expect(linkedList.size).toBe(size + 1)
+    })
+  })
 
-	describe('.positionOf()', () => {
-		it('Should return undefined when receive an element not found in linked list', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const position = linkedList.positionOf(5);
+  describe('.positionOf()', () => {
+    it('should return undefined when receive an element not found in linked list', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const position = linkedList.positionOf(5)
 
-			expect(position).toBeUndefined();
-		});
+      expect(position).toBeUndefined()
+    })
 
-		it('Should return the correct position of an element', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const position = linkedList.positionOf(3);
+    it('should return the correct position of an element', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const position = linkedList.positionOf(3)
 
-			expect(position).toBe(2);
-		});
-	});
+      expect(position).toBe(2)
+    })
+  })
 
-	describe('.remove()', () => {
-		it('Should remove an element from linked list', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			linkedList.remove(3);
+  describe('.remove()', () => {
+    it('should remove an element from linked list', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      linkedList.remove(3)
 
-			expect(linkedList.data).toEqual([
-				{
-					value: 1,
-					next: 2,
-				},
-				{
-					value: 2,
-					next: 4,
-				},
-				{
-					value: 4,
-					next: null,
-				},
-			]);
-		});
+      expect(linkedList.data).toEqual([
+        {
+          value: 1,
+          next: 2,
+        },
+        {
+          value: 2,
+          next: 4,
+        },
+        {
+          value: 4,
+          next: null,
+        },
+      ])
+    })
 
-		it('Should return the removed element', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.remove(3);
+    it('should return the removed element', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.remove(3)
 
-			expect(returned).toBe(3);
-		});
+      expect(returned).toBe(3)
+    })
 
-		it('Should return null when the element doesn\'t belongs to the linked list', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList.remove(5);
+    it('should return null when the element doesn\'t belongs to the linked list', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList.remove(5)
 
-			expect(returned).toBeNull();
-		});
-	});
+      expect(returned).toBeNull()
+    })
+  })
 
-	describe('Conversion to primitive', () => {
-		it('Should return arrow-separated elements in string conversion', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const string = String(linkedList);
+  describe('conversion to primitive', () => {
+    it('should return arrow-separated elements in string conversion', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const string = String(linkedList)
 
-			expect(string).toBe('[Head] 1 => 2 => 3 => 4');
-		});
+      expect(string).toBe('[Head] 1 => 2 => 3 => 4')
+    })
 
-		it('Should return the linked list size in number conversion', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const number = Number(linkedList);
+    it('should return the linked list size in number conversion', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const number = Number(linkedList)
 
-			expect(number).toBe(4);
-		});
+      expect(number).toBe(4)
+    })
 
-		it('Should return true in default conversion', () => {
-			const linkedList = new LinkedList(1, 2, 3, 4);
-			const returned = linkedList[Symbol.toPrimitive]('default');
+    it('should return true in default conversion', () => {
+      const linkedList = new LinkedList(1, 2, 3, 4)
+      const returned = linkedList[Symbol.toPrimitive]('default')
 
-			expect(returned).toBe(true);
-		});
-	});
-});
+      expect(returned).toBe(true)
+    })
+  })
+})

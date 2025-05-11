@@ -1,5 +1,5 @@
 interface IDictionaryData<T> {
-	[key: string]: T
+  [key: string]: T
 }
 
-export default IDictionaryData;
+export default IDictionaryData

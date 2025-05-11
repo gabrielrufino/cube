@@ -1,73 +1,72 @@
-import IHashTable from './IHashTable';
-import IHashTableData from './IHashTableData';
-import IHashTableInputs from './IHashTableInputs';
-import IHashTableOptions from './IHashTableOptions';
+import type IHashTable from './IHashTable'
+import type IHashTableData from './IHashTableData'
+import type IHashTableInputs from './IHashTableInputs'
+import type IHashTableOptions from './IHashTableOptions'
 
 export default class HashTable<T = number> implements IHashTable<T> {
-	private _data: T[];
+  public readonly maxSize: number
 
-	constructor(
-		inputs: Readonly<IHashTableInputs<T>> = {},
-		{maxSize = 100}: IHashTableOptions = {},
-	) {
-		this._data = new Array(maxSize);
+  private _data: T[]
 
-		for (const [key, value] of Object.entries(inputs)) {
-			this.put(key, value);
-		}
-	}
+  constructor(
+    inputs: Readonly<IHashTableInputs<T>> = {},
+    { maxSize = 100 }: IHashTableOptions = {},
+  ) {
+    this._data = []
+    this.maxSize = maxSize
 
-	get data(): IHashTableData<T> {
-		return this._data
-			.map((value, index) => ({index, value}))
-			.reduce((accumulator, current) => ({
-				...accumulator,
-				[current.index]: current.value,
-			}), {});
-	}
+    for (const [key, value] of Object.entries(inputs)) {
+      this.put(key, value)
+    }
+  }
 
-	get size(): number {
-		return Reflect.ownKeys(this.data).length;
-	}
+  get data(): IHashTableData<T> {
+    return this._data
+      .map((value, index) => ({ index, value }))
+      .reduce((accumulator, current) => ({
+        ...accumulator,
+        [current.index]: current.value,
+      }), {})
+  }
 
-	get maxSize(): number {
-		return this._data.length;
-	}
+  get size(): number {
+    return Reflect.ownKeys(this.data).length
+  }
 
-	public put(key: string, value: T): T {
-		const position = this._hashCode(key);
-		this._data[position] = value;
-		return value;
-	}
+  public put(key: string, value: T): T {
+    const position = this._hashCode(key)
+    this._data[position] = value
+    return value
+  }
 
-	public get(key: string): T | null {
-		const position = this._hashCode(key);
-		return this.data[position] || null;
-	}
+  public get(key: string): T | null {
+    const position = this._hashCode(key)
+    return this.data[position] || null
+  }
 
-	public remove(key: string): T | null {
-		const value = this.get(key);
-		const position = this._hashCode(key);
-		Reflect.deleteProperty(this._data, position);
-		return value;
-	}
+  public remove(key: string): T | null {
+    const value = this.get(key)
+    const position = this._hashCode(key)
+    Reflect.deleteProperty(this._data, position)
+    return value
+  }
 
-	private _hashCode(key: string): number {
-		const code = key
-			.split('')
-			.map(character => character.charCodeAt(0))
-			.reduce((previous, current) => previous + current, 0);
+  private _hashCode(key: string): number {
+    const code = key
+      .split('')
+      .map(character => character.charCodeAt(0))
+      .reduce((previous, current) => previous + current, 0)
 
-		return code % this.maxSize;
-	}
+    return code % this.maxSize
+  }
 
-	private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | string | number {
-		const primitives = {
-			default: true,
-			number: this.size,
-			string: `[ ${Object.entries(this.data).map(([key, value]) => `${key} => ${value}`).join(', ')} ]`,
-		};
+  private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | string | number {
+    const primitives = {
+      default: true,
+      number: this.size,
+      string: `[ ${Object.entries(this.data).map(([key, value]) => `${key} => ${value}`).join(', ')} ]`,
+    }
 
-		return primitives[type];
-	}
+    return primitives[type]
+  }
 }

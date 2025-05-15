@@ -36,13 +36,13 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
       current = current.left
     }
 
-    return current?.value || null
+    return current?.value ?? null
   }
 
   get max(): T | null {
     let current = this._root
 
-    while (current && current.right) {
+    while (current?.right) {
       current = current.right
     }
 

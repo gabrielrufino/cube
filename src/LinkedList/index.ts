@@ -26,7 +26,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
     while (current) {
       data.push({
         value: current.value,
-        next: current.next?.value || null,
+        next: current.next?.value ?? null,
       })
 
       current = current.next
@@ -121,7 +121,7 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
 
     return {
       value: node.value,
-      next: node.next?.value || null,
+      next: node.next?.value ?? null,
     }
   }
 

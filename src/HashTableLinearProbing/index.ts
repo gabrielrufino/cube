@@ -4,7 +4,7 @@ import type IHashTableLinearProbingOptions from './IHashTableLinearProbingOption
 import HashTableLinearProbingElement from './HashTableLinearProbingElement'
 
 export default class HashTableLinearProbing<T = number> implements IHashTableLinearProbing<T> {
-  private _maxSize: number = 0
+  private readonly _maxSize: number = 0
   private _data: HashTableLinearProbingElement<T>[] = []
 
   constructor(

@@ -48,10 +48,10 @@ export default class MinHeap<T = number> implements IMinHeap<T> {
     return null
   }
 
-  private _lessThanOrEqualTo = (value1: T, value2: T): boolean => value1 <= value2
-  private _getLeftIndex = (index: number): number => (2 * index) + 1
-  private _getRightIndex = (index: number): number => (2 * index) + 2
-  private _getParentIndex = (index: number): number => Math.floor((index - 1) / 2)
+  private readonly _lessThanOrEqualTo = (value1: T, value2: T): boolean => value1 <= value2
+  private readonly _getLeftIndex = (index: number): number => (2 * index) + 1
+  private readonly _getRightIndex = (index: number): number => (2 * index) + 2
+  private readonly _getParentIndex = (index: number): number => Math.floor((index - 1) / 2)
 
   private _siftUp(index: number): void {
     const parent = this._getParentIndex(index)

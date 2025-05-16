@@ -26,9 +26,9 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
     while (current) {
       data.push({
-        previous: current.previous?.value || null,
+        previous: current.previous?.value ?? null,
         value: current.value,
-        next: current.next?.value || null,
+        next: current.next?.value ?? null,
       })
       current = current.next
     }
@@ -88,9 +88,9 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
     if (current?.value) {
       return {
-        previous: current.previous?.value || null,
+        previous: current.previous?.value ?? null,
         value: current.value,
-        next: current.next?.value || null,
+        next: current.next?.value ?? null,
       }
     }
   }
@@ -127,7 +127,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
       return element
     }
 
-    if (position === this.size - 1 && this._tail && this._tail.previous) {
+    if (position === this.size - 1 && this._tail?.previous) {
       this._tail.previous.next = node
       node.previous = this._tail?.previous || null
       node.next = this._tail
@@ -166,7 +166,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
       }
     }
 
-    if (current && current.previous) {
+    if (current?.previous) {
       current.previous.next = node
       node.previous = current.previous
       node.next = current

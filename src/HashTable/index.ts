@@ -6,13 +6,13 @@ import type IHashTableOptions from './IHashTableOptions'
 export default class HashTable<T = number> implements IHashTable<T> {
   public readonly maxSize: number
 
-  private _data: T[]
+  private _data: Array<T | undefined>
 
   constructor(
     inputs: Readonly<IHashTableInputs<T>> = {},
     { maxSize = 100 }: IHashTableOptions = {},
   ) {
-    this._data = []
+    this._data = Array.from({ length: maxSize })
     this.maxSize = maxSize
 
     for (const [key, value] of Object.entries(inputs)) {
@@ -23,6 +23,7 @@ export default class HashTable<T = number> implements IHashTable<T> {
   get data(): IHashTableData<T> {
     return this._data
       .map((value, index) => ({ index, value }))
+      .filter(({ value }) => value !== undefined)
       .reduce((accumulator, current) => ({
         ...accumulator,
         [current.index]: current.value,

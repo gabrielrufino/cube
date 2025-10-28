@@ -62,10 +62,15 @@ export default class HashTable<T = number> implements IHashTable<T> {
   }
 
   private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | string | number {
+    const pairs = Object
+      .entries(this.data)
+      .map(([key, value]) => `${key} => ${value}`)
+      .join(', ')
+
     const primitives = {
       default: true,
       number: this.size,
-      string: `[ ${Object.entries(this.data).map(([key, value]) => `${key} => ${value}`).join(', ')} ]`,
+      string: `[ ${pairs} ]`,
     }
 
     return primitives[type]

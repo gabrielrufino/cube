@@ -30,12 +30,12 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
+    "@antfu/eslint-config": "^6.4.2",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@faker-js/faker": "^9.9.0",
     "@stryker-mutator/vitest-runner": "^9.4.0",
-    "@vitest/coverage-v8": "^4.0.14",
+    "@vitest/coverage-v8": "^4.0.15",
     "eslint": "^9.39.1",
     "husky": "^9.1.7",
     "typescript": "^5.9.3",

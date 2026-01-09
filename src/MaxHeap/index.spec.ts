@@ -174,4 +174,32 @@ describe(MaxHeap.name, () => {
       expect(returned).toBe(true)
     })
   })
+
+  describe('custom greaterThanOrEqualTo function', () => {
+    it('should create a max heap of objects using the custom greaterThanOrEqualTo function', () => {
+      interface Task {
+        name: string
+        priority: number
+      }
+
+      const tasks: Task[] = [
+        { name: 'Task A', priority: 5 },
+        { name: 'Task B', priority: 2 },
+        { name: 'Task C', priority: 8 },
+        { name: 'Task D', priority: 1 },
+      ]
+
+      const maxHeap = new MaxHeap<Task>({
+        inputs: tasks,
+        greaterThanOrEqualTo: (a, b) => a.priority >= b.priority,
+      })
+
+      expect(maxHeap.size).toBe(4)
+      expect(maxHeap.max).toEqual({ name: 'Task C', priority: 8 })
+
+      const extracted = maxHeap.extract()
+      expect(extracted).toEqual({ name: 'Task C', priority: 8 })
+      expect(maxHeap.max).toEqual({ name: 'Task A', priority: 5 })
+    })
+  })
 })

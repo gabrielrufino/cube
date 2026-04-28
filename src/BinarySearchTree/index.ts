@@ -107,31 +107,49 @@ export default class BinarySearchTree<T = number> implements IBinarySearchTree<T
     }
 
     const found = { ...current }
-    const parent = path
-      .slice(0, path.length - 1)
-      .reduce((accumulator, current) => accumulator![current], this._root)
+    const parent = path.length > 0
+      ? path
+          .slice(0, path.length - 1)
+          .reduce((accumulator, current) => accumulator![current], this._root)
+      : null
     const child = path[path.length - 1]
 
-    if (current?.left && current.right && parent) {
+    if (current?.left && current.right) {
       let head = current.right
 
       while (head.left) {
         head = head.left
       }
 
+      const valueToKeep = head.value
       this.remove(head.value)
-      current.value = head.value
+      current.value = valueToKeep
     }
-    else if (current?.left && parent) {
-      parent[child] = current.left
+    else if (current?.left) {
+      if (parent) {
+        parent[child] = current.left
+      }
+      else {
+        this._root = current.left
+      }
       this._size -= 1
     }
-    else if (current?.right && parent) {
-      parent[child] = current.right
+    else if (current?.right) {
+      if (parent) {
+        parent[child] = current.right
+      }
+      else {
+        this._root = current.right
+      }
       this._size -= 1
     }
-    else if (parent) {
-      parent[child] = null
+    else if (current) {
+      if (parent) {
+        parent[child] = null
+      }
+      else {
+        this._root = null
+      }
       this._size -= 1
     }
 

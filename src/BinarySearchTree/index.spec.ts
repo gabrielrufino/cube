@@ -496,6 +496,40 @@ describe(BinarySearchTree.name, () => {
 
       expect(returned).toBeNull()
     })
+
+    it('should not change the size when removing a non-existent value', () => {
+      const bst = new BinarySearchTree({
+        inputs: [1, 2, 3],
+      })
+      bst.remove(4)
+      expect(bst.size).toBe(3)
+    })
+
+    it('should exercise right path in search', () => {
+      const bst = new BinarySearchTree({ inputs: [2, 3] })
+      expect(bst.search(3)).toBe(true)
+    })
+
+    it('should remove the root with left child only', () => {
+      const bst = new BinarySearchTree({ inputs: [2, 1] })
+      bst.remove(2)
+      expect(bst.data.value).toBe(1)
+      expect(bst.size).toBe(1)
+    })
+
+    it('should remove the root with right child only', () => {
+      const bst = new BinarySearchTree({ inputs: [1, 2] })
+      bst.remove(1)
+      expect(bst.data.value).toBe(2)
+      expect(bst.size).toBe(1)
+    })
+
+    it('should remove the root with no children', () => {
+      const bst = new BinarySearchTree({ inputs: [1] })
+      bst.remove(1)
+      expect(bst.data.value).toBeNull()
+      expect(bst.size).toBe(0)
+    })
   })
 
   describe('conversion to primitive', () => {

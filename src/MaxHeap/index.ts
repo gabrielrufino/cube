@@ -37,15 +37,19 @@ export default class MaxHeap<T = number> implements IMaxHeap<T> {
   }
 
   public extract(): T | null {
-    if (!this.isEmpty) {
-      const [min, ...rest] = this.data
-      this._data = [rest[rest.length - 1], ...rest.slice(0, rest.length - 1)].filter(value => value !== undefined)
-      this._siftDown(0)
-
-      return min
+    if (this.isEmpty) {
+      return null
     }
 
-    return null
+    const max = this.data[0]
+    const last = this._data.pop()
+
+    if (this.size > 0 && last !== undefined) {
+      this._data[0] = last
+      this._siftDown(0)
+    }
+
+    return max
   }
 
   private readonly _greaterThanOrEqualTo = (value1: T, value2: T): boolean => value1 >= value2
@@ -65,15 +69,19 @@ export default class MaxHeap<T = number> implements IMaxHeap<T> {
   private _siftDown(index: number): void {
     const left = this._getLeftIndex(index)
     const right = this._getRightIndex(index)
+    let largest = index
 
-    if (left < this.size && this._greaterThanOrEqualTo(this.data[left], this.data[index])) {
-      [this._data[left], this._data[index]] = [this.data[index], this.data[left]]
-      this._siftDown(left)
+    if (left < this.size && this._greaterThanOrEqualTo(this.data[left], this.data[largest])) {
+      largest = left
     }
 
-    if (right < this.size && this._greaterThanOrEqualTo(this.data[right], this.data[index])) {
-      [this._data[right], this._data[index]] = [this.data[index], this.data[right]]
-      this._siftDown(right)
+    if (right < this.size && this._greaterThanOrEqualTo(this.data[right], this.data[largest])) {
+      largest = right
+    }
+
+    if (largest !== index) {
+      [this._data[largest], this._data[index]] = [this.data[index], this.data[largest]]
+      this._siftDown(largest)
     }
   }
 

@@ -128,6 +128,24 @@ describe(LinkedList.name, () => {
       ])
     })
 
+    it('should correctly handle insertion boundaries for mutants', () => {
+      const linkedList = new LinkedList(1)
+      linkedList.insertInPosition(2, 1)
+      expect(linkedList.getFromPosition(1)?.value).toBe(2)
+    })
+
+    it('should handle removeFromPosition for size 2 at position 1', () => {
+      const linkedList = new LinkedList(1, 2)
+      linkedList.removeFromPosition(1)
+      expect(linkedList.size).toBe(1)
+      expect(linkedList.data[0].value).toBe(1)
+    })
+
+    it('should handle getFromPosition exactly at size', () => {
+      const linkedList = new LinkedList(1, 2)
+      expect(linkedList.getFromPosition(2)).toBeNull()
+    })
+
     it('should remove item from the middle of the linked list', () => {
       const linkedList = new LinkedList(1, 2, 3, 4)
       linkedList.removeFromPosition(2)

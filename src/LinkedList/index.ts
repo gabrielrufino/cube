@@ -98,13 +98,10 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
       this._head = node
     }
     else {
-      const before = this._getNodeFromPosition(position - 1)
-      const after = before?.next || null
+      const before = this._getNodeFromPosition(position - 1) as Node<T>
+      const after = before.next
 
-      if (before) {
-        before.next = node
-      }
-
+      before.next = node
       node.next = after
     }
 
@@ -136,16 +133,14 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
       this._head = current.next
     }
     else {
-      let previous: Node<T> | null | undefined
+      let previous: Node<T> = current
 
       for (let i = 0; i < position && current; i++) {
         previous = current
         current = current.next as Node<T>
       }
 
-      if (previous) {
-        previous.next = current.next
-      }
+      previous.next = current.next
     }
 
     this._size -= 1
@@ -153,13 +148,13 @@ export default class LinkedList<T = number> implements ILinkedList<T> {
   }
 
   private _getNodeFromPosition(position: number): Node<T> | null {
-    if (position < this._FIRST_POSITION || position > (this.size - 1)) {
+    if (position < this._FIRST_POSITION || position >= this.size) {
       return null
     }
 
-    let node = this._head
-    for (let i = 0; i < position && node?.next; i++) {
-      node = node.next
+    let node = this._head as Node<T>
+    for (let i = 0; i < position; i++) {
+      node = node.next as Node<T>
     }
 
     return node

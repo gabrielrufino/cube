@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import MaxHeap from './'
 
@@ -115,6 +115,90 @@ describe(MaxHeap.name, () => {
       const returned = maxHeap.extract()
 
       expect(returned).toBeNull()
+    })
+
+    it('should correctly extract the only element and become empty', () => {
+      const maxHeap = new MaxHeap({ inputs: [10] })
+      expect(maxHeap.extract()).toBe(10)
+      expect(maxHeap.isEmpty).toBe(true)
+    })
+
+    it('should handle many extracts correctly', () => {
+      const maxHeap = new MaxHeap({ inputs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] })
+      const result = []
+      while (!maxHeap.isEmpty) {
+        result.push(maxHeap.extract())
+      }
+      expect(result).toEqual([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
+    })
+  })
+
+  describe('.insert() with duplicates', () => {
+    it('should handle duplicate values correctly', () => {
+      const maxHeap = new MaxHeap({ inputs: [5, 5, 5] })
+      expect(maxHeap.size).toBe(3)
+      expect(maxHeap.data).toEqual([5, 5, 5])
+      expect(maxHeap.extract()).toBe(5)
+      expect(maxHeap.size).toBe(2)
+    })
+
+    it('should swap equal values during sift up to kill equality mutant', () => {
+      const a = new Number(10)
+      const b = new Number(10)
+      const maxHeap = new MaxHeap<any>({
+        inputs: [a],
+      })
+      maxHeap.insert(b)
+      expect(maxHeap.data[0]).toBe(b)
+    })
+
+    it('should swap equal values during sift down to kill equality mutant', () => {
+      const x = new Number(20)
+      const y = new Number(10)
+      const z = new Number(10)
+      const heap = new MaxHeap<any>({
+        inputs: [x, y, z],
+      })
+      // [x, y, z] -> extract x -> [z, y]
+      // z is root (10), y is child (10).
+      // siftDown(0): child 10 >= root 10? Yes, swap.
+      heap.extract()
+      expect(heap.data[0]).toBe(y)
+    })
+  })
+
+  describe('siftDown boundary', () => {
+    it('should not sift down if children are out of bounds', () => {
+      const maxHeap = new MaxHeap({ inputs: [10, 5] })
+      // [10, 5] -> extract 10 -> [5]
+      expect(maxHeap.extract()).toBe(10)
+      expect(maxHeap.data).toEqual([5])
+    })
+
+    it('should not access out of bounds index during sift down', () => {
+      const spy = vi.fn((a: number, b: number) => a >= b)
+      const maxHeap = new MaxHeap<number>({
+        greaterThanOrEqualTo: spy,
+        inputs: [10, 5],
+      })
+      spy.mockClear()
+      maxHeap.extract()
+      expect(spy).not.toHaveBeenCalled()
+    })
+
+    it('should check all children during sift down', () => {
+      const maxHeap = new MaxHeap({ inputs: [60, 50, 40, 30, 20, 15, 10] })
+      expect(maxHeap.extract()).toBe(60)
+      // After extract, last element 10 moves to root.
+      // 10 should sift down.
+      expect(maxHeap.data[0]).toBe(50)
+    })
+
+    it('should compare with right child correctly even if left child is greater', () => {
+      // Root is 10, left is 20, right is 30.
+      // It should swap with 30 if we follow some logic, but usually we swap with the largest child.
+      const maxHeap = new MaxHeap({ inputs: [10, 20, 30] })
+      expect(maxHeap.data[0]).toBe(30)
     })
   })
 

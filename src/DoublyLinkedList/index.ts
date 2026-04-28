@@ -67,31 +67,28 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
       return undefined
     }
 
-    const distanceToTheHead = position
-    const distanceToTheTail = this.size - position - 1
-    let current: Node<T> | null
+    const way = this._findFasterWayToPosition(position)
+    let current: Node<T>
 
-    if (distanceToTheTail > distanceToTheHead) {
-      current = this._head
+    if (way === 'ASC') {
+      current = this._head as Node<T>
 
       for (let i = 0; i < position; i++) {
-        current = current?.next || null
+        current = current.next as Node<T>
       }
     }
     else {
-      current = this._tail
+      current = this._tail as Node<T>
 
       for (let i = this.size - 1; i > position; i--) {
-        current = current?.previous || null
+        current = current.previous as Node<T>
       }
     }
 
-    if (current?.value) {
-      return {
-        previous: current.previous?.value ?? null,
-        value: current.value,
-        next: current.next?.value ?? null,
-      }
+    return {
+      previous: current.previous?.value ?? null,
+      value: current.value,
+      next: current.next?.value ?? null,
     }
   }
 
@@ -127,17 +124,6 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
       return element
     }
 
-    if (position === this.size - 1 && this._tail?.previous) {
-      this._tail.previous.next = node
-      node.previous = this._tail?.previous || null
-      node.next = this._tail
-      this._tail.previous = node
-
-      this._size += 1
-
-      return element
-    }
-
     if (position === this.size && this._tail) {
       node.previous = this._tail
       this._tail.next = node
@@ -149,29 +135,27 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
     }
 
     const way = this._findFasterWayToPosition(position)
-    let current: Node<T> | null
+    let current: Node<T>
 
     if (way === 'ASC') {
-      current = this._head
+      current = this._head as Node<T>
 
       for (let i = 0; i < position; i++) {
-        current = current?.next || null
+        current = current.next as Node<T>
       }
     }
     else {
-      current = this._tail
+      current = this._tail as Node<T>
 
       for (let i = this.size - 1; i > position; i--) {
-        current = current?.previous || null
+        current = current.previous as Node<T>
       }
     }
 
-    if (current?.previous) {
-      current.previous.next = node
-      node.previous = current.previous
-      node.next = current
-      current.previous = node
-    }
+    (current.previous as Node<T>).next = node
+    node.previous = current.previous
+    node.next = current
+    current.previous = node
 
     this._size += 1
 
@@ -209,8 +193,6 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
 
       return current.value
     }
-
-    return undefined
   }
 
   /**
@@ -231,11 +213,7 @@ export default class DoublyLinkedList<T = number> implements IDoublyLinkedList<T
     const distanceToTheHead = position
     const distanceToTheTail = this.size - position - 1
 
-    if (distanceToTheTail > distanceToTheHead) {
-      return 'ASC'
-    }
-
-    return 'DESC'
+    return (distanceToTheTail > distanceToTheHead) ? 'ASC' : 'DESC'
   }
 
   private [Symbol.toPrimitive](type: 'default' | 'number' | 'string'): boolean | number | string {

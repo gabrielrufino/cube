@@ -53,6 +53,15 @@ describe(HashTable.name, () => {
 
       expect(hashTable.maxSize).toBe(maxSize)
     })
+
+    it('should affect the data structure correctly', () => {
+      const hashTable = new HashTable<number>({}, { maxSize: 1 })
+      // All keys will have hashCode % 1 = 0
+      hashTable.put('a', 1)
+      hashTable.put('b', 2)
+      expect(hashTable.size).toBe(1)
+      expect(hashTable.get('a')).toBe(2)
+    })
   })
 
   describe('.put()', () => {

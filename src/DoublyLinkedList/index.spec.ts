@@ -149,6 +149,35 @@ describe(DoublyLinkedList.name, () => {
         next: 4,
       })
     })
+
+    it('should handle getFromPosition boundaries', () => {
+      const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4, 5, 6)
+      // size = 6.
+      // pos 2: distanceToHead = 2, distanceToTail = 6-2-1 = 3. Head path.
+      // pos 3: distanceToHead = 3, distanceToTail = 6-3-1 = 2. Tail path.
+      expect(doublyLinkedList.getFromPosition(2)?.value).toBe(3)
+      expect(doublyLinkedList.getFromPosition(3)?.value).toBe(4)
+    })
+
+    it('should handle getFromPosition exactly at the middle for ASC/DESC coverage', () => {
+      const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4, 5)
+      // size = 5.
+      // pos 2: distanceToHead = 2, distanceToTail = 5-2-1 = 2.
+      // distanceToTail > distanceToHead is 2 > 2 (false). Tail path.
+      const item = doublyLinkedList.getFromPosition(2)
+      expect(item?.value).toBe(3)
+      expect(item?.previous).toBe(2)
+      expect(item?.next).toBe(4)
+
+      const doublyLinkedList2 = new DoublyLinkedList(1, 2, 3, 4, 5, 6)
+      // size = 6.
+      // pos 2: distanceToHead = 2, distanceToTail = 6-2-1 = 3.
+      // 3 > 2 (true). Head path.
+      const item2 = doublyLinkedList2.getFromPosition(2)
+      expect(item2?.value).toBe(3)
+      expect(item2?.previous).toBe(2)
+      expect(item2?.next).toBe(4)
+    })
   })
 
   describe('.positionOf()', () => {
@@ -327,9 +356,39 @@ describe(DoublyLinkedList.name, () => {
 
       expect(returned).toBe(4)
     })
+
+    it('should return undefined when position is out of bounds', () => {
+      const list = new DoublyLinkedList(1)
+      expect(list.insertInPosition(2, 2)).toBeUndefined()
+    })
   })
 
   describe('.remove()', () => {
+    it('should maintain correct tail after removing a middle element', () => {
+      const list = new DoublyLinkedList(1, 2, 3)
+      list.remove(2)
+      // data: [1, 3], tail should be 3
+      list.push(4)
+      // data: [1, 3, 4]
+      expect(list.data[2].value).toBe(4)
+      expect(list.data[1].next).toBe(4)
+    })
+
+    it('should update tail when removing the last element', () => {
+      const list = new DoublyLinkedList(1, 2)
+      list.remove(2)
+      expect(list.size).toBe(1)
+      list.push(3)
+      expect(list.data).toEqual([
+        { previous: null, value: 1, next: 3 },
+        { previous: 1, value: 3, next: null },
+      ])
+    })
+
+    it('should return the removed element', () => {
+      const list = new DoublyLinkedList(1, 2, 3)
+      expect(list.remove(2)).toBe(2)
+    })
     it('should remove an element in the first position', () => {
       const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4)
       doublyLinkedList.remove(1)
@@ -491,6 +550,16 @@ describe(DoublyLinkedList.name, () => {
       const returned = doublyLinkedList[Symbol.toPrimitive]('default')
 
       expect(returned).toBe(true)
+    })
+
+    it('should return arrow separated elements for a single element in string conversion', () => {
+      const doublyLinkedList = new DoublyLinkedList(1)
+      expect(String(doublyLinkedList)).toBe('[Head] 1 [Tail]')
+    })
+
+    it('should return empty list string conversion correctly', () => {
+      const doublyLinkedList = new DoublyLinkedList()
+      expect(String(doublyLinkedList)).toBe('[Head]  [Tail]')
     })
   })
 })

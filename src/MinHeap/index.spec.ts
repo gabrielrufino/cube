@@ -116,6 +116,106 @@ describe(MinHeap.name, () => {
 
       expect(returned).toBeNull()
     })
+
+    it('should correctly extract the only element and become empty', () => {
+      const minHeap = new MinHeap({ inputs: [10] })
+      expect(minHeap.extract()).toBe(10)
+      expect(minHeap.isEmpty).toBe(true)
+    })
+
+    it('should handle many extracts correctly', () => {
+      const minHeap = new MinHeap({ inputs: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] })
+      const result = []
+      while (!minHeap.isEmpty) {
+        result.push(minHeap.extract())
+      }
+      expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    })
+  })
+
+  describe('.insert() with duplicates', () => {
+    it('should handle duplicate values correctly', () => {
+      const minHeap = new MinHeap({ inputs: [5, 5, 5] })
+      expect(minHeap.size).toBe(3)
+      expect(minHeap.data).toEqual([5, 5, 5])
+      expect(minHeap.extract()).toBe(5)
+      expect(minHeap.size).toBe(2)
+    })
+
+    it('should sift up when equal value is inserted', () => {
+      const minHeap = new MinHeap({ inputs: [10, 20, 5] })
+      minHeap.insert(5)
+      expect(minHeap.data[0]).toBe(5)
+    })
+
+    it('should swap equal values during sift up to kill equality mutant', () => {
+      const a = new Number(10)
+      const b = new Number(10)
+      const minHeap = new MinHeap<any>({
+        inputs: [a],
+      })
+      minHeap.insert(b)
+      expect(minHeap.data[0]).toBe(b)
+    })
+
+    it('should swap equal values during sift down to kill equality mutant', () => {
+      const x = new Number(5)
+      const y = new Number(10)
+      const z = new Number(10)
+      const minHeap = new MinHeap<any>({
+        inputs: [x, y, z],
+      })
+      minHeap.extract()
+      expect(minHeap.data[0]).toBe(y)
+    })
+  })
+
+  describe('siftDown boundary', () => {
+    it('should not sift down if children are out of bounds', () => {
+      const minHeap = new MinHeap({ inputs: [5, 10] })
+      // [5, 10] -> extract 5 -> [10]
+      expect(minHeap.extract()).toBe(5)
+      expect(minHeap.data).toEqual([10])
+    })
+
+    it('should check all children during sift down', () => {
+      const minHeap = new MinHeap({ inputs: [10, 20, 15, 30, 40, 50, 60] })
+      expect(minHeap.extract()).toBe(10)
+      // After extract, last element 60 moves to root.
+      // 60 should sift down.
+      expect(minHeap.data[0]).toBe(15)
+    })
+
+    it('should not sift down when index is exactly size - 1', () => {
+      const minHeap = new MinHeap({ inputs: [30, 20, 10] })
+      // [10, 30, 20]
+      expect(minHeap.size).toBe(3)
+    })
+
+    it('should not sift up from root', () => {
+      const minHeap = new MinHeap({ inputs: [10] })
+      expect(minHeap.data[0]).toBe(10)
+    })
+  })
+
+  describe('custom lessThanOrEqualTo', () => {
+    it('should allow us to customize the comparison function', () => {
+      const minHeap = new MinHeap({
+        lessThanOrEqualTo: (a: number, b: number) => a <= b,
+        inputs: [2, 1],
+      })
+      expect(minHeap.min).toBe(1)
+    })
+
+    it('should use custom lessThanOrEqualTo to kill its mutant', () => {
+      const minHeap = new MinHeap<string>({
+        lessThanOrEqualTo: (a, b) => a.length <= b.length,
+        inputs: ['aa', 'b'],
+      })
+      // If custom is used, 'b' is min.
+      // If default is used, 'aa' is min.
+      expect(minHeap.min).toBe('b')
+    })
   })
 
   describe('heap Sort', () => {

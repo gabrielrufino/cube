@@ -149,9 +149,10 @@ describe(MinHeap.name, () => {
     })
 
     it('should swap equal values during sift up to kill equality mutant', () => {
-      const a = new Number(10)
-      const b = new Number(10)
+      const a = { value: 10 }
+      const b = { value: 10 }
       const minHeap = new MinHeap<any>({
+        lessThanOrEqualTo: (x, y) => x.value <= y.value,
         inputs: [a],
       })
       minHeap.insert(b)
@@ -159,10 +160,11 @@ describe(MinHeap.name, () => {
     })
 
     it('should swap equal values during sift down to kill equality mutant', () => {
-      const x = new Number(5)
-      const y = new Number(10)
-      const z = new Number(10)
+      const x = { value: 5 }
+      const y = { value: 10 }
+      const z = { value: 10 }
       const minHeap = new MinHeap<any>({
+        lessThanOrEqualTo: (p, q) => p.value <= q.value,
         inputs: [x, y, z],
       })
       minHeap.extract()

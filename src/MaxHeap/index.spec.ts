@@ -143,9 +143,10 @@ describe(MaxHeap.name, () => {
     })
 
     it('should swap equal values during sift up to kill equality mutant', () => {
-      const a = new Number(10)
-      const b = new Number(10)
+      const a = { value: 10 }
+      const b = { value: 10 }
       const maxHeap = new MaxHeap<any>({
+        greaterThanOrEqualTo: (x, y) => x.value >= y.value,
         inputs: [a],
       })
       maxHeap.insert(b)
@@ -153,10 +154,11 @@ describe(MaxHeap.name, () => {
     })
 
     it('should swap equal values during sift down to kill equality mutant', () => {
-      const x = new Number(20)
-      const y = new Number(10)
-      const z = new Number(10)
+      const x = { value: 20 }
+      const y = { value: 10 }
+      const z = { value: 10 }
       const heap = new MaxHeap<any>({
+        greaterThanOrEqualTo: (p, q) => p.value >= q.value,
         inputs: [x, y, z],
       })
       // [x, y, z] -> extract x -> [z, y]

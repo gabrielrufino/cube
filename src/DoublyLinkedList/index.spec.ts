@@ -110,7 +110,7 @@ describe(DoublyLinkedList.name, () => {
       expect(returned).toBeUndefined()
     })
 
-    it('should return undefined when receive a position greater than the size', () => {
+    it('should return undefined when receive a position greater than the size during get', () => {
       const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4)
       const returned = doublyLinkedList.getFromPosition(5)
 
@@ -188,7 +188,7 @@ describe(DoublyLinkedList.name, () => {
       expect(returned).toBe(2)
     })
 
-    it('should return undefined when the element is not in the doubly linked list', () => {
+    it('should return undefined when the element is not in the doubly linked list during positionOf', () => {
       const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4)
       const returned = doublyLinkedList.positionOf(5)
 
@@ -197,7 +197,7 @@ describe(DoublyLinkedList.name, () => {
   })
 
   describe('.insertInPosition()', () => {
-    it('should return undefined when receive a negative position', () => {
+    it('should return undefined when receive a negative position during insertion', () => {
       const doublyLinkedList = new DoublyLinkedList()
       const returned = doublyLinkedList.insertInPosition(1, -1)
 
@@ -385,7 +385,7 @@ describe(DoublyLinkedList.name, () => {
       ])
     })
 
-    it('should return the removed element', () => {
+    it('should return the removed element when removing middle element', () => {
       const list = new DoublyLinkedList(1, 2, 3)
       expect(list.remove(2)).toBe(2)
     })
@@ -484,14 +484,14 @@ describe(DoublyLinkedList.name, () => {
       expect(returned).toBeUndefined()
     })
 
-    it('should return undefined when receive a position equals the size', () => {
+    it('should return undefined when receive a position equals the size during removal', () => {
       const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4)
       const returned = doublyLinkedList.removeFromPosition(doublyLinkedList.size)
 
       expect(returned).toBeUndefined()
     })
 
-    it('should return undefined when receive a position greater than the size', () => {
+    it('should return undefined when receive a position greater than the size during removal', () => {
       const doublyLinkedList = new DoublyLinkedList(1, 2, 3, 4)
       const returned = doublyLinkedList.removeFromPosition(doublyLinkedList.size + 1)
 
